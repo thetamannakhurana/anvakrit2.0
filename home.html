@@ -127,6 +127,40 @@
         .nav-links a:hover::after {
             width: 100%;
         }
+        
+        /* NAVIGATION LOGOS */
+.nav-logo-left {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-logo-left:hover {
+    transform: scale(1.05);
+}
+
+.nav-logo-right {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 50px;
+    width: auto;
+    filter: drop-shadow(0 0 10px var(--shadow-blue));
+}
+
+@media (max-width: 768px) {
+    .logo-img {
+        height: 35px;
+    }
+    
+    .nav-logo-right {
+        display: none;
+    }
+}
+
 
         .nav-register-btn {
             padding: 0.6rem 1.5rem !important;
@@ -173,20 +207,102 @@
             z-index: 1;
         }
 
-        .event-badge {
-            display: inline-block;
-            padding: 0.6rem 1.5rem;
-            background: rgba(0, 212, 255, 0.1);
-            border: 2px solid var(--neon-blue);
-            border-radius: 30px;
-            color: var(--neon-cyan);
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            animation: float 3s ease-in-out infinite;
-        }
+        /* SEARCH BAR (REPLACES EVENT BADGE) */
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    z-index: 10;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: rgba(13, 27, 42, 0.8);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--neon-blue);
+    border-radius: 50px;
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px var(--shadow-blue);
+    animation: float 3s ease-in-out infinite;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 30px var(--shadow-blue);
+    background: rgba(13, 27, 42, 0.95);
+}
+
+.search-input::placeholder {
+    color: var(--gray-light);
+}
+
+.search-results {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background: rgba(13, 27, 42, 0.98);
+    backdrop-filter: blur(15px);
+    border: 2px solid var(--neon-blue);
+    border-radius: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+    display: none;
+    box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3);
+    z-index: 1000;
+}
+
+.search-results.active {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.search-result-item {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background: rgba(0, 212, 255, 0.1);
+    padding-left: 2rem;
+}
+
+.search-result-title {
+    color: var(--neon-cyan);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.search-result-description {
+    color: var(--gray-light);
+    font-size: 0.9rem;
+}
+
+.no-results {
+    padding: 2rem;
+    text-align: center;
+    color: var(--gray);
+}
+
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
@@ -1164,29 +1280,49 @@
     <canvas id="binaryRainCanvas"></canvas>
 
     <nav>
-        <div class="nav-container">
-            <a href="#home" class="logo">ANVAKRIT <span>2.0</span></a>
-            <div class="menu-toggle" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#rules">Rules</a></li>
-                <li><a href="#categories">Categories</a></li>
-                <li><a href="#eligibility">Eligibility</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#categories" class="nav-register-btn">Register Now</a></li>
-            </ul>
+    <div class="nav-container">
+        <!-- Left Logo (Clickable) -->
+        <a href="#home" class="nav-logo-left">
+            <img src="images/anvakrit-logo.png" alt="Anvakrit 2.0" class="logo-img">
+        </a>
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-    </nav>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#rules">Rules</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#eligibility">Eligibility</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#categories" class="nav-register-btn">Register Now</a></li>
+        </ul>
+
+        <!-- Right Logo (Non-clickable, Image Only) -->
+        <div class="nav-logo-right">
+            <img src="images/nfsu-logo.png" alt="NFSU Delhi" class="logo-img">
+        </div>
+    </div>
+</nav>
+
 
     <section class="hero" id="home">
         <div class="hero-content">
-            <div class="event-badge">🔍 National Crime Scene Investigation Competition</div>
+            <!-- Search Bar -->
+           <div class="search-container">
+             <input type="text" 
+                 id="siteSearch" 
+                 class="search-input" 
+                 placeholder="🔍 Search: rules, dates, rounds, categories..."
+                 autocomplete="off">
+            <div id="searchResults" class="search-results"></div>
+       </div>
+
             
             <h1>ANVAKRIT 2.0</h1>
             
@@ -1213,11 +1349,11 @@
             <div class="section-header">
                 <span class="section-label">About The Event</span>
                 <h2 class="section-title">Beyond the Crime Scene</h2>
-                <p class="section-subtitle">After the resounding success of its first edition, Anvakrit 2.0 returns with greater depth and tougher challenges</p>
+                <p class="section-subtitle">After the resounding success of its first edition, Anvakrit 2.0 returns with greater depth and tougher challenges.</p>
             </div>
 
             <div class="about-description">
-                <p>This year, every clue counts — every trace, every click, every move could unravel the mystery. Centered around Digital Forensics, participants will step beyond the crime scene, navigating the digital world with investigative acumen in dynamic, real-world scenarios designed to test your limits.</p>
+                <p>This year, the competition extends across all domains of forensic expertise, including forensic science, criminology, forensic accounting, and law, with a special emphasis on cybercrime and digital forensics. The theme, “Unmask the Truth in Bytes,” invites participants to tackle complex investigations that go beyond the traditional crime scene, venturing into the fast-evolving world where every clue traced physically or digitally strings together the pieces of a puzzle which shall unfurl the truth.</p>
             </div>
 
             <div class="highlights-grid">
@@ -1230,7 +1366,7 @@
                 <div class="highlight-card">
                     <div class="highlight-icon">🏆</div>
                     <h3>Competition Format</h3>
-                    <p>Two parallel tracks for different expertise levels with exciting prizes totaling ₹2.4 Lakh across both categories.</p>
+                    <p>Two parallel tracks for different expertise levels with exciting prizes totaling ₹1.2 Lakh across both categories.</p>
                 </div>
 
                 <div class="highlight-card">
@@ -1258,41 +1394,47 @@
                             <li>Valid institutional/school ID card <strong>mandatory</strong> for offline rounds</li>
                             <li>Registration is <strong>non-refundable</strong> once confirmed</li>
                             <li><strong>No changes</strong> in team names or composition after registration</li>
-                            <li>Each team member must register individually</li>
+                            <li>Decision of judges and organisers are final </li>
                             <li>Surprise elements throughout the competition starting from registration</li>
+                            <li>Certain rules and structure of the competition may be altered by the Organizing Committee if required </li>
+                            <li>Starting from the registration process, participants shall be tested regarding their awareness regarding recent trends of crime.</li>
                         </ul>
                     </div>
 
                     <div class="rule-card">
                         <h3>🎯 Competition Conduct</h3>
                         <ul>
-                            <li>Maintain integrity and professionalism throughout</li>
-                            <li>Follow chain of custody protocols during evidence handling</li>
-                            <li>Respect crime scene boundaries and markers</li>
-                            <li>No use of unauthorized external assistance or resources</li>
-                            <li>Decisions of judges and organizers are <strong>final</strong></li>
+                            <li>Maintain integrity and professionalism throughout amongst team members and other teams</li>
+                            <li>Participants must strictly follow instructions of the Organizing Committee</li>
+                            <li>Any form of malpractice (tampering evidence, disturbing other teams, disobeying instructions, etc.) will lead to disqualification</li>
+                            <li>Using any items/ devices which are not allowed as per the instructions of the Organising Committee shall lead to disqualification</li>
+                            <li>Respectful conduct towards jury, organizers, volunteers and fellow participants is mandatory</li>
                         </ul>
                     </div>
 
                     <div class="rule-card">
                         <h3>📋 What's Included</h3>
                         <ul>
-                            <li>Lunch and dinner during the event</li>
-                            <li>Registration kits and materials</li>
+                            <li>Registration kits</li>
+                            <li>All materials required for the competition</li>
                             <li>Workshops and expert lectures</li>
                             <li>Lab visits at NFSU Delhi Campus</li>
                             <li>Certificate of participation</li>
-                            <li><strong>Optional:</strong> Accommodation at ₹500/day (includes breakfast)</li>
+                            <li>Certificates of Guest Volunteer (provided participants opt for it)</li>
+                            <li>Trophies/medals for the winning teams</li>
+                            <li>Two meals per day during the event</li>
+                            <li><strong>Optional:</strong> Accommodation at ₹500/day per head per day at a first come first served basis</li>
                         </ul>
                     </div>
 
                     <div class="rule-card">
                         <h3>🏆 Prize Pool</h3>
                         <ul>
-                            <li><strong>Category I:</strong> Top 3 teams share ₹1.2 Lakh</li>
-                            <li><strong>Category II:</strong> Top 2 teams share ₹1.2 Lakh</li>
-                            <li><strong>Total Prize Pool:</strong> ₹2.4 Lakh</li>
-                            <li>Special recognition for outstanding performance</li>
+                            <li><strong>Category I:</strong> Top 3 teams share ₹60k</li>
+                            <li><strong>Category II:</strong> Top 3 teams share ₹60k</li>
+                            <li><strong>Total Prize Pool:</strong> ₹1.2 Lakh</li>
+                            <li>All participants shall receive certificates of participation</li>
+                            <li>Participants who opt to volunteer, shall receive Guest Volunteer certificates.</li>
                         </ul>
                     </div>
                 </div>
@@ -1317,9 +1459,9 @@
                     <p><strong>Eligibility:</strong> Grades 11, 12 & Undergraduate students (all streams)</p>
                     
                     <ul>
-                        <li><strong>Team Size:</strong> 3-4 members</li>
+                        <li><strong>Team Size:</strong> 4 members</li>
                         <li><strong>Capacity:</strong> 300 participants (limited)</li>
-                        <li><strong>Selection:</strong> First-come, first-serve</li>
+                        <li><strong>Selection:</strong> First-come, first-served basis</li>
                         <li><strong>Format:</strong> Case file investigation, poster presentation, on-campus CSI</li>
                     </ul>
                     
@@ -1338,8 +1480,8 @@
                     <ul>
                         <li><strong>Team Size:</strong> Individual or Teams of 5</li>
                         <li><strong>Capacity:</strong> 200 participants (limited)</li>
-                        <li><strong>Selection:</strong> First-come, first-serve</li>
-                        <li><strong>Format:</strong> Multi-scene investigation, digital forensics, courtroom presentation</li>
+                        <li><strong>Selection:</strong> First-come, first-served basis</li>
+                        <li><strong>Format:</strong> Multi-scene investigation, lab analysis and report formulation, moot court presentation, etc.</li>
                     </ul>
                     
                     <div class="category-fee">₹2,000 per person</div>
@@ -1366,7 +1508,7 @@
                         <li>Undergraduate students (all streams)</li>
                         <li>Valid school/college ID required</li>
                         <li>No prior forensic knowledge needed</li>
-                        <li>Must form teams of 3-4 before registration</li>
+                        <li>Must form teams of 4 before registration</li>
                     </ul>
                 </div>
 
@@ -1388,7 +1530,8 @@
                         <li>Age: 16+ years</li>
                         <li>Fluency in English (written & spoken)</li>
                         <li>Ability to attend offline rounds at NFSU Delhi</li>
-                        <li>No criminal record</li>
+                        <li>Generic devices (access to mobile phones and laptops, at least 1 per team)</li>
+                        <li>No past criminal record</li>
                     </ul>
                 </div>
             </div>
@@ -1494,20 +1637,20 @@
             <div class="highlight-box">
                 <strong>📅 Event Dates:</strong> February 11-13, 2026<br>
                 <strong>💰 Registration Fee:</strong> ₹1,000 per person<br>
-                <strong>👥 Team Size:</strong> 3-4 members<br>
+                <strong>👥 Team Size:</strong> 4 members<br>
                 <strong>📌 Capacity:</strong> 300 participants<br>
                 <strong>📍 Venue:</strong> NFSU Delhi Campus
             </div>
 
             <h3>📋 Competition Rounds</h3>
-            <p><strong>Round 1: Case File Investigation</strong></p>
+            <p><strong>Round 1(online): Case File Investigation</strong></p>
             <p>Teams receive a case file to test investigative and critical thinking skills.</p>
 
-            <p><strong>Round 2: Poster Presentation</strong></p>
+            <p><strong>Round 2(online): Poster Presentation</strong></p>
             <p>Online poster presentation showcasing findings from the case file.</p>
 
-            <p><strong>Round 3: On-Campus Crime Scene</strong></p>
-            <p>Offline round at NFSU Delhi with immersive crime scene investigation.</p>
+            <p><strong>Round 3(offline): On-Campus Crime Scene</strong></p>
+            <p>At NFSU Delhi with immersive crime scene investigation.</p>
 
             <h3>✅ Eligibility</h3>
             <ul>
@@ -1517,7 +1660,7 @@
             </ul>
 
             <h3>🏆 Prizes</h3>
-            <p>Top 3 teams share <strong>₹1.2 Lakh</strong></p>
+            <p>Top 3 teams share <strong>₹60k</strong></p>
 
             <a href="https://unstop.com/competitions/anvakrit-20-national-crime-scene-investigation-competition-national-forensic-sciences-university-delhi-1575775" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 2rem;">Register Now</a>
         </div>
@@ -1536,7 +1679,7 @@
                 <strong>📍 Venue:</strong> NFSU Delhi Campus
             </div>
 
-            <h3>📋 Competition Rounds</h3>
+            <h3>📋 Competition Rounds(all offline)</h3>
             <p><strong>Round 1: Case File Investigation</strong></p>
             <p>Advanced case file investigation with complex scenarios.</p>
 
@@ -1554,7 +1697,7 @@
             </ul>
 
             <h3>🏆 Prizes</h3>
-            <p>Top 2 teams share <strong>₹1.2 Lakh</strong></p>
+            <p>Top 2 teams share <strong>₹60k</strong></p>
 
             <a href="https://forms.gle/uPrctBYUw8yhmDDx9" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 2rem;">Register Now</a>
         </div>
@@ -1787,6 +1930,70 @@
                 }
             });
         });
+        // SEARCH FUNCTIONALITY
+const searchData = [
+    { title: "Rules & Regulations", keywords: ["rules", "regulations", "guidelines"], link: "#rules" },
+    { title: "Event Dates", keywords: ["dates", "when", "february", "2026", "schedule"], link: "#hero", description: "February 11-13, 2026" },
+    { title: "Competition Rounds", keywords: ["rounds", "stages", "process", "format"], link: "#categories", description: "Three rounds of investigation" },
+    { title: "Category I - Students", keywords: ["category 1", "students", "undergraduate", "ug"], link: "#categories" },
+    { title: "Category II - Professionals", keywords: ["category 2", "professionals", "pg", "phd"], link: "#categories" },
+    { title: "Registration Fee", keywords: ["fee", "cost", "price", "payment"], link: "#categories", description: "₹1,000 (Cat I) / ₹2,000 (Cat II)" },
+    { title: "Eligibility Criteria", keywords: ["eligibility", "requirements", "who can participate"], link: "#eligibility" },
+    { title: "Venue & Location", keywords: ["venue", "location", "where", "nfsu", "delhi"], link: "#hero", description: "NFSU Delhi Campus" },
+    { title: "Gallery", keywords: ["gallery", "photos", "images", "anvakrit 1.0"], link: "#gallery" },
+    { title: "Contact", keywords: ["contact", "email", "phone", "help"], link: "#contact" },
+    { title: "Prize Pool", keywords: ["prizes", "winnings", "awards"], link: "#rules", description: "₹2.4 Lakh total" },
+];
+
+const searchInput = document.getElementById('siteSearch');
+const searchResults = document.getElementById('searchResults');
+
+if (searchInput && searchResults) {
+    searchInput.addEventListener('input', function(e) {
+        const query = e.target.value.toLowerCase().trim();
+        
+        if (query.length < 2) {
+            searchResults.classList.remove('active');
+            return;
+        }
+        
+        const results = searchData.filter(item => 
+            item.title.toLowerCase().includes(query) ||
+            item.keywords.some(keyword => keyword.includes(query)) ||
+            (item.description && item.description.toLowerCase().includes(query))
+        );
+        
+        if (results.length > 0) {
+            searchResults.innerHTML = results.map(result => `
+                <div class="search-result-item" onclick="navigateToSection('${result.link}')">
+                    <div class="search-result-title">${result.title}</div>
+                    ${result.description ? `<div class="search-result-description">${result.description}</div>` : ''}
+                </div>
+            `).join('');
+            searchResults.classList.add('active');
+        } else {
+            searchResults.innerHTML = '<div class="no-results">No results found. Try "rules", "dates", or "categories".</div>';
+            searchResults.classList.add('active');
+        }
+    });
+}
+
+function navigateToSection(link) {
+    searchResults.classList.remove('active');
+    searchInput.value = '';
+    
+    const element = document.querySelector(link);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+document.addEventListener('click', function(e) {
+    if (searchInput && searchResults && !searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+        searchResults.classList.remove('active');
+    }
+});
+
     </script>
 </body>
 </html>
