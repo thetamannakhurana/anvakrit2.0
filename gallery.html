@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Anvakrit 1.0 | Anvakrit 2.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-black: #000000;
+            --bg-dark: #0a0f1a;
+            --blue-bright: #2563eb;
+            --neon-blue: #00d4ff;
+            --white: #ffffff;
+            --gray-light: #a8b2d1;
+            --shadow-blue: rgba(0, 212, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-black);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        #binaryRainCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 15, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px var(--shadow-blue);
+        }
+
+        .logo span {
+            color: var(--neon-blue);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--blue-bright), var(--neon-blue));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            border: 2px solid var(--neon-blue);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px var(--shadow-blue);
+        }
+
+        .gallery-header {
+            padding: 8rem 0 3rem;
+            text-align: center;
+        }
+
+        .gallery-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--white) 0%, var(--neon-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-header p {
+            font-size: 1.2rem;
+            color: var(--gray-light);
+        }
+
+        .gallery-section {
+            padding: 3rem 0 6rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+            border: 2px solid rgba(0, 212, 255, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(13, 27, 42, 0.3);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--neon-blue);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '🔍';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+        }
+
+        .gallery-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .gallery-modal-content {
+            position: relative;
+            max-width: 95vw;
+            max-height: 95vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-modal-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 10px;
+            border: 3px solid var(--neon-blue);
+            box-shadow: 0 0 50px var(--shadow-blue);
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -4rem;
+            right: 0;
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--neon-blue);
+            border-radius: 50%;
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--neon-blue);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: var(--neon-blue);
+            color: var(--bg-black);
+            transform: rotate(90deg);
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 212, 255, 0.2);
+            border: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
+            font-size: 3rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-nav:hover {
+            background: var(--neon-blue);
+            color: var(--bg-black);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .gallery-prev { left: 2rem; }
+        .gallery-next { right: 2rem; }
+
+        .image-counter {
+            position: absolute;
+            bottom: -3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--neon-blue);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .gallery-cta {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(180deg, transparent, rgba(13, 27, 42, 0.5));
+        }
+
+        .gallery-cta h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .gallery-cta p {
+            font-size: 1.2rem;
+            color: var(--gray-light);
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, var(--blue-bright), var(--neon-blue));
+            color: var(--white);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid var(--neon-blue);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 30px var(--shadow-blue);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px var(--shadow-blue);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-header h1 { font-size: 2.5rem; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+            .gallery-nav { width: 45px; height: 45px; font-size: 2rem; }
+            .gallery-prev { left: 1rem; }
+            .gallery-next { right: 1rem; }
+            .modal-close { top: -2.5rem; width: 40px; height: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="binaryRainCanvas"></canvas>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">ANVAKRIT <span>2.0</span></a>
+            <a href="index.html#home" class="back-btn">← Back to Home</a>
+        </div>
+    </nav>
+
+    <div class="gallery-header">
+        <div class="container">
+            <h1>Anvakrit 1.0 Gallery</h1>
+            <p>Moments from our inaugural forensic investigation competition</p>
+        </div>
+    </div>
+
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-grid" id="galleryGrid"></div>
+        </div>
+    </section>
+
+    <div class="gallery-cta">
+        <div class="container">
+            <h2>Be Part of Anvakrit 2.0</h2>
+            <p>Create your own memories at the next edition</p>
+            <a href="index.html#categories" class="btn-primary">Register Now</a>
+        </div>
+    </div>
+
+    <div id="galleryModal" class="gallery-modal">
+        <div class="gallery-modal-content">
+            <button class="modal-close" onclick="closeGalleryModal()">×</button>
+            <button class="gallery-nav gallery-prev" onclick="changeGalleryImage(-1)">‹</button>
+            <button class="gallery-nav gallery-next" onclick="changeGalleryImage(1)">›</button>
+            <img id="galleryModalImage" src="" alt="Anvakrit 1.0">
+            <div class="image-counter" id="imageCounter"></div>
+        </div>
+    </div>
+
+    <script>
+        // Binary Rain
+        const binaryCanvas = document.getElementById('binaryRainCanvas');
+        const binaryCtx = binaryCanvas.getContext('2d');
+        binaryCanvas.width = window.innerWidth;
+        binaryCanvas.height = window.innerHeight;
+
+        const binaryText = '01';
+        const binaryFontSize = 12;
+        const binaryColumns = binaryCanvas.width / binaryFontSize;
+        const binaryDrops = Array(Math.floor(binaryColumns)).fill(1);
+
+        function drawBinary() {
+            binaryCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            binaryCtx.fillRect(0, 0, binaryCanvas.width, binaryCanvas.height);
+            binaryCtx.fillStyle = '#00d4ff';
+            binaryCtx.font = binaryFontSize + 'px monospace';
+            
+            for (let i = 0; i < binaryDrops.length; i++) {
+                const text = binaryText[Math.floor(Math.random() * binaryText.length)];
+                binaryCtx.fillText(text, i * binaryFontSize, binaryDrops[i] * binaryFontSize);
+                if (binaryDrops[i] * binaryFontSize > binaryCanvas.height && Math.random() > 0.98) binaryDrops[i] = 0;
+                binaryDrops[i]++;
+            }
+        }
+
+        setInterval(drawBinary, 35);
+        window.addEventListener('resize', () => {
+            binaryCanvas.width = window.innerWidth;
+            binaryCanvas.height = window.innerHeight;
+        });
+
+        // Gallery Data - All 20 images
+        const galleryImages = [
+            'images/anvakrit1.jpg',
+            'images/anvakrit2.jpg',
+            'images/anvakrit3.jpg',
+            'images/anvakrit4.jpg',
+            'images/anvakrit5.jpg',
+            'images/anvakrit6.jpg',
+            'images/anvakrit7.jpg',
+            'images/anvakrit8.jpg',
+            'images/anvakrit9.jpg',
+            'images/anvakrit10.jpg',
+            'images/anvakrit11.jpg',
+            'images/anvakrit12.jpg',
+            'images/anvakrit13.jpg',
+            'images/anvakrit14.jpg',
+            'images/anvakrit15.jpg',
+            'images/anvakrit16.jpg',
+            'images/anvakrit17.jpg',
+            'images/anvakrit18.jpg',
+            'images/anvakrit19.jpg',
+            'images/anvakrit20.jpg'
+        ];
+
+        let currentGalleryIndex = 0;
+
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = galleryImages.map((src, index) => `
+                <div class="gallery-item" onclick="openGalleryModal(${index})">
+                    <img src="${src}" alt="Anvakrit 1.0 - Photo ${index + 1}" loading="lazy" onerror="this.style.display='none'">
+                </div>
+            `).join('');
+        }
+
+        function openGalleryModal(index) {
+            currentGalleryIndex = index;
+            const modal = document.getElementById('galleryModal');
+            const img = document.getElementById('galleryModalImage');
+            const counter = document.getElementById('imageCounter');
+            
+            img.src = galleryImages[index];
+            counter.textContent = `${index + 1} / ${galleryImages.length}`;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGalleryModal() {
+            const modal = document.getElementById('galleryModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeGalleryImage(direction) {
+            currentGalleryIndex += direction;
+            
+            if (currentGalleryIndex < 0) {
+                currentGalleryIndex = galleryImages.length - 1;
+            } else if (currentGalleryIndex >= galleryImages.length) {
+                currentGalleryIndex = 0;
+            }
+            
+            const img = document.getElementById('galleryModalImage');
+            const counter = document.getElementById('imageCounter');
+            
+            img.style.opacity = '0';
+            setTimeout(() => {
+                img.src = galleryImages[currentGalleryIndex];
+                counter.textContent = `${currentGalleryIndex + 1} / ${galleryImages.length}`;
+                img.style.opacity = '1';
+            }, 200);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('galleryModal');
+            if (modal.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') changeGalleryImage(-1);
+                if (e.key === 'ArrowRight') changeGalleryImage(1);
+                if (e.key === 'Escape') closeGalleryModal();
+            }
+        });
+
+        document.getElementById('galleryModal').addEventListener('click', (e) => {
+            if (e.target.id === 'galleryModal') closeGalleryModal();
+        });
+
+        renderGallery();
+    </script>
+</body>
+</html>
