@@ -1060,24 +1060,23 @@
             .event-badge { font-size: 0.75rem; padding: 0.5rem 1rem; }
         }
         
-        /* Forensic Background - EMOJI VERSION (WORKING) */
-.forensic-bg {
+  .forensic-bg {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 1;
     pointer-events: none;
-    opacity: 0.1;
+    opacity: 0.6; /* INCREASED FROM 0.1 */
 }
 
 .forensic-element {
     position: absolute;
-    font-size: 80px;
-    opacity: 0.15;
-    color: var(--neon-blue);
-}
+    font-size: 120px; /* INCREASED FROM 80px */
+    opacity: 0.6; /* INCREASED FROM 0.15 */
+    filter: drop-shadow(0 0 15px var(--neon-blue));
+}     
 
 .dna-1 {
     top: 15%;
@@ -1091,19 +1090,6 @@
     animation: float-rotate 25s ease-in-out infinite reverse;
 }
 
-.finger-1 {
-    bottom: 15%;
-    left: 8%;
-    transform: rotate(-20deg);
-    animation: pulse-glow 3s ease-in-out infinite;
-}
-
-.finger-2 {
-    top: 30%;
-    left: 12%;
-    transform: rotate(45deg);
-    animation: pulse-glow 4s ease-in-out infinite;
-}
 
 .microscope-1 {
     top: 50%;
@@ -1189,9 +1175,13 @@
 }
 
 @media (max-width: 768px) {
+    .forensic-bg {
+        opacity: 0.4;
+    }
+    
     .forensic-element {
-        font-size: 50px;
-        opacity: 0.08;
+        font-size: 80px;
+        opacity: 0.45;
     }
 }
 
@@ -1218,34 +1208,6 @@
 .gallery-item:hover {
     animation: none;
 }
-/* Forensic Background - WORKING VERSION */
-.forensic-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0.1;
-}
-
-.forensic-element {
-    position: absolute;
-    font-size: 80px;
-    opacity: 0.15;
-}
-
-.dna-1 { top: 15%; right: 10%; animation: float-rotate 20s ease-in-out infinite; }
-.dna-2 { bottom: 20%; left: 15%; animation: float-rotate 25s ease-in-out infinite reverse; }
-.finger-1 { bottom: 15%; left: 8%; transform: rotate(-20deg); animation: pulse-glow 3s ease-in-out infinite; }
-.finger-2 { top: 30%; left: 12%; transform: rotate(45deg); animation: pulse-glow 4s ease-in-out infinite; }
-.microscope-1 { top: 50%; left: 5%; animation: float-slow 6s ease-in-out infinite; }
-.gavel-1 { top: 65%; right: 8%; animation: swing 4s ease-in-out infinite; }
-.evidence-1 { top: 75%; right: 20%; animation: rotate-slow 15s linear infinite; }
-.evidence-2 { bottom: 35%; right: 15%; animation: rotate-slow 18s linear infinite reverse; }
-.chemical-1 { top: 40%; right: 28%; animation: rotate-slow 12s linear infinite; }
-.magnify-1 { bottom: 40%; left: 22%; animation: float-slow 5s ease-in-out infinite; }
 
 @keyframes float-rotate {
     0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -1280,8 +1242,6 @@
 <div class="forensic-bg">
     <div class="forensic-element dna-1">🧬</div>
     <div class="forensic-element dna-2">🧬</div>
-    <div class="forensic-element finger-1">👆</div>
-    <div class="forensic-element finger-2">👆</div>
     <div class="forensic-element microscope-1">🔬</div>
     <div class="forensic-element gavel-1">⚖️</div>
     <div class="forensic-element evidence-1">🔍</div>
