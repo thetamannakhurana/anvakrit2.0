@@ -662,7 +662,6 @@
             background: rgba(13, 27, 42, 0.3);
             animation: galleryFloat 3s ease-in-out infinite;
         }
-
         .gallery-item:hover {
             transform: translateY(-10px) scale(1.02);
             border-color: var(--neon-blue);
@@ -1060,7 +1059,8 @@
             .hero-dates { font-size: 0.95rem; }
             .event-badge { font-size: 0.75rem; padding: 0.5rem 1rem; }
         }
-        /* ========== FORENSIC BACKGROUND ELEMENTS - ADD BEFORE </style> ========== */
+        
+        /* Forensic Background - EMOJI VERSION (WORKING) */
 .forensic-bg {
     position: fixed;
     top: 0;
@@ -1069,227 +1069,133 @@
     height: 100%;
     z-index: -1;
     pointer-events: none;
-    opacity: 0.04;
+    opacity: 0.1;
 }
 
-/* DNA Helix 1 */
-.dna-helix {
+.forensic-element {
     position: absolute;
-    width: 200px;
-    height: 400px;
+    font-size: 80px;
+    opacity: 0.15;
+    color: var(--neon-blue);
+}
+
+.dna-1 {
     top: 15%;
-    right: 8%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 200"><path d="M20,0 Q30,25 20,50 Q10,75 20,100 Q30,125 20,150 Q10,175 20,200 M80,0 Q70,25 80,50 Q90,75 80,100 Q70,125 80,150 Q90,175 80,200" stroke="%2300d4ff" fill="none" stroke-width="2"/><line x1="20" y1="25" x2="80" y2="25" stroke="%2300d4ff" stroke-width="1"/><line x1="20" y1="75" x2="80" y2="75" stroke="%2300d4ff" stroke-width="1"/><line x1="20" y1="125" x2="80" y2="125" stroke="%2300d4ff" stroke-width="1"/><line x1="20" y1="175" x2="80" y2="175" stroke="%2300d4ff" stroke-width="1"/></svg>') no-repeat center;
-    background-size: contain;
-    animation: dnaRotate 20s linear infinite;
+    right: 10%;
+    animation: float-rotate 20s ease-in-out infinite;
 }
 
-.dna-helix-2 {
-    position: absolute;
-    width: 150px;
-    height: 300px;
+.dna-2 {
     bottom: 20%;
     left: 15%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 200"><path d="M20,0 Q30,25 20,50 Q10,75 20,100 Q30,125 20,150 Q10,175 20,200 M80,0 Q70,25 80,50 Q90,75 80,100 Q70,125 80,150 Q90,175 80,200" stroke="%2300d4ff" fill="none" stroke-width="2"/><line x1="20" y1="25" x2="80" y2="25" stroke="%2300d4ff" stroke-width="1"/><line x1="20" y1="75" x2="80" y2="75" stroke="%2300d4ff" stroke-width="1"/><line x1="20" y1="125" x2="80" y2="125" stroke="%2300d4ff" stroke-width="1"/><line x1="20" y1="175" x2="80" y2="175" stroke="%2300d4ff" stroke-width="1"/></svg>') no-repeat center;
-    background-size: contain;
-    animation: dnaRotate 25s linear infinite reverse;
+    animation: float-rotate 25s ease-in-out infinite reverse;
 }
 
-@keyframes dnaRotate {
-    0% { transform: translateY(0) rotate(0deg); }
-    100% { transform: translateY(-50px) rotate(360deg); }
+.finger-1 {
+    bottom: 15%;
+    left: 8%;
+    transform: rotate(-20deg);
+    animation: pulse-glow 3s ease-in-out infinite;
 }
 
-/* Fingerprints */
-.fingerprint {
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    bottom: 10%;
-    left: 5%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="40" ry="45" fill="none" stroke="%2300d4ff" stroke-width="1"/><ellipse cx="50" cy="50" rx="32" ry="37" fill="none" stroke="%2300d4ff" stroke-width="1"/><ellipse cx="50" cy="50" rx="24" ry="29" fill="none" stroke="%2300d4ff" stroke-width="1"/><ellipse cx="50" cy="50" rx="16" ry="21" fill="none" stroke="%2300d4ff" stroke-width="1"/><ellipse cx="50" cy="50" rx="8" ry="13" fill="none" stroke="%2300d4ff" stroke-width="1"/></svg>') no-repeat center;
-    background-size: contain;
-    animation: fingerprint-pulse 3s ease-in-out infinite;
-}
-
-.fingerprint-2 {
-    position: absolute;
-    width: 140px;
-    height: 140px;
-    top: 25%;
+.finger-2 {
+    top: 30%;
     left: 12%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="40" ry="45" fill="none" stroke="%2300d4ff" stroke-width="1"/><ellipse cx="50" cy="50" rx="32" ry="37" fill="none" stroke="%2300d4ff" stroke-width="1"/><ellipse cx="50" cy="50" rx="24" ry="29" fill="none" stroke="%2300d4ff" stroke-width="1"/><ellipse cx="50" cy="50" rx="16" ry="21" fill="none" stroke="%2300d4ff" stroke-width="1"/></svg>') no-repeat center;
-    background-size: contain;
-    animation: fingerprint-pulse 4s ease-in-out infinite;
+    transform: rotate(45deg);
+    animation: pulse-glow 4s ease-in-out infinite;
 }
 
-@keyframes fingerprint-pulse {
-    0%, 100% { transform: scale(1); opacity: 0.04; }
-    50% { transform: scale(1.08); opacity: 0.07; }
-}
-
-/* Microscope */
-.microscope-icon {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    top: 45%;
-    left: 3%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="35" r="15" fill="none" stroke="%2300d4ff" stroke-width="2"/><line x1="50" y1="50" x2="50" y2="70" stroke="%2300d4ff" stroke-width="3"/><line x1="35" y1="70" x2="65" y2="70" stroke="%2300d4ff" stroke-width="3"/><circle cx="50" cy="20" r="8" fill="none" stroke="%2300d4ff" stroke-width="1.5"/><line x1="40" y1="75" x2="60" y2="75" stroke="%2300d4ff" stroke-width="2"/></svg>') no-repeat center;
-    background-size: contain;
+.microscope-1 {
+    top: 50%;
+    left: 5%;
     animation: float-slow 6s ease-in-out infinite;
 }
 
-/* Judge Gavel */
-.gavel-icon {
-    position: absolute;
-    width: 160px;
-    height: 160px;
-    top: 60%;
-    right: 5%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="30" y="20" width="40" height="15" rx="3" fill="none" stroke="%2300d4ff" stroke-width="2"/><rect x="42" y="35" width="16" height="35" rx="2" fill="none" stroke="%2300d4ff" stroke-width="2"/><rect x="20" y="75" width="60" height="8" rx="2" fill="none" stroke="%2300d4ff" stroke-width="2"/><line x1="25" y1="50" x2="35" y2="40" stroke="%2300d4ff" stroke-width="2"/></svg>') no-repeat center;
-    background-size: contain;
-    animation: gavel-tap 4s ease-in-out infinite;
+.gavel-1 {
+    top: 65%;
+    right: 8%;
+    animation: swing 4s ease-in-out infinite;
 }
 
-@keyframes gavel-tap {
-    0%, 90%, 100% { transform: rotate(0deg); }
-    95% { transform: rotate(-15deg); }
+.evidence-1 {
+    top: 75%;
+    right: 20%;
+    animation: rotate-slow 15s linear infinite;
 }
 
-/* Evidence Markers */
-.evidence-marker {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    top: 70%;
-    right: 18%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%2300d4ff" stroke-width="2"/><text x="50" y="62" font-size="45" fill="%2300d4ff" text-anchor="middle" font-family="Orbitron" font-weight="bold">A</text></svg>') no-repeat center;
-    background-size: contain;
-    animation: evidence-rotate 15s linear infinite;
-}
-
-.evidence-marker-2 {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    bottom: 30%;
-    right: 12%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%2300d4ff" stroke-width="2"/><text x="50" y="62" font-size="45" fill="%2300d4ff" text-anchor="middle" font-family="Orbitron" font-weight="bold">B</text></svg>') no-repeat center;
-    background-size: contain;
-    animation: evidence-rotate 18s linear infinite reverse;
-}
-
-@keyframes evidence-rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Chemical Formula */
-.chemical-icon {
-    position: absolute;
-    width: 130px;
-    height: 130px;
-    top: 35%;
-    right: 25%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="40" r="12" fill="none" stroke="%2300d4ff" stroke-width="2"/><circle cx="70" cy="40" r="12" fill="none" stroke="%2300d4ff" stroke-width="2"/><circle cx="50" cy="65" r="12" fill="none" stroke="%2300d4ff" stroke-width="2"/><line x1="42" y1="40" x2="58" y2="40" stroke="%2300d4ff" stroke-width="2"/><line x1="38" y1="50" x2="46" y2="60" stroke="%2300d4ff" stroke-width="2"/><line x1="62" y1="50" x2="54" y2="60" stroke="%2300d4ff" stroke-width="2"/></svg>') no-repeat center;
-    background-size: contain;
-    animation: molecule-rotate 12s linear infinite;
-}
-
-@keyframes molecule-rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Magnifying Glass */
-.magnify-icon {
-    position: absolute;
-    width: 140px;
-    height: 140px;
+.evidence-2 {
     bottom: 35%;
-    left: 20%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="40" cy="40" r="25" fill="none" stroke="%2300d4ff" stroke-width="3"/><line x1="58" y1="58" x2="78" y2="78" stroke="%2300d4ff" stroke-width="4"/><circle cx="40" cy="40" r="15" fill="none" stroke="%2300d4ff" stroke-width="1.5"/></svg>') no-repeat center;
-    background-size: contain;
-    animation: magnify-scan 5s ease-in-out infinite;
+    right: 15%;
+    animation: rotate-slow 18s linear infinite reverse;
 }
 
-@keyframes magnify-scan {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(10px, -10px) scale(1.1); }
+.chemical-1 {
+    top: 40%;
+    right: 28%;
+    animation: rotate-slow 12s linear infinite;
 }
 
-/* Bullet Casing */
-.bullet-icon {
-    position: absolute;
-    width: 110px;
-    height: 110px;
-    top: 50%;
-    right: 35%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><ellipse cx="50" cy="35" rx="10" ry="15" fill="none" stroke="%2300d4ff" stroke-width="2"/><rect x="42" y="35" width="16" height="30" fill="none" stroke="%2300d4ff" stroke-width="2"/><rect x="40" y="65" width="20" height="8" fill="none" stroke="%2300d4ff" stroke-width="2"/></svg>') no-repeat center;
-    background-size: contain;
-    animation: bullet-float 7s ease-in-out infinite;
+.magnify-1 {
+    bottom: 40%;
+    left: 22%;
+    animation: float-slow 5s ease-in-out infinite;
 }
 
-@keyframes bullet-float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-15px) rotate(10deg); }
+@keyframes float-rotate {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(180deg);
+    }
 }
 
-/* Crime Scene Tape */
-.tape-icon {
-    position: absolute;
-    width: 250px;
-    height: 30px;
-    top: 80%;
-    left: 30%;
-    background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 10px,
-        rgba(0, 212, 255, 0.08) 10px,
-        rgba(0, 212, 255, 0.08) 20px
-    );
-    border-top: 2px solid rgba(0, 212, 255, 0.1);
-    border-bottom: 2px solid rgba(0, 212, 255, 0.1);
-    animation: tape-wave 3s ease-in-out infinite;
-}
-
-@keyframes tape-wave {
-    0%, 100% { transform: translateX(0) rotate(-2deg); }
-    50% { transform: translateX(10px) rotate(2deg); }
+@keyframes pulse-glow {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.12;
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 0.2;
+    }
 }
 
 @keyframes float-slow {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-25px);
+    }
 }
 
-/* Responsive adjustments */
+@keyframes swing {
+    0%, 90%, 100% {
+        transform: rotate(0deg);
+    }
+    95% {
+        transform: rotate(-20deg);
+    }
+}
+
+@keyframes rotate-slow {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 @media (max-width: 768px) {
-    .forensic-bg {
-        opacity: 0.02;
-    }
-    
-    .dna-helix, .dna-helix-2,
-    .fingerprint, .fingerprint-2,
-    .microscope-icon, .gavel-icon,
-    .chemical-icon, .magnify-icon,
-    .bullet-icon {
-        transform: scale(0.7);
-    }
-    
-    .tape-icon {
-        width: 150px;
+    .forensic-element {
+        font-size: 50px;
+        opacity: 0.08;
     }
 }
 
-/* ========== END FORENSIC ELEMENTS ========== */
-@keyframes galleryFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
+/* Floating Gallery Animation */
 .gallery-item:nth-child(1) { animation-delay: 0s; }
 .gallery-item:nth-child(2) { animation-delay: 0.2s; }
 .gallery-item:nth-child(3) { animation-delay: 0.4s; }
@@ -1300,41 +1206,88 @@
 .gallery-item:nth-child(8) { animation-delay: 1.4s; }
 .gallery-item:nth-child(9) { animation-delay: 1.6s; }
 
+@keyframes galleryFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.gallery-item:hover {
+    animation: none;
+}
+/* Forensic Background - WORKING VERSION */
+.forensic-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.1;
+}
+
+.forensic-element {
+    position: absolute;
+    font-size: 80px;
+    opacity: 0.15;
+}
+
+.dna-1 { top: 15%; right: 10%; animation: float-rotate 20s ease-in-out infinite; }
+.dna-2 { bottom: 20%; left: 15%; animation: float-rotate 25s ease-in-out infinite reverse; }
+.finger-1 { bottom: 15%; left: 8%; transform: rotate(-20deg); animation: pulse-glow 3s ease-in-out infinite; }
+.finger-2 { top: 30%; left: 12%; transform: rotate(45deg); animation: pulse-glow 4s ease-in-out infinite; }
+.microscope-1 { top: 50%; left: 5%; animation: float-slow 6s ease-in-out infinite; }
+.gavel-1 { top: 65%; right: 8%; animation: swing 4s ease-in-out infinite; }
+.evidence-1 { top: 75%; right: 20%; animation: rotate-slow 15s linear infinite; }
+.evidence-2 { bottom: 35%; right: 15%; animation: rotate-slow 18s linear infinite reverse; }
+.chemical-1 { top: 40%; right: 28%; animation: rotate-slow 12s linear infinite; }
+.magnify-1 { bottom: 40%; left: 22%; animation: float-slow 5s ease-in-out infinite; }
+
+@keyframes float-rotate {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(180deg); }
+}
+
+@keyframes pulse-glow {
+    0%, 100% { transform: scale(1); opacity: 0.12; }
+    50% { transform: scale(1.15); opacity: 0.2; }
+}
+
+@keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-25px); }
+}
+
+@keyframes swing {
+    0%, 90%, 100% { transform: rotate(0deg); }
+    95% { transform: rotate(-20deg); }
+}
+
+@keyframes rotate-slow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
     </style>
 </head>
 <body>
     <canvas id="binaryRainCanvas"></canvas>
-    <!-- Forensic Background Elements - ADD AFTER BINARY CANVAS -->
+    <!-- Forensic Background Elements - SIMPLIFIED -->
 <div class="forensic-bg">
-    <!-- DNA Helix -->
-    <div class="dna-helix"></div>
-    <div class="dna-helix-2"></div>
-    
-    <!-- Fingerprints -->
-    <div class="fingerprint"></div>
-    <div class="fingerprint-2"></div>
-    
-    <!-- Microscope -->
-    <div class="microscope-icon"></div>
-    
-    <!-- Judge Gavel -->
-    <div class="gavel-icon"></div>
-    
-    <!-- Evidence Markers -->
-    <div class="evidence-marker"></div>
-    <div class="evidence-marker-2"></div>
-    
-    <!-- Chemical Formulas -->
-    <div class="chemical-icon"></div>
-    
-    <!-- Magnifying Glass -->
-    <div class="magnify-icon"></div>
-    
-    <!-- Bullet Casing -->
-    <div class="bullet-icon"></div>
-    
-    <!-- Crime Scene Tape -->
-    <div class="tape-icon"></div>
+    <div class="forensic-element dna-1">🧬</div>
+    <div class="forensic-element dna-2">🧬</div>
+    <div class="forensic-element finger-1">👆</div>
+    <div class="forensic-element finger-2">👆</div>
+    <div class="forensic-element microscope-1">🔬</div>
+    <div class="forensic-element gavel-1">⚖️</div>
+    <div class="forensic-element evidence-1">🔍</div>
+    <div class="forensic-element evidence-2">📋</div>
+    <div class="forensic-element chemical-1">⚗️</div>
+    <div class="forensic-element magnify-1">🔎</div>
 </div>
 
     <nav>
