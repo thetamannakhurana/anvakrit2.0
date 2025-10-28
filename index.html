@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anvakrit 2.0 - Unmask the Truth in Bytes | National Crime Scene Investigation Competition</title>
-    <meta name="description" content="Anvakrit 2.0 - National Crime Scene Investigation Competition at NFSU Delhi. Register now for Feb 11-13, 2026. Limited seats available!">
-    <link rel="preload" href="https://fonts.cdnfonts.com/css/samarkan" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.cdnfonts.com/css/samarkan"></noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Anvakrit 2.0 - Loading</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-black: #000000;
@@ -17,11 +14,10 @@
             --blue-medium: #1b3a5f;
             --blue-bright: #2563eb;
             --neon-blue: #00d4ff;
-            --neon-cyan: #00eaff;
+            --neon-glow: #00f0ff;
             --white: #ffffff;
             --white-dim: #e0e7ff;
             --gray: #8892b0;
-            --gray-light: #a8b2d1;
             --shadow-blue: rgba(0, 212, 255, 0.3);
         }
 
@@ -31,1626 +27,504 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Rajdhani', sans-serif;
             background: var(--bg-black);
+            overflow: hidden;
             color: var(--white);
-            overflow-x: hidden;
-            line-height: 1.6;
+            height: 100vh;
         }
 
-        #binaryRainCanvas {
+        #loadingScreen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            opacity: 0.08;
+            background: linear-gradient(135deg, var(--bg-black) 0%, var(--bg-dark) 50%, var(--blue-dark) 100%);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease;
+        }
+
+        #loadingScreen.hidden {
+            opacity: 0;
             pointer-events: none;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 15, 26, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--white);
-            text-decoration: none;
-            letter-spacing: 2px;
-            text-shadow: 0 0 20px var(--shadow-blue);
-        }
-
-        .logo span {
-            color: var(--neon-blue);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--gray-light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
+        .bg-effects {
             position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--neon-blue);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--neon-blue);
-        }
-
-        .nav-links a:hover::after {
             width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
 
-        .nav-register-btn {
-            padding: 0.6rem 1.5rem !important;
-            background: linear-gradient(135deg, var(--blue-bright), var(--neon-blue)) !important;
-            color: var(--white) !important;
-            border-radius: 50px;
-            border: 2px solid var(--neon-blue);
-            font-weight: 700;
+        .digital-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: gridScroll 30s linear infinite;
         }
 
-        .nav-register-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px var(--shadow-blue);
+        @keyframes gridScroll {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, 40px); }
         }
 
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            animation: float 20s ease-in-out infinite;
         }
 
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
+        .glow-orb-1 {
+            width: 300px;
+            height: 300px;
             background: var(--neon-blue);
-            border-radius: 3px;
-            transition: 0.3s;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
         }
 
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
-            position: relative;
-            background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+        .glow-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--blue-bright);
+            bottom: 10%;
+            right: 10%;
+            animation-delay: 5s;
         }
 
-        .hero-content {
-            max-width: 1000px;
-            z-index: 1;
-        }
-
-        .event-badge {
-            display: inline-block;
-            padding: 0.6rem 1.5rem;
-            background: rgba(0, 212, 255, 0.1);
-            border: 2px solid var(--neon-blue);
-            border-radius: 30px;
-            color: var(--neon-cyan);
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            animation: float 3s ease-in-out infinite;
+        .glow-orb-3 {
+            width: 250px;
+            height: 250px;
+            background: var(--neon-glow);
+            top: 50%;
+            left: 50%;
+            animation-delay: 10s;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-50px, 50px) scale(0.9); }
         }
 
-        .hero h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 5rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--white) 0%, var(--neon-blue) 50%, var(--neon-cyan) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 3px;
-            line-height: 1.2;
-            background-size: 200% 200%;
-            animation: gradientShift 5s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero-tagline {
-            font-family: 'Samarkan', 'Inter', serif;
-            font-size: 2.5rem;
-            color: var(--neon-blue);
-            font-style: italic;
-            margin-bottom: 2rem;
-            text-shadow: 0 0 20px var(--shadow-blue);
-        }
-
-        .fade-scale-in {
-            opacity: 0;
-            animation: fadeScaleIn 1s ease forwards;
-            animation-delay: 0.5s;
-        }
-
-        @keyframes fadeScaleIn {
-            to { opacity: 1; }
-        }
-
-        .hero-subtitle {
-            font-size: 1.8rem;
-            color: var(--gray-light);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        .animate-words {
-            display: inline-block;
-        }
-
-        .animate-words .word {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(100%);
-            animation: slideUp 0.8s ease forwards;
-            margin-right: 0.3em;
-        }
-
-        @keyframes slideUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .animate-words .word:nth-child(1) { animation-delay: 0.1s; }
-        .animate-words .word:nth-child(2) { animation-delay: 0.2s; }
-        .animate-words .word:nth-child(3) { animation-delay: 0.3s; }
-        .animate-words .word:nth-child(4) { animation-delay: 0.4s; }
-        .animate-words .word:nth-child(5) { animation-delay: 0.5s; }
-        .animate-words .word:nth-child(6) { animation-delay: 0.6s; }
-
-        .hero-dates {
-            font-size: 1.3rem;
-            color: var(--neon-cyan);
-            margin-bottom: 2.5rem;
-            font-weight: 600;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2.5rem;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            background: linear-gradient(135deg, var(--blue-bright) 0%, var(--neon-blue) 100%);
-            color: var(--white);
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 1.1rem;
-            text-decoration: none;
-            border-radius: 50px;
-            border: 2px solid var(--neon-blue);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            box-shadow: 0 10px 30px var(--shadow-blue);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .btn-primary::before {
-            content: '';
+        .scan-line {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--neon-blue) 50%, transparent 100%);
+            box-shadow: 0 0 20px var(--shadow-blue);
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--neon-blue);
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-            z-index: -1;
+            box-shadow: 0 0 5px var(--neon-blue);
+            animation: particleFloat 15s linear infinite;
         }
 
-        .btn-primary:hover::before {
-            width: 300px;
-            height: 300px;
+        .particle:nth-child(5) { left: 20%; animation-delay: 0s; }
+        .particle:nth-child(6) { left: 40%; animation-delay: 3s; }
+        .particle:nth-child(7) { left: 60%; animation-delay: 6s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 9s; }
+
+        @keyframes particleFloat {
+            0% { bottom: -5%; opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { bottom: 105%; opacity: 0; }
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px var(--shadow-blue);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid var(--neon-blue);
-        }
-
-        section {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        section.visible {
-            animation: sectionReveal 0.8s ease forwards;
-        }
-
-        @keyframes sectionReveal {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section-header {
+        .loading-container {
+            position: relative;
+            z-index: 10;
             text-align: center;
+            animation: contentFadeIn 1.5s ease;
+        }
+
+        @keyframes contentFadeIn {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo-section {
             margin-bottom: 4rem;
         }
 
-        .section-label {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid var(--neon-blue);
-            border-radius: 20px;
-            color: var(--neon-blue);
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
+        .logo-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
+            font-size: 5rem;
             font-weight: 900;
             color: var(--white);
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--gray-light);
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        .about {
-            padding: 6rem 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(13, 27, 42, 0.5) 50%, transparent 100%);
-        }
-
-        .about-description {
-            max-width: 900px;
-            margin: 0 auto 3rem;
-            font-size: 1.15rem;
-            color: var(--gray-light);
-            line-height: 1.9;
-            text-align: center;
-        }
-
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .highlight-card {
-            background: rgba(13, 27, 42, 0.5);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 15px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .highlight-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--neon-blue);
-            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
-        }
-
-        .highlight-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .highlight-card h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.3rem;
-            color: var(--neon-blue);
-            margin-bottom: 0.8rem;
-        }
-
-        .highlight-card p {
-            color: var(--gray-light);
-            line-height: 1.7;
-        }
-
-        .rules {
-            padding: 6rem 0;
-        }
-
-        .rules-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .rules-grid {
-            display: grid;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .rule-card {
-            background: rgba(13, 27, 42, 0.5);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 15px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .rule-card:hover {
-            border-color: var(--neon-blue);
-            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
-        }
-
-        .rule-card h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            color: var(--neon-blue);
-            margin-bottom: 1rem;
-        }
-
-        .rule-card ul {
-            color: var(--gray-light);
-            line-height: 1.8;
-            padding-left: 1.5rem;
-        }
-
-        .rule-card ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .rule-card strong {
-            color: var(--neon-cyan);
-        }
-
-        .categories {
-            padding: 6rem 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(13, 27, 42, 0.5) 50%, transparent 100%);
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .category-card {
-            background: rgba(13, 27, 42, 0.5);
-            border: 2px solid rgba(0, 212, 255, 0.2);
-            border-radius: 15px;
-            padding: 3rem;
-            text-align: center;
-            backdrop-filter: blur(10px);
+            text-transform: uppercase;
+            letter-spacing: 8px;
             position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .category-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, transparent, rgba(0, 212, 255, 0.1));
-            opacity: 0;
-            transition: opacity 0.4s;
-            pointer-events: none;
-            border-radius: 15px;
-        }
-
-        .category-card:hover {
-            transform: translateY(-10px) rotateX(5deg) scale(1.02);
-            border-color: var(--neon-blue);
-            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3), 0 0 40px rgba(0, 212, 255, 0.2);
-        }
-
-        .category-card:hover::after {
-            opacity: 1;
-        }
-
-        .category-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
             display: inline-block;
-            transition: transform 0.3s ease;
+            text-shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--shadow-blue), 0 0 60px var(--shadow-blue);
+            animation: logoGlow 3s ease-in-out infinite;
         }
 
-        .category-card:hover .category-icon {
-            transform: scale(1.2) rotateY(360deg);
+        @keyframes logoGlow {
+            0%, 100% { text-shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--shadow-blue); }
+            50% { text-shadow: 0 0 30px var(--neon-glow), 0 0 60px var(--shadow-blue), 0 0 80px var(--shadow-blue); }
         }
 
-        .category-card h3 {
+        .logo-version {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            color: var(--white);
-            margin-bottom: 0.5rem;
-        }
-
-        .category-label {
-            font-size: 1.1rem;
-            color: var(--neon-cyan);
-            margin-bottom: 1.5rem;
-            display: block;
-            font-weight: 600;
-        }
-
-        .category-card p {
-            color: var(--gray-light);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-            text-align: left;
-        }
-
-        .category-card ul {
-            text-align: left;
-            color: var(--gray-light);
-            line-height: 1.8;
-            padding-left: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .category-card ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .category-fee {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            color: var(--neon-cyan);
-            margin: 1.5rem 0;
+            font-size: 2.5rem;
             font-weight: 700;
-        }
-
-        .eligibility {
-            padding: 6rem 0;
-        }
-
-        .eligibility-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .eligibility-card {
-            background: rgba(13, 27, 42, 0.5);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 15px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .eligibility-card:hover {
-            border-color: var(--neon-blue);
-            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
-        }
-
-        .eligibility-card h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.3rem;
             color: var(--neon-blue);
-            margin-bottom: 1rem;
+            margin-top: 0.5rem;
+            letter-spacing: 4px;
+            text-shadow: 0 0 15px var(--shadow-blue);
         }
 
-        .eligibility-card ul {
-            color: var(--gray-light);
-            line-height: 1.8;
-            padding-left: 1.5rem;
+        .logo-underline {
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--neon-blue) 50%, transparent 100%);
+            margin: 1rem auto;
+            box-shadow: 0 0 10px var(--shadow-blue);
+            animation: underlinePulse 2s ease infinite;
         }
 
-        .eligibility-card li {
-            margin-bottom: 0.5rem;
+        @keyframes underlinePulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
 
-        .gallery {
-            padding: 6rem 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(13, 27, 42, 0.5) 50%, transparent 100%);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .gallery-item {
+        .hexagon-loader {
+            width: 200px;
+            height: 200px;
             position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            cursor: pointer;
-            aspect-ratio: 4/3;
-            border: 2px solid rgba(0, 212, 255, 0.15);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            background: rgba(13, 27, 42, 0.3);
+            margin: 0 auto 3rem;
         }
 
-        .gallery-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--neon-blue);
-            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.4);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-item::after {
-            content: '🔍';
+        .hexagon {
             position: absolute;
+            width: 60px;
+            height: 60px;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 3rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        }
+
+        .hexagon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: 3px solid var(--neon-blue);
+            clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+            animation: hexSpin 3s linear infinite;
+            box-shadow: 0 0 20px var(--shadow-blue), inset 0 0 20px var(--shadow-blue);
+        }
+
+        @keyframes hexSpin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .orbit-dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        .orbit-dot:nth-child(1) { animation: orbit 2s linear infinite; }
+        .orbit-dot:nth-child(2) { animation: orbit 2s linear infinite 0.5s; }
+        .orbit-dot:nth-child(3) { animation: orbit 2s linear infinite 1s; }
+        .orbit-dot:nth-child(4) { animation: orbit 2s linear infinite 1.5s; }
+
+        @keyframes orbit {
+            0% { transform: translate(-50%, -50%) rotate(0deg) translateX(80px); }
+            100% { transform: translate(-50%, -50%) rotate(360deg) translateX(80px); }
+        }
+
+        .center-pulse {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--white);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--shadow-blue);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.5; }
+        }
+
+        .loading-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            animation: titlePulse 2s ease infinite;
+        }
+
+        @keyframes titlePulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .loading-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .status-text {
+            font-size: 1.1rem;
+            color: var(--neon-blue);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            min-height: 30px;
+            text-shadow: 0 0 10px var(--shadow-blue);
+            animation: textGlitch 5s ease infinite;
+        }
+
+        @keyframes textGlitch {
+            0%, 90%, 100% { transform: translate(0); }
+            92% { transform: translate(-2px, 1px); }
+            94% { transform: translate(2px, -1px); }
+            96% { transform: translate(-1px, 2px); }
+        }
+
+        .progress-wrapper {
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.1);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue-bright) 0%, var(--neon-blue) 50%, var(--neon-glow) 100%);
+            border-radius: 10px;
+            box-shadow: 0 0 20px var(--shadow-blue), inset 0 0 10px rgba(255, 255, 255, 0.3);
+            transition: width 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .progress-percent {
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-shadow: 0 0 10px var(--shadow-blue);
+        }
+
+        .progress-label {
+            color: var(--gray);
+        }
+
+        .corner-brackets {
+            position: absolute;
+            width: 90%;
+            height: 90%;
+            top: 5%;
+            left: 5%;
             pointer-events: none;
         }
 
-        .gallery-item:hover::after {
-            opacity: 1;
-        }
-
-        .gallery-view-more {
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        .gallery-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 10000;
-            backdrop-filter: blur(10px);
-        }
-
-        .gallery-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: modalFadeIn 0.3s ease;
-        }
-
-        @keyframes modalFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .gallery-modal-content {
-            position: relative;
-            max-width: 95vw;
-            max-height: 95vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .gallery-modal-content img {
-            max-width: 100%;
-            max-height: 90vh;
-            object-fit: contain;
-            border-radius: 10px;
-            border: 3px solid var(--neon-blue);
-            box-shadow: 0 0 50px var(--shadow-blue);
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-nav {
+        .corner {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 212, 255, 0.2);
-            border: 2px solid var(--neon-blue);
-            color: var(--neon-blue);
-            font-size: 3rem;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .gallery-nav:hover {
-            background: var(--neon-blue);
-            color: var(--bg-black);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .gallery-prev { left: 2rem; }
-        .gallery-next { right: 2rem; }
-
-        .image-counter {
-            position: absolute;
-            bottom: -3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--neon-blue);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-        }
-
-        .contact {
-            padding: 6rem 0;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-card {
-            background: rgba(13, 27, 42, 0.5);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--neon-blue);
-            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
-        }
-
-        .contact-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--neon-blue);
-        }
-
-        .contact-card h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            color: var(--white);
-            margin-bottom: 0.8rem;
-        }
-
-        .contact-card a {
-            color: var(--gray-light);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-card a:hover {
-            color: var(--neon-blue);
-        }
-
-        .contact-card p {
-            color: var(--gray-light);
-        }
-
-        footer {
-            background: rgba(5, 8, 16, 0.95);
-            border-top: 1px solid rgba(0, 212, 255, 0.2);
-            padding: 3rem 0 1.5rem;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 1.5rem;
-        }
-
-        .footer-logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--white);
-            text-shadow: 0 0 20px var(--shadow-blue);
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .footer-links a {
-            color: var(--gray-light);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--neon-blue);
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--neon-blue);
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-icon:hover {
-            background: var(--neon-blue);
-            color: var(--bg-black);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px var(--shadow-blue);
-        }
-
-        .footer-bottom {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(0, 212, 255, 0.1);
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 10000;
-            backdrop-filter: blur(10px);
-            overflow-y: auto;
-        }
-
-        .modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .modal-content {
-            background: rgba(13, 27, 42, 0.95);
-            border: 2px solid var(--neon-blue);
-            border-radius: 20px;
-            padding: 3rem;
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            animation: modalSlideIn 0.5s ease;
-        }
-
-        @keyframes modalSlideIn {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
             width: 40px;
             height: 40px;
             border: 2px solid var(--neon-blue);
-            border-radius: 50%;
-            background: transparent;
-            color: var(--neon-blue);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            opacity: 0.3;
         }
 
-        .modal-close:hover {
-            background: var(--neon-blue);
-            color: var(--bg-black);
-            transform: rotate(90deg);
-        }
-
-        .modal-content h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            color: var(--neon-blue);
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-content h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            color: var(--white);
-            margin: 2rem 0 1rem;
-        }
-
-        .modal-content p, .modal-content li {
-            color: var(--gray-light);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .modal-content ul {
-            padding-left: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-content strong {
-            color: var(--neon-cyan);
-        }
-
-        .highlight-box {
-            background: rgba(0, 212, 255, 0.1);
-            border-left: 4px solid var(--neon-blue);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 10px;
-        }
-
-        @media (max-width: 968px) {
-            .categories-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        .corner.top-left { top: 0; left: 0; border-right: none; border-bottom: none; }
+        .corner.top-right { top: 0; right: 0; border-left: none; border-bottom: none; }
+        .corner.bottom-left { bottom: 0; left: 0; border-right: none; border-top: none; }
+        .corner.bottom-right { bottom: 0; right: 0; border-left: none; border-top: none; }
 
         @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: rgba(10, 15, 26, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                justify-content: flex-start;
-                padding: 3rem 2rem;
-                transition: left 0.3s ease;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .hero h1 { font-size: 3rem; }
-            .hero-tagline { font-size: 1.8rem; }
-            .hero-subtitle { font-size: 1.3rem; }
-            .hero-dates { font-size: 1.1rem; }
-            .section-title { font-size: 2rem; }
-            .modal-content { padding: 2rem 1.5rem; }
-            .modal-content h2 { font-size: 2rem; }
-            .category-card { padding: 2rem; }
-            .category-icon { font-size: 3rem; }
-            .category-card h3 { font-size: 1.5rem; }
-            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
-            .gallery-nav { width: 45px; height: 45px; font-size: 2rem; }
-            .gallery-prev { left: 1rem; }
-            .gallery-next { right: 1rem; }
+            .logo-title { font-size: 3rem; letter-spacing: 4px; }
+            .logo-version { font-size: 1.8rem; }
+            .hexagon-loader { width: 150px; height: 150px; transform: scale(0.8); }
+            .loading-title { font-size: 1.4rem; }
+            .loading-subtitle { font-size: 1rem; }
+            .progress-wrapper { width: 90%; }
+            .status-text { font-size: 0.95rem; }
         }
 
         @media (max-width: 480px) {
-            .hero h1 { font-size: 2.2rem; letter-spacing: 1px; }
-            .hero-tagline { font-size: 1.3rem; }
-            .hero-subtitle { font-size: 1.1rem; }
-            .hero-dates { font-size: 0.95rem; }
-            .event-badge { font-size: 0.75rem; padding: 0.5rem 1rem; }
+            .logo-title { font-size: 2.2rem; letter-spacing: 2px; }
+            .logo-version { font-size: 1.4rem; }
+            .hexagon-loader { transform: scale(0.6); }
+            .loading-title { font-size: 1.2rem; }
+            .loading-subtitle { font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
-    <canvas id="binaryRainCanvas"></canvas>
-
-    <nav>
-        <div class="nav-container">
-            <a href="#home" class="logo">ANVAKRIT <span>2.0</span></a>
-            <div class="menu-toggle" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#rules">Rules</a></li>
-                <li><a href="#categories">Categories</a></li>
-                <li><a href="#eligibility">Eligibility</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#categories" class="nav-register-btn">Register Now</a></li>
-            </ul>
+    <div id="loadingScreen">
+        <div class="bg-effects">
+            <div class="digital-grid"></div>
+            <div class="glow-orb glow-orb-1"></div>
+            <div class="glow-orb glow-orb-2"></div>
+            <div class="glow-orb glow-orb-3"></div>
+            <div class="scan-line"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
         </div>
-    </nav>
 
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="event-badge">🔍 National Crime Scene Investigation Competition</div>
-            
-            <h1>ANVAKRIT 2.0</h1>
-            
-            <p class="hero-tagline fade-scale-in">"Unmask the Truth in Bytes"</p>
-            
-            <p class="hero-subtitle">National Crime Scene Investigation Competition</p>
-            
-            <p class="hero-dates">📍 NFSU Delhi Campus | February 11-13, 2026</p>
-            
-            <div class="hero-cta">
-                <a href="#categories" class="btn-primary">Register Now</a>
-                <a href="#rules" class="btn-primary btn-secondary">Rules & Regulations</a>
-            </div>
+        <div class="corner-brackets">
+            <div class="corner top-left"></div>
+            <div class="corner top-right"></div>
+            <div class="corner bottom-left"></div>
+            <div class="corner bottom-right"></div>
         </div>
-    </section>
 
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">About The Event</span>
-                <h2 class="section-title">Beyond the Crime Scene</h2>
-                <p class="section-subtitle">After the resounding success of its first edition, Anvakrit 2.0 returns with greater depth and tougher challenges</p>
+        <div class="loading-container">
+            <div class="logo-section">
+                <div class="logo-title">ANVAKRIT</div>
+                <div class="logo-version">2.0</div>
+                <div class="logo-underline"></div>
             </div>
 
-            <div class="about-description">
-                <p>This year, every clue counts — every trace, every click, every move could unravel the mystery. Centered around Digital Forensics, participants will step beyond the crime scene, navigating the digital world with investigative acumen in dynamic, real-world scenarios designed to test your limits.</p>
+            <div class="hexagon-loader">
+                <div class="hexagon"></div>
+                <div class="orbit-dot"></div>
+                <div class="orbit-dot"></div>
+                <div class="orbit-dot"></div>
+                <div class="orbit-dot"></div>
+                <div class="center-pulse"></div>
             </div>
 
-            <div class="highlights-grid">
-                <div class="highlight-card">
-                    <div class="highlight-icon">🎯</div>
-                    <h3>Mission</h3>
-                    <p>Test your investigative skills through multi-scene investigations with domain-integrated challenges in real-world crime scenarios.</p>
-                </div>
+            <div class="loading-title">Initializing Forensic System</div>
+            <div class="loading-subtitle">"Unmask the Truth in Bytes"</div>
+            <div class="status-text" id="statusText">Preparing investigation tools...</div>
 
-                <div class="highlight-card">
-                    <div class="highlight-icon">🏆</div>
-                    <h3>Competition Format</h3>
-                    <p>Two parallel tracks for different expertise levels with exciting prizes totaling ₹2.4 Lakh across both categories.</p>
+            <div class="progress-wrapper">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
                 </div>
-
-                <div class="highlight-card">
-                    <div class="highlight-icon">🎓</div>
-                    <h3>Experience & Learning</h3>
-                    <p>Held at NFSU Delhi Campus with state-of-the-art facilities, workshops, and immersive crime scene challenges.</p>
+                <div class="progress-info">
+                    <span class="progress-label">Loading</span>
+                    <span class="progress-percent" id="progressPercent">0%</span>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="rules" id="rules">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Rules & Guidelines</span>
-                <h2 class="section-title">Competition Rules</h2>
-                <p class="section-subtitle">Important guidelines and regulations for all participants</p>
-            </div>
-
-            <div class="rules-content">
-                <div class="rules-grid">
-                    <div class="rule-card">
-                        <h3>🔒 General Rules</h3>
-                        <ul>
-                            <li>Valid institutional/school ID card <strong>mandatory</strong> for offline rounds</li>
-                            <li>Registration is <strong>non-refundable</strong> once confirmed</li>
-                            <li><strong>No changes</strong> in team names or composition after registration</li>
-                            <li>Each team member must register individually</li>
-                            <li>Surprise elements throughout the competition starting from registration</li>
-                        </ul>
-                    </div>
-
-                    <div class="rule-card">
-                        <h3>🎯 Competition Conduct</h3>
-                        <ul>
-                            <li>Maintain integrity and professionalism throughout</li>
-                            <li>Follow chain of custody protocols during evidence handling</li>
-                            <li>Respect crime scene boundaries and markers</li>
-                            <li>No use of unauthorized external assistance or resources</li>
-                            <li>Decisions of judges and organizers are <strong>final</strong></li>
-                        </ul>
-                    </div>
-
-                    <div class="rule-card">
-                        <h3>📋 What's Included</h3>
-                        <ul>
-                            <li>Lunch and dinner during the event</li>
-                            <li>Registration kits and materials</li>
-                            <li>Workshops and expert lectures</li>
-                            <li>Lab visits at NFSU Delhi Campus</li>
-                            <li>Certificate of participation</li>
-                            <li><strong>Optional:</strong> Accommodation at ₹500/day (includes breakfast)</li>
-                        </ul>
-                    </div>
-
-                    <div class="rule-card">
-                        <h3>🏆 Prize Pool</h3>
-                        <ul>
-                            <li><strong>Category I:</strong> Top 3 teams share ₹1.2 Lakh</li>
-                            <li><strong>Category II:</strong> Top 2 teams share ₹1.2 Lakh</li>
-                            <li><strong>Total Prize Pool:</strong> ₹2.4 Lakh</li>
-                            <li>Special recognition for outstanding performance</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="categories" id="categories">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Competition Categories</span>
-                <h2 class="section-title">Choose Your Track</h2>
-                <p class="section-subtitle">Two categories designed for different skill levels and professional stages</p>
-            </div>
-
-            <div class="categories-grid">
-                <div class="category-card">
-                    <div class="category-icon">📚</div>
-                    <h3>Category I</h3>
-                    <span class="category-label">Higher Secondary & UG Level</span>
-                    
-                    <p><strong>Eligibility:</strong> Grades 11, 12 & Undergraduate students (all streams)</p>
-                    
-                    <ul>
-                        <li><strong>Team Size:</strong> 3-4 members</li>
-                        <li><strong>Capacity:</strong> 300 participants (limited)</li>
-                        <li><strong>Selection:</strong> First-come, first-serve</li>
-                        <li><strong>Format:</strong> Case file investigation, poster presentation, on-campus CSI</li>
-                    </ul>
-                    
-                    <div class="category-fee">₹1,000 per person</div>
-                    
-                    <a href="#" class="btn-primary" onclick="openModal('cat1Modal')">View Full Details</a>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">🎓</div>
-                    <h3>Category II</h3>
-                    <span class="category-label">PG, PhD & Professionals</span>
-                    
-                    <p><strong>Eligibility:</strong> Postgraduate, Doctoral & Professional Experts</p>
-                    
-                    <ul>
-                        <li><strong>Team Size:</strong> Individual or Teams of 5</li>
-                        <li><strong>Capacity:</strong> 200 participants (limited)</li>
-                        <li><strong>Selection:</strong> First-come, first-serve</li>
-                        <li><strong>Format:</strong> Multi-scene investigation, digital forensics, courtroom presentation</li>
-                    </ul>
-                    
-                    <div class="category-fee">₹2,000 per person</div>
-                    
-                    <a href="#" class="btn-primary" onclick="openModal('cat2Modal')">View Full Details</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="eligibility" id="eligibility">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Who Can Participate</span>
-                <h2 class="section-title">Eligibility Criteria</h2>
-                <p class="section-subtitle">Check if you qualify for participation in Anvakrit 2.0</p>
-            </div>
-
-            <div class="eligibility-grid">
-                <div class="eligibility-card">
-                    <h3>Category I - Students</h3>
-                    <ul>
-                        <li>Grades 11 & 12 students</li>
-                        <li>Undergraduate students (all streams)</li>
-                        <li>Valid school/college ID required</li>
-                        <li>No prior forensic knowledge needed</li>
-                        <li>Must form teams of 3-4 before registration</li>
-                    </ul>
-                </div>
-
-                <div class="eligibility-card">
-                    <h3>Category II - Advanced</h3>
-                    <ul>
-                        <li>Postgraduate & Doctoral students</li>
-                        <li>Professional experts in relevant fields</li>
-                        <li>Fields: Forensics, Criminology, Law, Psychology, Cyber Security</li>
-                        <li>Valid institutional ID required</li>
-                        <li>Individual or team registration (5 members)</li>
-                    </ul>
-                </div>
-
-                <div class="eligibility-card">
-                    <h3>General Requirements</h3>
-                    <ul>
-                        <li>Must be Indian resident</li>
-                        <li>Age: 16+ years</li>
-                        <li>Fluency in English (written & spoken)</li>
-                        <li>Ability to attend offline rounds at NFSU Delhi</li>
-                        <li>No criminal record</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="gallery" id="gallery">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Previous Edition</span>
-                <h2 class="section-title">Anvakrit 1.0 Gallery</h2>
-                <p class="section-subtitle">Moments from our inaugural forensic investigation competition</p>
-            </div>
-
-            <div class="gallery-grid" id="galleryGrid"></div>
-
-            <div class="gallery-view-more">
-                <a href="gallery.html" class="btn-primary btn-secondary">View All Photos →</a>
-            </div>
-        </div>
-    </section>
-
-    <div id="galleryModal" class="gallery-modal">
-        <div class="gallery-modal-content">
-            <button class="modal-close" onclick="closeGalleryModal()">×</button>
-            <button class="gallery-nav gallery-prev" onclick="changeGalleryImage(-1)">‹</button>
-            <button class="gallery-nav gallery-next" onclick="changeGalleryImage(1)">›</button>
-            <img id="galleryModalImage" src="" alt="Anvakrit 1.0">
-            <div class="image-counter" id="imageCounter"></div>
-        </div>
-    </div>
-
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Get In Touch</span>
-                <h2 class="section-title">Contact Us</h2>
-                <p class="section-subtitle">Have questions? Reach out to our organizing team</p>
-            </div>
-
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <div class="contact-icon">📧</div>
-                    <h3>Email</h3>
-                    <a href="mailto:csi_dc@nfsu.ac.in">csi_dc@nfsu.ac.in</a>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-icon">📱</div>
-                    <h3>Phone</h3>
-                    <a href="tel:+918881666088">+91 8881666088</a>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-icon">📍</div>
-                    <h3>Venue</h3>
-                    <p>NFSU Delhi Campus<br>National Forensic Sciences University</p>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-icon">🌐</div>
-                    <h3>Website</h3>
-                    <a href="https://nfsu.ac.in" target="_blank">nfsu.ac.in</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">ANVAKRIT 2.0</div>
-                
-                <div class="footer-links">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#rules">Rules</a>
-                    <a href="#categories">Categories</a>
-                    <a href="#eligibility">Eligibility</a>
-                    <a href="#gallery">Gallery</a>
-                    <a href="#contact">Contact</a>
-                </div>
-
-                <div class="footer-social">
-                    <a href="#" class="social-icon" title="Instagram">📷</a>
-                    <a href="#" class="social-icon" title="LinkedIn">💼</a>
-                    <a href="#" class="social-icon" title="Facebook">📘</a>
-                    <a href="#" class="social-icon" title="Twitter">🐦</a>
-                </div>
-
-                <div class="footer-bottom">
-                    <p>&copy; 2026 Anvakrit 2.0 | National Forensic Sciences University, Ministry of Home Affairs, Govt. of India | All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <div id="cat1Modal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('cat1Modal')">×</button>
-            <h2>Category I: Higher Secondary & UG Level</h2>
-            
-            <div class="highlight-box">
-                <strong>📅 Event Dates:</strong> February 11-13, 2026<br>
-                <strong>💰 Registration Fee:</strong> ₹1,000 per person<br>
-                <strong>👥 Team Size:</strong> 3-4 members<br>
-                <strong>📌 Capacity:</strong> 300 participants<br>
-                <strong>📍 Venue:</strong> NFSU Delhi Campus
-            </div>
-
-            <h3>📋 Competition Rounds</h3>
-            <p><strong>Round 1: Case File Investigation</strong></p>
-            <p>Teams receive a case file to test investigative and critical thinking skills.</p>
-
-            <p><strong>Round 2: Poster Presentation</strong></p>
-            <p>Online poster presentation showcasing findings from the case file.</p>
-
-            <p><strong>Round 3: On-Campus Crime Scene</strong></p>
-            <p>Offline round at NFSU Delhi with immersive crime scene investigation.</p>
-
-            <h3>✅ Eligibility</h3>
-            <ul>
-                <li>Grades 11, 12 & undergraduate students (all streams)</li>
-                <li>Valid ID card required</li>
-                <li>No prior forensic knowledge required</li>
-            </ul>
-
-            <h3>🏆 Prizes</h3>
-            <p>Top 3 teams share <strong>₹1.2 Lakh</strong></p>
-
-            <a href="https://unstop.com/competitions/anvakrit-20-national-crime-scene-investigation-competition-national-forensic-sciences-university-delhi-1575775" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 2rem;">Register Now</a>
-        </div>
-    </div>
-
-    <div id="cat2Modal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('cat2Modal')">×</button>
-            <h2>Category II: PG, PhD & Professionals</h2>
-            
-            <div class="highlight-box">
-                <strong>📅 Event Dates:</strong> February 11-13, 2026<br>
-                <strong>💰 Registration Fee:</strong> ₹2,000 per person<br>
-                <strong>👥 Team Size:</strong> Individual or Teams of 5<br>
-                <strong>📌 Capacity:</strong> 200 participants<br>
-                <strong>📍 Venue:</strong> NFSU Delhi Campus
-            </div>
-
-            <h3>📋 Competition Rounds</h3>
-            <p><strong>Round 1: Case File Investigation</strong></p>
-            <p>Advanced case file investigation with complex scenarios.</p>
-
-            <p><strong>Round 2: Multi-Scene Crime Scene Investigation</strong></p>
-            <p>Domain-integrated immersive investigation across multiple scenes.</p>
-
-            <p><strong>Round 3: Mock Courtroom Presentation</strong></p>
-            <p>Present findings to a live jury in a courtroom setting.</p>
-
-            <h3>✅ Eligibility</h3>
-            <ul>
-                <li>Postgraduate, doctoral students & professionals</li>
-                <li>Fields: Forensics, Criminology, Law, Psychology, Cyber Security</li>
-                <li>Valid institutional ID required</li>
-            </ul>
-
-            <h3>🏆 Prizes</h3>
-            <p>Top 2 teams share <strong>₹1.2 Lakh</strong></p>
-
-            <a href="https://forms.gle/uPrctBYUw8yhmDDx9" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 2rem;">Register Now</a>
         </div>
     </div>
 
     <script>
-        const binaryCanvas = document.getElementById('binaryRainCanvas');
-        const binaryCtx = binaryCanvas.getContext('2d');
-        binaryCanvas.width = window.innerWidth;
-        binaryCanvas.height = window.innerHeight;
+        let progress = 0;
+        const progressBar = document.getElementById('progressBar');
+        const progressPercent = document.getElementById('progressPercent');
+        const statusText = document.getElementById('statusText');
+        const loadingScreen = document.getElementById('loadingScreen');
 
-        const binaryText = '01';
-        const binaryFontSize = 12;
-        const binaryColumns = binaryCanvas.width / binaryFontSize;
-        const binaryDrops = Array(Math.floor(binaryColumns)).fill(1);
-
-        function drawBinary() {
-            binaryCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            binaryCtx.fillRect(0, 0, binaryCanvas.width, binaryCanvas.height);
-            binaryCtx.fillStyle = '#00d4ff';
-            binaryCtx.font = binaryFontSize + 'px monospace';
-            
-            for (let i = 0; i < binaryDrops.length; i++) {
-                const text = binaryText[Math.floor(Math.random() * binaryText.length)];
-                binaryCtx.fillText(text, i * binaryFontSize, binaryDrops[i] * binaryFontSize);
-                if (binaryDrops[i] * binaryFontSize > binaryCanvas.height && Math.random() > 0.98) binaryDrops[i] = 0;
-                binaryDrops[i]++;
-            }
-        }
-
-        setInterval(drawBinary, 35);
-        window.addEventListener('resize', () => {
-            binaryCanvas.width = window.innerWidth;
-            binaryCanvas.height = window.innerHeight;
-        });
-
-        function animateText(element) {
-            const text = element.textContent;
-            const words = text.split(' ');
-            element.innerHTML = '';
-            element.classList.add('animate-words');
-            
-            words.forEach((word, index) => {
-                const span = document.createElement('span');
-                span.className = 'word';
-                span.textContent = word + ' ';
-                span.style.animationDelay = (index * 0.15) + 's';
-                element.appendChild(span);
-            });
-        }
-
-        // Gallery Data - 9 images for index
-        const galleryImages = [
-            'images/anvakrit1.jpg',
-            'images/anvakrit2.jpg',
-            'images/anvakrit3.jpg',
-            'images/anvakrit4.jpg',
-            'images/anvakrit5.jpg',
-            'images/anvakrit6.jpg',
-            'images/anvakrit7.jpg',
-            'images/anvakrit8.jpg',
-            'images/anvakrit9.jpg',
-            'images/anvakrit10.jpg',
-            'images/anvakrit11.jpg',
-            'images/anvakrit12.jpg',
-            'images/anvakrit13.jpg',
-            'images/anvakrit14.jpg',
-            'images/anvakrit15.jpg',
-            'images/anvakrit16.jpg',
-            'images/anvakrit17.jpg',
-            'images/anvakrit18.jpg',
-            'images/anvakrit19.jpg',
-            'images/anvakrit20.jpg'
+        const statusMessages = [
+            'Scanning digital evidence...',
+            'Analyzing byte patterns...',
+            'Loading forensic tools...',
+            'Initializing security protocols...',
+            'Decrypting case files...',
+            'Establishing secure connection...',
+            'Preparing investigation workspace...',
+            'Loading crime scene database...',
+            'Calibrating analysis engines...',
+            'System ready for investigation...'
         ];
 
-        let currentGalleryIndex = 0;
+        let messageIndex = 0;
 
-        function renderGallery() {
-            const grid = document.getElementById('galleryGrid');
-            const displayImages = galleryImages.slice(0, 9); // Show first 9 images
-            
-            grid.innerHTML = displayImages.map((src, index) => `
-                <div class="gallery-item" onclick="openGalleryModal(${index})">
-                    <img src="${src}" alt="Anvakrit 1.0 - Photo ${index + 1}" loading="lazy" onerror="this.style.display='none'">
-                </div>
-            `).join('');
-        }
-
-        function openGalleryModal(index) {
-            currentGalleryIndex = index;
-            const modal = document.getElementById('galleryModal');
-            const img = document.getElementById('galleryModalImage');
-            const counter = document.getElementById('imageCounter');
-            
-            img.src = galleryImages[index];
-            counter.textContent = `${index + 1} / ${galleryImages.length}`;
-            
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeGalleryModal() {
-            const modal = document.getElementById('galleryModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function changeGalleryImage(direction) {
-            currentGalleryIndex += direction;
-            
-            if (currentGalleryIndex < 0) {
-                currentGalleryIndex = galleryImages.length - 1;
-            } else if (currentGalleryIndex >= galleryImages.length) {
-                currentGalleryIndex = 0;
+        const messageInterval = setInterval(() => {
+            if (messageIndex < statusMessages.length) {
+                statusText.textContent = statusMessages[messageIndex];
+                messageIndex++;
             }
-            
-            const img = document.getElementById('galleryModalImage');
-            const counter = document.getElementById('imageCounter');
-            
-            img.style.opacity = '0';
-            setTimeout(() => {
-                img.src = galleryImages[currentGalleryIndex];
-                counter.textContent = `${currentGalleryIndex + 1} / ${galleryImages.length}`;
-                img.style.opacity = '1';
-            }, 200);
-        }
+        }, 400);
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const heroSubtitle = document.querySelector('.hero-subtitle');
-            if (heroSubtitle) animateText(heroSubtitle);
-            document.querySelector('.hero').classList.add('visible');
-            renderGallery();
-        });
+        const progressInterval = setInterval(() => {
+            if (progress < 100) {
+                progress += Math.random() * 8 + 2;
+                if (progress > 100) progress = 100;
+                progressBar.style.width = progress + '%';
+                progressPercent.textContent = Math.floor(progress) + '%';
+            } else {
+                clearInterval(progressInterval);
+                clearInterval(messageInterval);
+                statusText.textContent = 'Investigation system ready!';
 
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => sectionObserver.observe(section));
-
-        document.querySelectorAll('.category-card, .highlight-card, .rule-card, .eligibility-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 20;
-                const rotateY = (centerX - x) / 20;
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
-            });
-            card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-        });
-
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('navLinks').classList.remove('active');
-            });
-        });
-
-        function openModal(modalId) {
-            event.preventDefault();
-            document.getElementById(modalId).classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        });
-
-        document.addEventListener('keydown', (e) => {
-            const modal = document.getElementById('galleryModal');
-            if (modal.classList.contains('active')) {
-                if (e.key === 'ArrowLeft') changeGalleryImage(-1);
-                if (e.key === 'ArrowRight') changeGalleryImage(1);
-                if (e.key === 'Escape') closeGalleryModal();
+                setTimeout(() => {
+                    loadingScreen.classList.add('hidden');
+                    setTimeout(() => {
+                        window.location.href = 'home.html';
+                    }, 1000);
+                }, 800);
             }
-        });
-
-        document.getElementById('galleryModal').addEventListener('click', (e) => {
-            if (e.target.id === 'galleryModal') closeGalleryModal();
-        });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
+        }, 250);
     </script>
 </body>
 </html>
