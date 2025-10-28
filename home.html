@@ -50,7 +50,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.08;
+            opacity: 0.18;
             pointer-events: none;
         }
 
@@ -660,6 +660,7 @@
             border: 2px solid rgba(0, 212, 255, 0.15);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             background: rgba(13, 27, 42, 0.3);
+            animation: galleryFloat 3s ease-in-out infinite;
         }
 
         .gallery-item:hover {
@@ -1059,10 +1060,282 @@
             .hero-dates { font-size: 0.95rem; }
             .event-badge { font-size: 0.75rem; padding: 0.5rem 1rem; }
         }
+        /* ========== FORENSIC BACKGROUND ELEMENTS - ADD BEFORE </style> ========== */
+.forensic-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.04;
+}
+
+/* DNA Helix 1 */
+.dna-helix {
+    position: absolute;
+    width: 200px;
+    height: 400px;
+    top: 15%;
+    right: 8%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 200"><path d="M20,0 Q30,25 20,50 Q10,75 20,100 Q30,125 20,150 Q10,175 20,200 M80,0 Q70,25 80,50 Q90,75 80,100 Q70,125 80,150 Q90,175 80,200" stroke="%2300d4ff" fill="none" stroke-width="2"/><line x1="20" y1="25" x2="80" y2="25" stroke="%2300d4ff" stroke-width="1"/><line x1="20" y1="75" x2="80" y2="75" stroke="%2300d4ff" stroke-width="1"/><line x1="20" y1="125" x2="80" y2="125" stroke="%2300d4ff" stroke-width="1"/><line x1="20" y1="175" x2="80" y2="175" stroke="%2300d4ff" stroke-width="1"/></svg>') no-repeat center;
+    background-size: contain;
+    animation: dnaRotate 20s linear infinite;
+}
+
+.dna-helix-2 {
+    position: absolute;
+    width: 150px;
+    height: 300px;
+    bottom: 20%;
+    left: 15%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 200"><path d="M20,0 Q30,25 20,50 Q10,75 20,100 Q30,125 20,150 Q10,175 20,200 M80,0 Q70,25 80,50 Q90,75 80,100 Q70,125 80,150 Q90,175 80,200" stroke="%2300d4ff" fill="none" stroke-width="2"/><line x1="20" y1="25" x2="80" y2="25" stroke="%2300d4ff" stroke-width="1"/><line x1="20" y1="75" x2="80" y2="75" stroke="%2300d4ff" stroke-width="1"/><line x1="20" y1="125" x2="80" y2="125" stroke="%2300d4ff" stroke-width="1"/><line x1="20" y1="175" x2="80" y2="175" stroke="%2300d4ff" stroke-width="1"/></svg>') no-repeat center;
+    background-size: contain;
+    animation: dnaRotate 25s linear infinite reverse;
+}
+
+@keyframes dnaRotate {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-50px) rotate(360deg); }
+}
+
+/* Fingerprints */
+.fingerprint {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    bottom: 10%;
+    left: 5%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="40" ry="45" fill="none" stroke="%2300d4ff" stroke-width="1"/><ellipse cx="50" cy="50" rx="32" ry="37" fill="none" stroke="%2300d4ff" stroke-width="1"/><ellipse cx="50" cy="50" rx="24" ry="29" fill="none" stroke="%2300d4ff" stroke-width="1"/><ellipse cx="50" cy="50" rx="16" ry="21" fill="none" stroke="%2300d4ff" stroke-width="1"/><ellipse cx="50" cy="50" rx="8" ry="13" fill="none" stroke="%2300d4ff" stroke-width="1"/></svg>') no-repeat center;
+    background-size: contain;
+    animation: fingerprint-pulse 3s ease-in-out infinite;
+}
+
+.fingerprint-2 {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    top: 25%;
+    left: 12%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="40" ry="45" fill="none" stroke="%2300d4ff" stroke-width="1"/><ellipse cx="50" cy="50" rx="32" ry="37" fill="none" stroke="%2300d4ff" stroke-width="1"/><ellipse cx="50" cy="50" rx="24" ry="29" fill="none" stroke="%2300d4ff" stroke-width="1"/><ellipse cx="50" cy="50" rx="16" ry="21" fill="none" stroke="%2300d4ff" stroke-width="1"/></svg>') no-repeat center;
+    background-size: contain;
+    animation: fingerprint-pulse 4s ease-in-out infinite;
+}
+
+@keyframes fingerprint-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.04; }
+    50% { transform: scale(1.08); opacity: 0.07; }
+}
+
+/* Microscope */
+.microscope-icon {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: 45%;
+    left: 3%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="35" r="15" fill="none" stroke="%2300d4ff" stroke-width="2"/><line x1="50" y1="50" x2="50" y2="70" stroke="%2300d4ff" stroke-width="3"/><line x1="35" y1="70" x2="65" y2="70" stroke="%2300d4ff" stroke-width="3"/><circle cx="50" cy="20" r="8" fill="none" stroke="%2300d4ff" stroke-width="1.5"/><line x1="40" y1="75" x2="60" y2="75" stroke="%2300d4ff" stroke-width="2"/></svg>') no-repeat center;
+    background-size: contain;
+    animation: float-slow 6s ease-in-out infinite;
+}
+
+/* Judge Gavel */
+.gavel-icon {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    top: 60%;
+    right: 5%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="30" y="20" width="40" height="15" rx="3" fill="none" stroke="%2300d4ff" stroke-width="2"/><rect x="42" y="35" width="16" height="35" rx="2" fill="none" stroke="%2300d4ff" stroke-width="2"/><rect x="20" y="75" width="60" height="8" rx="2" fill="none" stroke="%2300d4ff" stroke-width="2"/><line x1="25" y1="50" x2="35" y2="40" stroke="%2300d4ff" stroke-width="2"/></svg>') no-repeat center;
+    background-size: contain;
+    animation: gavel-tap 4s ease-in-out infinite;
+}
+
+@keyframes gavel-tap {
+    0%, 90%, 100% { transform: rotate(0deg); }
+    95% { transform: rotate(-15deg); }
+}
+
+/* Evidence Markers */
+.evidence-marker {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    top: 70%;
+    right: 18%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%2300d4ff" stroke-width="2"/><text x="50" y="62" font-size="45" fill="%2300d4ff" text-anchor="middle" font-family="Orbitron" font-weight="bold">A</text></svg>') no-repeat center;
+    background-size: contain;
+    animation: evidence-rotate 15s linear infinite;
+}
+
+.evidence-marker-2 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    bottom: 30%;
+    right: 12%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%2300d4ff" stroke-width="2"/><text x="50" y="62" font-size="45" fill="%2300d4ff" text-anchor="middle" font-family="Orbitron" font-weight="bold">B</text></svg>') no-repeat center;
+    background-size: contain;
+    animation: evidence-rotate 18s linear infinite reverse;
+}
+
+@keyframes evidence-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Chemical Formula */
+.chemical-icon {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    top: 35%;
+    right: 25%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="40" r="12" fill="none" stroke="%2300d4ff" stroke-width="2"/><circle cx="70" cy="40" r="12" fill="none" stroke="%2300d4ff" stroke-width="2"/><circle cx="50" cy="65" r="12" fill="none" stroke="%2300d4ff" stroke-width="2"/><line x1="42" y1="40" x2="58" y2="40" stroke="%2300d4ff" stroke-width="2"/><line x1="38" y1="50" x2="46" y2="60" stroke="%2300d4ff" stroke-width="2"/><line x1="62" y1="50" x2="54" y2="60" stroke="%2300d4ff" stroke-width="2"/></svg>') no-repeat center;
+    background-size: contain;
+    animation: molecule-rotate 12s linear infinite;
+}
+
+@keyframes molecule-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Magnifying Glass */
+.magnify-icon {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    bottom: 35%;
+    left: 20%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="40" cy="40" r="25" fill="none" stroke="%2300d4ff" stroke-width="3"/><line x1="58" y1="58" x2="78" y2="78" stroke="%2300d4ff" stroke-width="4"/><circle cx="40" cy="40" r="15" fill="none" stroke="%2300d4ff" stroke-width="1.5"/></svg>') no-repeat center;
+    background-size: contain;
+    animation: magnify-scan 5s ease-in-out infinite;
+}
+
+@keyframes magnify-scan {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(10px, -10px) scale(1.1); }
+}
+
+/* Bullet Casing */
+.bullet-icon {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    top: 50%;
+    right: 35%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><ellipse cx="50" cy="35" rx="10" ry="15" fill="none" stroke="%2300d4ff" stroke-width="2"/><rect x="42" y="35" width="16" height="30" fill="none" stroke="%2300d4ff" stroke-width="2"/><rect x="40" y="65" width="20" height="8" fill="none" stroke="%2300d4ff" stroke-width="2"/></svg>') no-repeat center;
+    background-size: contain;
+    animation: bullet-float 7s ease-in-out infinite;
+}
+
+@keyframes bullet-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(10deg); }
+}
+
+/* Crime Scene Tape */
+.tape-icon {
+    position: absolute;
+    width: 250px;
+    height: 30px;
+    top: 80%;
+    left: 30%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(0, 212, 255, 0.08) 10px,
+        rgba(0, 212, 255, 0.08) 20px
+    );
+    border-top: 2px solid rgba(0, 212, 255, 0.1);
+    border-bottom: 2px solid rgba(0, 212, 255, 0.1);
+    animation: tape-wave 3s ease-in-out infinite;
+}
+
+@keyframes tape-wave {
+    0%, 100% { transform: translateX(0) rotate(-2deg); }
+    50% { transform: translateX(10px) rotate(2deg); }
+}
+
+@keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .forensic-bg {
+        opacity: 0.02;
+    }
+    
+    .dna-helix, .dna-helix-2,
+    .fingerprint, .fingerprint-2,
+    .microscope-icon, .gavel-icon,
+    .chemical-icon, .magnify-icon,
+    .bullet-icon {
+        transform: scale(0.7);
+    }
+    
+    .tape-icon {
+        width: 150px;
+    }
+}
+
+/* ========== END FORENSIC ELEMENTS ========== */
+@keyframes galleryFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.gallery-item:nth-child(1) { animation-delay: 0s; }
+.gallery-item:nth-child(2) { animation-delay: 0.2s; }
+.gallery-item:nth-child(3) { animation-delay: 0.4s; }
+.gallery-item:nth-child(4) { animation-delay: 0.6s; }
+.gallery-item:nth-child(5) { animation-delay: 0.8s; }
+.gallery-item:nth-child(6) { animation-delay: 1s; }
+.gallery-item:nth-child(7) { animation-delay: 1.2s; }
+.gallery-item:nth-child(8) { animation-delay: 1.4s; }
+.gallery-item:nth-child(9) { animation-delay: 1.6s; }
+
     </style>
 </head>
 <body>
     <canvas id="binaryRainCanvas"></canvas>
+    <!-- Forensic Background Elements - ADD AFTER BINARY CANVAS -->
+<div class="forensic-bg">
+    <!-- DNA Helix -->
+    <div class="dna-helix"></div>
+    <div class="dna-helix-2"></div>
+    
+    <!-- Fingerprints -->
+    <div class="fingerprint"></div>
+    <div class="fingerprint-2"></div>
+    
+    <!-- Microscope -->
+    <div class="microscope-icon"></div>
+    
+    <!-- Judge Gavel -->
+    <div class="gavel-icon"></div>
+    
+    <!-- Evidence Markers -->
+    <div class="evidence-marker"></div>
+    <div class="evidence-marker-2"></div>
+    
+    <!-- Chemical Formulas -->
+    <div class="chemical-icon"></div>
+    
+    <!-- Magnifying Glass -->
+    <div class="magnify-icon"></div>
+    
+    <!-- Bullet Casing -->
+    <div class="bullet-icon"></div>
+    
+    <!-- Crime Scene Tape -->
+    <div class="tape-icon"></div>
+</div>
 
     <nav>
         <div class="nav-container">
