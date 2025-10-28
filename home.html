@@ -107,9 +107,19 @@ nav {
 }
 
 .logo-img {
-    height: 60px;
+    height: 70px;
     width: auto;
     filter: drop-shadow(0 0 15px var(--shadow-blue));
+}
+
+/* Make left Anvakrit logo specifically bigger */
+.nav-logo-left .logo-img {
+    height: 80px; /* Extra big for Anvakrit logo */
+}
+
+/* Keep right NFSU logo smaller */
+.nav-logo-right .logo-img {
+    height: 60px;
 }
 
 /* Nav Title */
@@ -176,6 +186,7 @@ nav {
     border-radius: 50px;
     border: 2px solid var(--neon-blue);
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .nav-register-btn:hover {
@@ -186,27 +197,28 @@ nav {
 .nav-register-btn::after {
     display: none;
 }
-
-/* Mobile Menu Toggle */
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
+/* Base logo sizes (desktop) */
+.logo-img {
+    height: 70px;
+    width: auto;
+    filter: drop-shadow(0 0 15px var(--shadow-blue));
 }
 
-.menu-toggle span {
-    width: 25px;
-    height: 3px;
-    background: var(--neon-blue);
-    border-radius: 3px;
-    transition: all 0.3s ease;
+.nav-logo-left .logo-img {
+    height: 80px; /* Anvakrit logo bigger */
 }
+
+.nav-logo-right .logo-img {
+    height: 65px; /* NFSU logo slightly smaller */
+}
+
 
 /* Mobile Responsive */
 @media (max-width: 1024px) {
     .logo-img {
-        height: 45px;
+       height: 70px; /* CHANGE FROM 50px */
+    width: auto;
+    filter: drop-shadow(0 0 15px var(--shadow-blue));
     }
     
     .nav-title {
@@ -232,14 +244,19 @@ nav {
         height: 35px;
     }
     
+    .nav-logo-left .logo-img {
+        height: 50px;
+    }
+    
+    .nav-logo-right .logo-img {
+        height: 40px;
+    }
+
     .nav-title {
         font-size: 1.1rem;
         letter-spacing: 1px;
     }
     
-    .menu-toggle {
-        display: flex;
-    }
     
     .nav-links {
         position: fixed;
@@ -266,6 +283,91 @@ nav {
         text-align: center;
     }
 }
+/* ========== HAMBURGER MENU - ALWAYS ENABLED ========== */
+
+.menu-toggle {
+    display: none; /* Hidden by default on large screens */
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 10001;
+    padding: 10px;
+}
+
+.menu-toggle span {
+    width: 28px;
+    height: 3px;
+    background: var(--neon-blue);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Show hamburger on tablets and below */
+@media (max-width: 1200px) {
+    .menu-toggle {
+        display: flex; /* SHOW HAMBURGER */
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 90px;
+        right: -100%;
+        width: 300px;
+        height: calc(100vh - 90px);
+        background: rgba(10, 15, 26, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        border-left: 2px solid rgba(0, 212, 255, 0.2);
+        transition: right 0.3s ease;
+        overflow-y: auto;
+        z-index: 10000;
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links li {
+        width: 100%;
+    }
+    
+    .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    }
+    
+    .nav-register-btn {
+        margin-top: 1rem;
+    }
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex; /* SHOW HAMBURGER ON MOBILE TOO */
+    }
+    
+    .nav-links {
+        width: 250px;
+        top: 80px;
+        height: calc(100vh - 80px);
+    }
+    
+    .nav-logo-right {
+        display: none; /* Hide NFSU logo on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links {
+        width: 200px;
+    }
+}
 
 
         .logo {
@@ -280,21 +382,6 @@ nav {
 
         .logo span {
             color: var(--neon-blue);
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--neon-blue);
-            border-radius: 3px;
-            transition: 0.3s;
         }
 
         .hero {
@@ -1022,7 +1109,8 @@ nav {
 /* === ORGANIZING COMMITTEE SECTION === */
 .team {
     padding: 6rem 0;
-    background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+    background: transparent; /* CHANGED */
+    position: relative;
 }
 
 .team-category {
@@ -1058,12 +1146,7 @@ nav {
 }
 
 .team-card {
-    background: rgba(13, 27, 42, 0.6);
-    border: 2px solid rgba(0, 212, 255, 0.2);
-    border-radius: 15px;
-    padding: 1.5rem;
-    text-align: center;
-    transition: all 0.3s ease;
+    background: rgba(13, 27, 42, 0.4); /* CHANGED FROM 0.6 */
     backdrop-filter: blur(10px);
 }
 
@@ -1451,10 +1534,7 @@ nav {
                 left: 0;
             }
 
-            .menu-toggle {
-                display: flex;
-            }
-
+            
             .hero h1 { font-size: 3rem; }
             .hero-tagline { font-size: 1.8rem; }
             .hero-subtitle { font-size: 1.3rem; }
@@ -1851,8 +1931,12 @@ nav {
 <!-- Organizing Committee Section -->
 <section id="team" class="team">
     <div class="container">
-        <h2 class="section-title">Organizing Committee</h2>
-        <p class="section-subtitle">Meet the minds behind Anvakrit 2.0</p>
+        <div class="section-header">
+          <span class="section-label">Meet The Team</span>
+          <h2 class="section-title">Organizing Committee</h2>
+          <p class="section-subtitle">Meet the minds behind Anvakrit 2.0</p>
+       </div>
+
 
         <!-- Event Coordinators -->
         <div class="team-category">
@@ -2071,6 +2155,7 @@ nav {
                     <a href="#rules">Rules</a>
                     <a href="#categories">Categories</a>
                     <a href="#eligibility">Eligibility</a>
+                    <a href="#team">Team</a>
                     <a href="#gallery">Gallery</a>
                     <a href="#contact">Contact</a>
                 </div>
