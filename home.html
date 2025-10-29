@@ -399,7 +399,197 @@ nav {
         .hero-content {
             max-width: 1000px;
             z-index: 1;
+            position: relative;
         }
+/* ==========================================
+   FLOATING DOMAINS - FULL HERO COVERAGE
+========================================== */
+.floating-domains {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.domain-tag {
+    position: absolute;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(0, 212, 255, 0.5);
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 20px;
+    background: rgba(13, 27, 42, 0.4);
+    backdrop-filter: blur(8px);
+    white-space: nowrap;
+    pointer-events: auto;
+    cursor: default;
+    
+    /* Position using CSS variables */
+    left: var(--x);
+    top: var(--y);
+    
+    /* Animation */
+    animation: floatDomain var(--duration) ease-in-out infinite;
+    animation-delay: var(--delay);
+    
+    /* Initial state */
+    opacity: 0;
+    animation-fill-mode: both;
+    
+    /* Prevent blocking main content */
+    user-select: none;
+}
+
+.domain-tag:hover {
+    color: var(--neon-cyan);
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.6);
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.9);
+    transform: scale(1.15);
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+/* ==========================================
+   FLOATING DOMAINS - FULL WIDTH, NO CUTTING
+========================================== */
+.floating-domains {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: visible; /* CHANGED from hidden */
+    padding: 20px; /* ADD PADDING */
+}
+
+.domain-tag {
+    position: absolute;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(0, 212, 255, 0.5);
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 20px;
+    background: rgba(13, 27, 42, 0.4);
+    backdrop-filter: blur(8px);
+    white-space: nowrap;
+    pointer-events: auto;
+    cursor: default;
+    
+    /* Position using CSS variables */
+    left: var(--x);
+    top: var(--y);
+    
+    /* Prevent cutting */
+    transform-origin: center;
+    
+    /* Animation with smaller movements */
+    animation: floatDomainSafe var(--duration) ease-in-out infinite;
+    animation-delay: var(--delay);
+    
+    /* Initial state */
+    opacity: 0;
+    animation-fill-mode: both;
+    user-select: none;
+}
+
+.domain-tag:hover {
+    color: var(--neon-cyan);
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.6);
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.9);
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+/* SAFE floating animation - smaller movements to prevent cutting */
+@keyframes floatDomainSafe {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0) rotate(0deg);
+    }
+    5% {
+        opacity: 0.7;
+    }
+    20% {
+        transform: translate(15px, -12px) rotate(2deg);
+        opacity: 0.8;
+    }
+    40% {
+        transform: translate(-12px, 10px) rotate(-2deg);
+        opacity: 0.9;
+    }
+    60% {
+        transform: translate(10px, -15px) rotate(1deg);
+        opacity: 0.85;
+    }
+    80% {
+        transform: translate(-10px, 12px) rotate(-1deg);
+        opacity: 0.7;
+    }
+    95% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .domain-tag {
+        font-size: 0.75rem;
+        padding: 0.45rem 0.85rem;
+    }
+    
+    /* Hide far edge tags on tablet */
+    .domain-tag:nth-child(n+13) {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .floating-domains {
+        padding: 10px;
+    }
+    
+    .domain-tag {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.75rem;
+    }
+    
+    /* Show fewer on mobile */
+    .domain-tag:nth-child(n+9) {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .domain-tag {
+        font-size: 0.65rem;
+        padding: 0.35rem 0.65rem;
+    }
+    
+    /* Show only 6 on small mobile */
+    .domain-tag:nth-child(n+7) {
+        display: none;
+    }
+}
+
 
         /* SEARCH BAR (REPLACES EVENT BADGE) */
 .search-container {
@@ -1485,6 +1675,162 @@ nav {
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5);
 }
+/* ==========================================
+   FAQ SECTION
+========================================== */
+.faq {
+    padding: 6rem 0;
+    background: transparent;
+    position: relative;
+}
+
+/* FAQ Search */
+.faq-search-wrapper {
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    position: relative;
+}
+
+.faq-search-input {
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    background: rgba(13, 27, 42, 0.8);
+    border: 2px solid rgba(0, 212, 255, 0.3);
+    border-radius: 50px;
+    color: var(--white);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.faq-search-input:focus {
+    outline: none;
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+}
+
+.faq-search-input::placeholder {
+    color: var(--gray-light);
+}
+
+.faq-count {
+    text-align: center;
+    color: var(--gray-light);
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+/* FAQ Accordion */
+.faq-accordion {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.faq-item {
+    background: rgba(13, 27, 42, 0.5);
+    border: 2px solid rgba(0, 212, 255, 0.2);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item.hidden {
+    display: none;
+}
+
+.faq-item:hover {
+    border-color: rgba(0, 212, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.faq-item.active {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+}
+
+.faq-question {
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    font-weight: 600;
+}
+
+.faq-question:hover {
+    color: var(--neon-cyan);
+}
+
+.faq-arrow {
+    font-size: 1rem;
+    color: var(--neon-blue);
+    transition: transform 0.4s ease;
+    flex-shrink: 0;
+    margin-left: 1rem;
+}
+
+.faq-item.active .faq-arrow {
+    transform: rotate(90deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0 2rem;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 1000px;
+    padding: 0 2rem 1.5rem 2rem;
+}
+
+.faq-answer p {
+    color: var(--white-dim);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.faq-answer p:last-child {
+    margin-bottom: 0;
+}
+
+.faq-answer ul,
+.faq-answer ol {
+    color: var(--white-dim);
+    line-height: 1.8;
+    margin-left: 1.5rem;
+}
+
+.faq-answer li {
+    margin-bottom: 0.5rem;
+}
+
+.faq-answer strong {
+    color: var(--neon-cyan);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .faq-question {
+        padding: 1.2rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .faq-answer {
+        padding: 0 1.5rem;
+    }
+    
+    .faq-item.active .faq-answer {
+        padding: 0 1.5rem 1.2rem 1.5rem;
+    }
+}
 
 .social-link {
     width: 50px;
@@ -1864,6 +2210,34 @@ nav {
 
     <section class="hero" id="home">
         <div class="hero-content">
+            <div class="floating-domains">
+    <!-- FAR LEFT COLUMN -->
+    <span class="domain-tag" style="--delay: 0s; --duration: 18s; --x: 2%; --y: 12%;">Digital Forensics</span>
+    <span class="domain-tag" style="--delay: 3s; --duration: 16s; --x: 1%; --y: 35%;">Criminology</span>
+    <span class="domain-tag" style="--delay: 5s; --duration: 20s; --x: 3%; --y: 58%;">Psychology</span>
+    <span class="domain-tag" style="--delay: 2s; --duration: 17s; --x: 2%; --y: 78%;">Law</span>
+    
+    <!-- LEFT SIDE -->
+    <span class="domain-tag" style="--delay: 4s; --duration: 19s; --x: 15%; --y: 8%;">Toxicology</span>
+    <span class="domain-tag" style="--delay: 1s; --duration: 15s; --x: 18%; --y: 48%;">Forensic Auditing</span>
+    <span class="domain-tag" style="--delay: 6s; --duration: 21s; --x: 12%; --y: 85%;">Crime Scene</span>
+    
+    <!-- CENTER -->
+    <span class="domain-tag" style="--delay: 2.5s; --duration: 18s; --x: 42%; --y: 15%;">Forensic Science</span>
+    <span class="domain-tag" style="--delay: 4.5s; --duration: 16s; --x: 45%; --y: 70%;">Clinical Psychology</span>
+    
+    <!-- RIGHT SIDE -->
+    <span class="domain-tag" style="--delay: 3.5s; --duration: 20s; --x: 72%; --y: 10%;">Cyber Security</span>
+    <span class="domain-tag" style="--delay: 1.5s; --duration: 17s; --x: 75%; --y: 45%;">Courtroom</span>
+    <span class="domain-tag" style="--delay: 5.5s; --duration: 19s; --x: 70%; --y: 80%;">Biometrics</span>
+    
+    <!-- FAR RIGHT COLUMN -->
+    <span class="domain-tag" style="--delay: 0.8s; --duration: 18s; --x: 90%; --y: 18%;">Commerce</span>
+    <span class="domain-tag" style="--delay: 4.2s; --duration: 16s; --x: 88%; --y: 38%;">Management</span>
+    <span class="domain-tag" style="--delay: 2.8s; --duration: 21s; --x: 91%; --y: 62%;">Investigation</span>
+    <span class="domain-tag" style="--delay: 6.2s; --duration: 15s; --x: 89%; --y: 85%;">Digital Evidence</span>
+</div>
+
             <!-- Search Bar -->
            <div class="search-container">
              <input type="text" 
@@ -2324,7 +2698,7 @@ nav {
             <div class="contact-card">
                 <div class="contact-icon">📧</div>
                 <h3>Email</h3>
-                <a href="mailto:csidc@nfsu.ac.in">csidc@nfsu.ac.in</a>
+                <a href="mailto:csi_dc@nfsu.ac.in">csi_dc@nfsu.ac.in</a>
             </div>
 
             <div class="contact-card">
@@ -2407,7 +2781,354 @@ nav {
         </div>
     </div>
 </section>
+<!-- FAQ Section -->
+<section id="faq" class="faq">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">FAQs</span>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Got questions? We've got answers</p>
+        </div>
 
+        <!-- FAQ Search -->
+        <div class="faq-search-wrapper">
+            <input type="text" 
+                   id="faqSearch" 
+                   class="faq-search-input" 
+                   placeholder="🔍 Search FAQs... (e.g., registration, fees, dates, category)"
+                   autocomplete="off">
+            <div id="faqCount" class="faq-count"></div>
+        </div>
+
+        <!-- FAQ Accordion -->
+        <div class="faq-accordion" id="faqAccordion">
+            
+            <!-- FAQ 1 -->
+            <div class="faq-item" data-keywords="anvakrit what is ncsic competition forensic investigation">
+                <div class="faq-question">
+                    <span>What is Anvakrit 2.0?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Anvakrit 2.0 is the second edition of the National Crime Scene Investigation Competition (NCSIC), organized by the National Forensic Sciences University, Delhi Campus. It provides hands-on experience in forensic investigation, bridging theory and practice through simulated crime scenes, digital forensics, and courtroom presentations.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-item" data-keywords="when where dates venue nfsu delhi february 2026 location">
+                <div class="faq-question">
+                    <span>When and where will Anvakrit 2.0 be held?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>The event will take place from <strong>11th to 13th February 2026</strong> at the <strong>National Forensic Sciences University, Delhi Campus</strong>.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-item" data-keywords="theme decoding truth bytes digital forensics">
+                <div class="faq-question">
+                    <span>What is the theme for this year's edition?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>The theme for Anvakrit 2.0 is <strong>"Decoding the Truth in Bytes."</strong> It focuses on Digital Forensics, encouraging participants to explore the intersection of physical and digital evidence in modern investigations.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-item" data-keywords="eligibility who can participate category undergraduate postgraduate students">
+                <div class="faq-question">
+                    <span>Who can participate?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>The competition is open to:</p>
+                    <ul>
+                        <li><strong>Category I (UG & Higher Secondary):</strong> Students of Grades 11, 12, and undergraduate programs across all streams.</li>
+                        <li><strong>Category II (PG & Above):</strong> Postgraduate, doctoral, and professional participants from criminology, forensic science, law, psychology, cyber/digital forensics, and allied fields.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="faq-item" data-keywords="prior knowledge forensic experience required category 1">
+                <div class="faq-question">
+                    <span>Do I need prior forensic knowledge to participate?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>No prior forensic knowledge is required for Category I participants. The event is designed to foster curiosity, teamwork, and creative problem-solving while introducing participants to the basics of forensic investigation.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="faq-item" data-keywords="rounds structure category 1 undergraduate case file poster presentation crime scene">
+                <div class="faq-question">
+                    <span>How are the rounds structured for Category I (UG & Higher Secondary)?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Category I includes three rounds:</p>
+                    <ol>
+                        <li><strong>Case File Investigation</strong> – Analytical problem-solving through a given case file.</li>
+                        <li><strong>Poster Presentation</strong> – Creative display of findings and methodologies.</li>
+                        <li><strong>On-Campus Crime Scene</strong> – Practical investigation challenge and lab visits.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- FAQ 7 -->
+            <div class="faq-item" data-keywords="internet device policy online rounds malpractice disqualification camera">
+                <div class="faq-question">
+                    <span>What is the internet/device policy during online rounds?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <ul>
+                        <li>Participants must ensure a stable internet connection and personal device with camera access (if required).</li>
+                        <li>Any malpractice, unauthorized device use, or multiple-login attempts will lead to disqualification.</li>
+                        <li>Teams must work independently—no external assistance or shared screens beyond their group is allowed.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FAQ 8 -->
+            <div class="faq-item" data-keywords="links round 1 round 2 category 1 email unstop submission">
+                <div class="faq-question">
+                    <span>How will we receive the links for Round 1 and Round 2 for Category 1?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>All registered participants will receive official communication via email or the Unstop dashboard.</p>
+                    <p>Links and submission portals will be shared at least 24 hours before each round. Participants should check their registered email regularly and follow all submission deadlines strictly.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 9 -->
+            <div class="faq-item" data-keywords="plagiarism ai chatgpt intellectual property similarity 12 percent tools">
+                <div class="faq-question">
+                    <span>What is the policy on plagiarism, intellectual property, or AI-tool usage?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <ul>
+                        <li>All submissions (case answers, posters, and reports) must be original and maintain academic integrity.</li>
+                        <li>A maximum of <strong>12% similarity</strong> (as per standard plagiarism detection tools) is permitted. Anything beyond that will lead to penalty or disqualification based on the severity.</li>
+                        <li>The use of AI tools (such as ChatGPT, Canva AI, Copilot, etc.) is strictly regulated — they may be used only for design enhancement or grammar refinement, not for generating content or analysis.</li>
+                        <li>Participants must declare if AI assistance was used in any form. Unacknowledged use or misrepresentation will result in disqualification.</li>
+                        <li>The Organizing Committee reserves IP rights over all materials produced or displayed during the event for academic and promotional use.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FAQ 10 - Technical Support -->
+            <div class="faq-item" data-keywords="technical issues support contact help online rounds login submission">
+                <div class="faq-question">
+                    <span>Who should I contact for technical issues during online rounds?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>For any technical problems (login, link access, submission errors), participants can reach out to the Anvakrit 2.0 Technical Support Team through:</p>
+                    <ul>
+                        <li><strong>Email:</strong> csi_dc@nfsu.ac.in</li>
+                        <li><strong>Helpline:</strong> Tamanna Khurana (+91 8881666088)</li>
+                    </ul>
+                    <p>All issues should be reported immediately during the round window; late complaints will not be considered.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 11 -->
+            <div class="faq-item" data-keywords="category 2 postgraduate rounds structure courtroom professionals">
+                <div class="faq-question">
+                    <span>How are the rounds structured for Category II (PG & Professionals)?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Category II includes:</p>
+                    <ol>
+                        <li><strong>Case File Investigation</strong> – Analytical problem-solving based on an assigned case.</li>
+                        <li><strong>On-Campus Crime Scene</strong> – Multi-layered forensic investigation.</li>
+                        <li><strong>Mock Courtroom Presentation</strong> – Defending findings before a live jury.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- FAQ 12 -->
+            <div class="faq-item" data-keywords="register registration how unstop google form teams">
+                <div class="faq-question">
+                    <span>How do I register for Anvakrit 2.0?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Registration will be conducted on a first-come, first-serve basis.</p>
+                    <ul>
+                        <li><strong>UG Category:</strong> Teams of 4 members must register through Unstop</li>
+                        <li><strong>PG Category:</strong> Participants may register individually or as a team of 5 via Google Form.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FAQ 13 -->
+            <div class="faq-item" data-keywords="registration fees cost payment 1000 2000 per head">
+                <div class="faq-question">
+                    <span>What are the registration fees?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <ul>
+                        <li><strong>Category I (UG & Higher Secondary):</strong> ₹1000/- per head</li>
+                        <li><strong>Category II (PG & Professionals):</strong> ₹2000/- per head</li>
+                    </ul>
+                    <p>Each participant must register individually.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 14 -->
+            <div class="faq-item" data-keywords="refundable refund non-refundable cancellation">
+                <div class="faq-question">
+                    <span>Is the registration fee refundable?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>The registration fee is <strong>non-refundable</strong> under all circumstances.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 15 -->
+            <div class="faq-item" data-keywords="last date deadline registration close december 2025">
+                <div class="faq-question">
+                    <span>What is the last date for registration?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>The last date to register is <strong>15th December 2025</strong>. Confirmation will be sent after verification by the Organizing Committee.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 16 -->
+            <div class="faq-item" data-keywords="change team members composition after registration">
+                <div class="faq-question">
+                    <span>Can I change my team members after registration?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>No, changes in team members or composition will not be allowed after registration. Any failure to adhere to the registration process will be treated as withdrawal.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 17 -->
+            <div class="faq-item" data-keywords="prizes winners rewards money 1.2 lakh certificates volunteer">
+                <div class="faq-question">
+                    <span>What are the prizes?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Prizes worth <strong>INR 1.2 lakh</strong> will be awarded to the Top 3 teams across categories. All participants will receive certificates of participation.</p>
+                    <p>PG participants eliminated before the finals may volunteer for the rest of the event and receive a "Guest Volunteer" Certificate.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 18 -->
+            <div class="faq-item" data-keywords="what bring documents id laptop stationery formal attire">
+                <div class="faq-question">
+                    <span>What should participants bring?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <ul>
+                        <li>Institutional/School ID card</li>
+                        <li>Personal stationery</li>
+                        <li>At least one laptop per team for documentation</li>
+                        <li>Comfortable formal attire for investigation and courtroom sessions</li>
+                    </ul>
+                    <p>Essential forensic kits and materials will be provided by the organizers.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 19 -->
+            <div class="faq-item" data-keywords="accommodation stay lodging 500 per day">
+                <div class="faq-question">
+                    <span>Will accommodation be provided?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, accommodation is available at <strong>₹500 per day</strong>. Details regarding location, facilities, and timings will be shared after registration. Participants must follow the accommodation rules and timings strictly.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 20 -->
+            <div class="faq-item" data-keywords="dress code formal attire indian western comfortable">
+                <div class="faq-question">
+                    <span>What is the dress code for the competition?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Participants must wear <strong>formal attire</strong> (Indian or Western). Since the competition involves physical activity at the crime scene, comfortable formal clothing is recommended.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 21 -->
+            <div class="faq-item" data-keywords="expected conduct behavior professionalism disqualification rules">
+                <div class="faq-question">
+                    <span>What is expected of participants during the competition?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Participants must maintain professionalism, discipline, and respect toward organizers, judges, and peers. Any malpractice or disruptive behavior will lead to disqualification.</p>
+                    <p><strong>Grounds for disqualification include:</strong></p>
+                    <ul>
+                        <li>Tampering with or mishandling evidence.</li>
+                        <li>Disrupting other teams or violating instructions.</li>
+                        <li>Using unauthorized materials or devices.</li>
+                        <li>Displaying disrespectful behavior toward organizers, volunteers, or peers.</li>
+                        <li>Breach of dress-code or reporting requirements.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FAQ 22 -->
+            <div class="faq-item" data-keywords="evaluation judging criteria speed accuracy creativity presentation">
+                <div class="faq-question">
+                    <span>How will participants be evaluated?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Evaluation is based on:</p>
+                    <ul>
+                        <li>Speed and accuracy (Case File Investigation)</li>
+                        <li>Creativity and presentation (Poster Round)</li>
+                        <li>Observation, documentation, and teamwork (Final CSI Challenge)</li>
+                        <li>Technical and practical knowledge (Courtroom Presentation – PG Category)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FAQ 23 -->
+            <div class="faq-item" data-keywords="unique special learning investigation competition interdisciplinary">
+                <div class="faq-question">
+                    <span>What makes Anvakrit 2.0 unique?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Anvakrit 2.0 combines learning, investigation, and competition—offering real-world forensic exposure, surprise puzzles from registration onwards, and interdisciplinary collaboration that goes beyond the crime scene.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 24 -->
+            <div class="faq-item" data-keywords="surprises hidden challenges clues puzzles every detail counts">
+                <div class="faq-question">
+                    <span>Will there be any surprises or hidden challenges?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! The event begins even before you realize it. From the registration phase, participants may receive clues or puzzles that can give them an edge in the competition—because in Anvakrit, <strong>"Every Detail Counts."</strong></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
     <footer>
         <div class="container">
@@ -2747,6 +3468,7 @@ const searchData = [
     { title: "Contact", keywords: ["contact", "email", "phone", "help"], link: "#contact" },
     { title: "Prize Pool", keywords: ["prizes", "winnings", "awards"], link: "#rules", description: "₹2.4 Lakh total" },
     { title: "Organizing Committee", keywords: ["team", "committee", "organizers", "coordinators"], link: "#team" },
+    { title: "FAQs", keywords: ["faq", "questions", "answers", "help"], link: "#faq", description: "Frequently Asked Questions" },
 ];
 
 const searchInput = document.getElementById('siteSearch');
@@ -2857,6 +3579,67 @@ if (contactForm) {
         });
     });
 }
+// ========== FAQ ACCORDION WITH SEARCH ==========
+const faqItems = document.querySelectorAll('.faq-item');
+const faqSearch = document.getElementById('faqSearch');
+const faqCount = document.getElementById('faqCount');
+
+// Accordion functionality
+faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    
+    question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        
+        // Close all other FAQs
+        faqItems.forEach(otherItem => {
+            otherItem.classList.remove('active');
+        });
+        
+        // Toggle current FAQ
+        if (!isActive) {
+            item.classList.add('active');
+            // Smooth scroll to active FAQ
+            setTimeout(() => {
+                item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+    });
+});
+
+// Search functionality
+if (faqSearch) {
+    faqSearch.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase().trim();
+        let visibleCount = 0;
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+            const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+            const keywords = item.getAttribute('data-keywords').toLowerCase();
+            
+            const matches = question.includes(searchTerm) || 
+                          answer.includes(searchTerm) || 
+                          keywords.includes(searchTerm);
+            
+            if (searchTerm === '' || matches) {
+                item.classList.remove('hidden');
+                visibleCount++;
+            } else {
+                item.classList.add('hidden');
+                item.classList.remove('active');
+            }
+        });
+        
+        // Update count
+        if (searchTerm !== '') {
+            faqCount.textContent = `Showing ${visibleCount} of ${faqItems.length} questions`;
+        } else {
+            faqCount.textContent = '';
+        }
+    });
+}
+
 
     </script>
 </body>
