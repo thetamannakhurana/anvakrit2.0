@@ -158,6 +158,7 @@ nav {
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
+    white-space: nowrap; /* ADD THIS LINE */
 }
 
 .nav-links a::after {
@@ -727,6 +728,32 @@ nav {
             text-align: center;
         }
 
+        .about-nfsu {
+    margin-top: 3rem;
+    padding: 2rem;
+    margin-bottom: 4rem;
+    background: rgba(13, 27, 42, 0.4);
+    border-left: 4px solid var(--neon-blue);
+    border-radius: 10px;
+}
+
+.about-nfsu-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    color: var(--neon-cyan);
+    margin-bottom: 1.5rem;
+}
+
+.about-nfsu p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.about-nfsu strong {
+    color: var(--neon-blue);
+}
+
+
         .highlights-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1136,7 +1163,27 @@ nav {
     margin: 0 auto;
 }
 
-/* Team Members Grid - 4 per row */
+/* === NEW TEAM SECTION CSS === */
+
+/* Leadership Grid */
+.leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Coordinators Grid */
+.coordinators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Members Grid */
 .members-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -1145,34 +1192,41 @@ nav {
     margin: 0 auto;
 }
 
-.team-card {
-    background: rgba(13, 27, 42, 0.4); /* CHANGED FROM 0.6 */
+/* Rounded Square Cards */
+.team-card-square {
+    background: rgba(13, 27, 42, 0.4);
+    border: 2px solid rgba(0, 212, 255, 0.2);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
     backdrop-filter: blur(10px);
 }
 
-.team-card:hover {
+.team-card-square:hover {
     transform: translateY(-10px);
     border-color: var(--neon-blue);
     box-shadow: 0 15px 50px rgba(0, 212, 255, 0.3);
 }
 
-.team-img-placeholder {
-    width: 150px;
-    height: 150px;
-    margin: 0 auto 1rem;
+/* Circular Images */
+.team-img-circle {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 1.5rem;
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid var(--neon-blue);
     background: rgba(0, 212, 255, 0.1);
 }
 
-.team-img-placeholder img {
+.team-img-circle img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.team-card h4 {
+.team-card-square h4 {
     font-family: 'Orbitron', sans-serif;
     font-size: 1.1rem;
     color: var(--white);
@@ -1186,12 +1240,14 @@ nav {
 }
 
 @media (max-width: 768px) {
+    .leadership-grid,
     .coordinators-grid,
     .members-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
     }
 }
+
 
 
         .contact {
@@ -1296,16 +1352,41 @@ nav {
     justify-content: center;
     margin-top: 1rem;
 }
-/* === NEW CONTACT LAYOUT === */
-.contact-grid-new {
+/* === UPDATED CONTACT LAYOUT === */
+.contact-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.contact-row-top {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    margin-top: 3rem;
+    margin: 3rem 0;
 }
 
+/* Contact Form - Full Width Between Rows */
+.contact-form-wrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: 4rem 0;
+    padding: 3rem;
+    background: rgba(13, 27, 42, 0.6);
+    border: 2px solid rgba(0, 212, 255, 0.2);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.contact-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Contact Numbers Section - Full Width Below Form */
 .contact-card-full {
-    grid-column: 1 / -1;
+    width: 100%;
+    margin: 0;
 }
 
 .contact-list-horizontal {
@@ -1315,14 +1396,94 @@ nav {
     margin-top: 1.5rem;
 }
 
+/* Mobile Responsive */
 @media (max-width: 768px) {
-    .contact-grid-new {
+    .contact-row-top {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .contact-form-wrapper {
+        padding: 2rem 1.5rem;
     }
     
     .contact-list-horizontal {
         grid-template-columns: 1fr;
     }
+}
+
+@media (max-width: 480px) {
+    .contact-form-wrapper {
+        padding: 1.5rem 1rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .contact-submit-btn {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+}
+
+.contact-form-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    color: var(--neon-cyan);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    color: var(--white);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(10, 15, 26, 0.8);
+    border: 2px solid rgba(0, 212, 255, 0.3);
+    border-radius: 10px;
+    color: var(--white);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.contact-submit-btn {
+    width: 100%;
+    padding: 1.2rem;
+    background: linear-gradient(135deg, #00d4ff, #0099ff);
+    border: none;
+    border-radius: 50px;
+    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.contact-submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5);
 }
 
 .social-link {
@@ -1688,7 +1849,7 @@ nav {
             <li><a href="#eligibility">Eligibility</a></li>
             <li><a href="#team">Team</a></li>
             <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact">Contact Us</a></li>
             <li><a href="#categories" class="nav-register-btn">Register Now</a></li>
         </ul>
 
@@ -1736,6 +1897,11 @@ nav {
 
     <section class="about" id="about">
         <div class="container">
+            <div class="about-nfsu">
+              <h3 class="about-nfsu-title">About NFSU</h3>
+              <p>The <strong>National Forensic Sciences University (NFSU)</strong>, an Institution of National Importance under the Ministry of Home Affairs, Government of India, is the world's first university dedicated exclusively to forensic, behavioral, cybersecurity, digital, and allied sciences. Established to strengthen the criminal justice system through scientific investigation, NFSU combines research, innovation, and academic excellence to prepare professionals contributing to justice and national security.</p>
+              <p>The <strong>Delhi Campus of NFSU</strong> serves as a leading centre for education and research in forensic and allied sciences. Located in the national capital, it bridges academia with law enforcement and judicial practice, offering state-of-the-art facilities, expert faculty, and hands-on learning to nurture future forensic professionals.</p>
+           </div>
             <div class="section-header">
                 <span class="section-label">About The Event</span>
                 <h2 class="section-title">Beyond the Crime Scene</h2>
@@ -1785,9 +1951,7 @@ nav {
                             <li>Registration is <strong>non-refundable</strong> once confirmed</li>
                             <li><strong>No changes</strong> in team names or composition after registration</li>
                             <li>Decision of judges and organisers are final </li>
-                            <li>Surprise elements throughout the competition starting from registration</li>
                             <li>Certain rules and structure of the competition may be altered by the Organizing Committee if required </li>
-                            <li>Starting from the registration process, participants shall be tested regarding their awareness regarding recent trends of crime.</li>
                         </ul>
                     </div>
 
@@ -1799,21 +1963,22 @@ nav {
                             <li>Any form of malpractice (tampering evidence, disturbing other teams, disobeying instructions, etc.) will lead to disqualification</li>
                             <li>Using any items/ devices which are not allowed as per the instructions of the Organising Committee shall lead to disqualification</li>
                             <li>Respectful conduct towards jury, organizers, volunteers and fellow participants is mandatory</li>
+                            <li>Starting from the registration process, participants shall be tested regarding their awareness regarding recent trends of crime.</li>
                         </ul>
                     </div>
 
                     <div class="rule-card">
                         <h3>📋 What's Included</h3>
                         <ul>
-                            <li>Registration kits</li>
-                            <li>All materials required for the competition</li>
+                            <li>Registration Kits</li>
+                            <li>All materials required for the competition (all teams are requested to carry at least one laptop)</li>
                             <li>Workshops and expert lectures</li>
                             <li>Lab visits at NFSU Delhi Campus</li>
-                            <li>Certificate of participation</li>
+                            <li>Certificates of Participation</li>
                             <li>Certificates of Guest Volunteer (provided participants opt for it)</li>
                             <li>Trophies/medals for the winning teams</li>
                             <li>Two meals per day during the event</li>
-                            <li><strong>Optional:</strong> Accommodation at ₹500/day per head per day at a first come first served basis</li>
+                            <li><strong>Optional:</strong> Accommodation at ₹500/day per head at a first come first served basis</li>
                         </ul>
                     </div>
 
@@ -1843,13 +2008,14 @@ nav {
             <div class="categories-grid">
                 <div class="category-card">
                     <div class="category-icon">📚</div>
-                    <h3>Category I</h3>
+                    <h3>Category I- Elementary</h3>
                     <span class="category-label">Higher Secondary & UG Level</span>
                     
                     <p><strong>Eligibility:</strong> Grades 11, 12 & Undergraduate students (all streams)</p>
                     
                     <ul>
-                        <li><strong>Team Size:</strong> 4 members</li>
+                        <li><strong>Mode of Participation:</strong>Group(self-formed Team of 4)</li>
+                        <li><strong>Team Size:</strong> 4 members(self-formed)</li>
                         <li><strong>Capacity:</strong> 300 participants (limited)</li>
                         <li><strong>Selection:</strong> First-come, first-served basis</li>
                         <li><strong>Format:</strong> Case file investigation, poster presentation, on-campus CSI</li>
@@ -1862,12 +2028,13 @@ nav {
 
                 <div class="category-card">
                     <div class="category-icon">🎓</div>
-                    <h3>Category II</h3>
+                    <h3>Category II- Advanced</h3>
                     <span class="category-label">PG, PhD & Professionals</span>
                     
                     <p><strong>Eligibility:</strong> Postgraduate, Doctoral & Professional Experts</p>
                     
                     <ul>
+                        <li><strong>Mode of Participation:</strong> Individual (teams formed by OC) or Group(self-formed Team of 5)</li>
                         <li><strong>Team Size:</strong> Individual or Teams of 5</li>
                         <li><strong>Capacity:</strong> 200 participants (limited)</li>
                         <li><strong>Selection:</strong> First-come, first-served basis</li>
@@ -1892,7 +2059,7 @@ nav {
 
             <div class="eligibility-grid">
                 <div class="eligibility-card">
-                    <h3>Category I - Students</h3>
+                    <h3>Category I - Elementary</h3>
                     <ul>
                         <li>Grades 11 & 12 students</li>
                         <li>Undergraduate students (all streams)</li>
@@ -1921,7 +2088,6 @@ nav {
                         <li>Fluency in English (written & spoken)</li>
                         <li>Ability to attend offline rounds at NFSU Delhi</li>
                         <li>Generic devices (access to mobile phones and laptops, at least 1 per team)</li>
-                        <li>No past criminal record</li>
                     </ul>
                 </div>
             </div>
@@ -1932,117 +2098,190 @@ nav {
 <section id="team" class="team">
     <div class="container">
         <div class="section-header">
-          <span class="section-label">Meet The Team</span>
-          <h2 class="section-title">Organizing Committee</h2>
-          <p class="section-subtitle">Meet the minds behind Anvakrit 2.0</p>
-       </div>
+            <span class="section-label">Meet The Team</span>
+            <h2 class="section-title">Organizing Committee</h2>
+            <p class="section-subtitle">Meet the minds behind Anvakrit 2.0</p>
+        </div>
 
-
-        <!-- Event Coordinators -->
+        <!-- Leadership -->
         <div class="team-category">
-            <h3 class="team-category-title">Event Coordinators</h3>
-            <div class="team-grid coordinators-grid">
-                <div class="team-card">
-                    <div class="team-img-placeholder">
-                        <img src="images/team/purvi.jpg" alt="Prof Dr Purvi Pokhariyal" onerror="this.src='images/team/placeholder.jpg'">
+            <h3 class="team-category-title">Leadership</h3>
+            <div class="team-grid leadership-grid">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/vyas.jpg" alt="Padma Shree Dr. J M Vyas" onerror="this.src='images/placeholder.jpg'">
                     </div>
-                    <h4>Prof Dr Purvi Pokhariyal</h4>
-                    <p class="team-role">Faculty Coordinator</p>
+                    <h4>Padma Shree Dr. J M Vyas</h4>
+                    <p class="team-role">Chief Patron</p>
                 </div>
                 
-                <div class="team-card">
-                    <div class="team-img-placeholder">
-                        <img src="images/team/vyas.jpg" alt="Padma Shri JM Vyas" onerror="this.src='images/team/placeholder.jpg'">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/purvi.jpg" alt="Prof. Dr. Purvi Pokhariyal" onerror="this.src='images/placeholder.jpg'">
                     </div>
-                    <h4>Padma Shri JM Vyas</h4>
+                    <h4>Prof. Dr. Purvi Pokhariyal</h4>
                     <p class="team-role">Patron</p>
                 </div>
                 
-                <div class="team-card">
-                    <div class="team-img-placeholder">
-                        <img src="images/team/rithin.jpg" alt="Mr Rithin Parker Joseph" onerror="this.src='images/team/placeholder.jpg'">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/minakshi.jpg" alt="Prof Dr. Minakshi Sinha" onerror="this.src='images/placeholder.jpg'">
                     </div>
-                    <h4>Mr Rithin Parker Joseph</h4>
-                    <p class="team-role">Faculty Advisor</p>
-                </div>
-                
-                <div class="team-card">
-                    <div class="team-img-placeholder">
-                        <img src="images/team/sweety.jpg" alt="Dr Sweety Sharma" onerror="this.src='images/team/placeholder.jpg'">
-                    </div>
-                    <h4>Dr Sweety Sharma</h4>
-                    <p class="team-role">Faculty Advisor</p>
-                </div>
-                
-                <div class="team-card">
-                    <div class="team-img-placeholder">
-                        <img src="images/team/mradul.jpg" alt="Ms Mradul" onerror="this.src='images/team/placeholder.jpg'">
-                    </div>
-                    <h4>Ms Mradul</h4>
-                    <p class="team-role">Faculty Advisor</p>
+                    <h4>Prof Dr. Minakshi Sinha</h4>
+                    <p class="team-role">Chair</p>
                 </div>
             </div>
         </div>
 
-        <!-- Team Members -->
+        <!-- Faculty Coordinators -->
         <div class="team-category">
-            <h3 class="team-category-title">Core Team Members</h3>
-            <div class="team-grid members-grid">
-                <div class="team-card">
-                    <div class="team-img-placeholder">
-                        <img src="images/team/tamanna.jpg" alt="Tamanna Khurana" onerror="this.src='images/team/placeholder.jpg'">
+            <h3 class="team-category-title">Faculty Coordinators</h3>
+            <div class="team-grid coordinators-grid">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/sweety.jpg" alt="Sweety Sharma" onerror="this.src='images/placeholder.jpg'">
                     </div>
-                    <h4>Tamanna Khurana</h4>
-                    <p class="team-role">Registration Head</p>
+                    <h4>Sweety Sharma</h4>
+                    <p class="team-role">Asst. Prof.</p>
                 </div>
                 
-                <div class="team-card">
-                    <div class="team-img-placeholder">
-                        <img src="images/team/somya.jpg" alt="Somya Bhatt" onerror="this.src='images/team/placeholder.jpg'">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/rithin.jpg" alt="Rithin Joseph" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Rithin Joseph</h4>
+                    <p class="team-role">Asst. Prof.</p>
+                </div>
+                
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/mradul.jpg" alt="Mradul Singh" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Mradul Singh</h4>
+                    <p class="team-role">Asst. Prof.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Committee Coordinators -->
+        <div class="team-category">
+            <h3 class="team-category-title">Committee Coordinators</h3>
+            <div class="team-grid members-grid">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/vidushi.jpg" alt="Vidushi Jain" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Vidushi Jain</h4>
+                    <p class="team-role">Inter Committee & Content Coordinator</p>
+                </div>
+                
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/tamanna.jpg" alt="Tamanna Khurana" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Tamanna Khurana</h4>
+                    <p class="team-role">Registration & Web Design Developer</p>
+                </div>
+                
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/shivani.jpg" alt="Shivani Patra" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Shivani Patra</h4>
+                    <p class="team-role">Registration & Content Coordinator</p>
+                </div>
+                
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/vishnu.jpg" alt="Vishnu" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Vishnu</h4>
+                    <p class="team-role">Web Design Developer</p>
+                </div>
+                
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/deepshikha.jpg" alt="Deepshikha Jana" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Deepshikha Jana</h4>
+                    <p class="team-role">Design & Media Coordinator</p>
+                </div>
+                
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/biplab.jpg" alt="Biplab" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Biplab</h4>
+                    <p class="team-role">Design & Media Coordinator</p>
+                </div>
+                
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/satakshi.jpg" alt="Satakshi Dwivedi" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Satakshi Dwivedi</h4>
+                    <p class="team-role">Logistics Coordinator</p>
+                </div>
+                
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/somya.jpg" alt="Somya Bhatt" onerror="this.src='images/placeholder.jpg'">
                     </div>
                     <h4>Somya Bhatt</h4>
                     <p class="team-role">Logistics Coordinator</p>
                 </div>
                 
-                <div class="team-card">
-                    <div class="team-img-placeholder">
-                        <img src="images/team/shivani.jpg" alt="Shivani Patra" onerror="this.src='images/team/placeholder.jpg'">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/sunidhi.jpg" alt="Sunidhi Nagpal" onerror="this.src='images/placeholder.jpg'">
                     </div>
-                    <h4>Shivani Patra</h4>
-                    <p class="team-role">Room Allocation</p>
+                    <h4>Sunidhi Nagpal</h4>
+                    <p class="team-role">Registration Kits Coordinator</p>
                 </div>
                 
-                <div class="team-card">
-                    <div class="team-img-placeholder">
-                        <img src="images/team/vidushi.jpg" alt="Vidushi" onerror="this.src='images/team/placeholder.jpg'">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/arjun.jpg" alt="Arjun Hargan" onerror="this.src='images/placeholder.jpg'">
                     </div>
-                    <h4>Vidushi</h4>
-                    <p class="team-role">Competition Rounds</p>
+                    <h4>Arjun Hargan</h4>
+                    <p class="team-role">Online Competition Developer</p>
                 </div>
                 
-                <!-- Add 6-8 more team members here -->
-                <div class="team-card">
-                    <div class="team-img-placeholder">
-                        <img src="images/team/member5.jpg" alt="Team Member" onerror="this.src='images/team/placeholder.jpg'">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/sayantika.jpg" alt="Sayantika Saha" onerror="this.src='images/placeholder.jpg'">
                     </div>
-                    <h4>Team Member Name</h4>
-                    <p class="team-role">Role</p>
+                    <h4>Sayantika Saha</h4>
+                    <p class="team-role">Online Competition Developer</p>
                 </div>
                 
-                <div class="team-card">
-                    <div class="team-img-placeholder">
-                        <img src="images/team/member6.jpg" alt="Team Member" onerror="this.src='images/team/placeholder.jpg'">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/butool.jpg" alt="Butool" onerror="this.src='images/placeholder.jpg'">
                     </div>
-                    <h4>Team Member Name</h4>
-                    <p class="team-role">Role</p>
+                    <h4>Butool</h4>
+                    <p class="team-role">Crime Scene Management Coordinator</p>
                 </div>
                 
-                <!-- Continue pattern for more members -->
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/ayushi.jpg" alt="Ayushi Singa" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Ayushi Singa</h4>
+                    <p class="team-role">Crime Scene Management Coordinator</p>
+                </div>
+                
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/shivang.jpg" alt="Shivang" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Shivang</h4>
+                    <p class="team-role">Food Committee Coordinator</p>
+                </div>
             </div>
         </div>
     </div>
 </section>
-
 
     <section class="gallery" id="gallery">
         <div class="container">
@@ -2078,7 +2317,9 @@ nav {
             <p class="section-subtitle">Have questions? Reach out to our organizing team</p>
         </div>
 
-        <div class="contact-grid-new">
+        <div class="contact-layout">
+    <!-- Row 1: Email, Venue, Follow Us -->
+    <div class="contact-row-top">
             <!-- Top Row: Email, Venue, Social (Equal Size) -->
             <div class="contact-card">
                 <div class="contact-icon">📧</div>
@@ -2110,7 +2351,31 @@ nav {
                         </svg>
                     </a>
                 </div>
-            </div>
+               </div>
+    </div> <!-- Close contact-row-top -->
+
+    <!-- Row 2: Contact Form (Full Width) -->
+    <div class="contact-form-wrapper">
+    <h3 class="contact-form-title">Send us a Message</h3>
+    <form class="contact-form" id="contactForm" action="https://formspree.io/f/mvgvrpyd" method="POST">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+        </div>
+        
+        <button type="submit" class="contact-submit-btn">Send Message</button>
+    </form>
+</div>
 
             <!-- Bottom Row: Contact Numbers (Full Width) -->
             <div class="contact-card contact-card-full">
@@ -2157,7 +2422,7 @@ nav {
                     <a href="#eligibility">Eligibility</a>
                     <a href="#team">Team</a>
                     <a href="#gallery">Gallery</a>
-                    <a href="#contact">Contact</a>
+                    <a href="#contact">Contact Us</a>
                 </div>
 
                 <div class="footer-bottom">
@@ -2532,6 +2797,66 @@ document.addEventListener('click', function(e) {
         searchResults.classList.remove('active');
     }
 });
+
+// ========== FORMSPREE FORM SUBMISSION HANDLER ==========
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const submitBtn = this.querySelector('.contact-submit-btn');
+        const originalText = submitBtn.textContent;
+        
+        // Show loading state
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.7';
+        
+        // Submit to Formspree
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // Success
+                submitBtn.textContent = '✓ Message Sent Successfully!';
+                submitBtn.style.background = 'linear-gradient(135deg, #00ff88, #00cc66)';
+                contactForm.reset();
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = 'linear-gradient(135deg, #00d4ff, #0099ff)';
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = '1';
+                }, 3000);
+            } else {
+                throw new Error('Form submission failed');
+            }
+        })
+        .catch(error => {
+            // Error
+            submitBtn.textContent = '✗ Error! Please Try Again';
+            submitBtn.style.background = 'linear-gradient(135deg, #ff4444, #cc0000)';
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.style.background = 'linear-gradient(135deg, #00d4ff, #0099ff)';
+            }, 3000);
+            
+            console.error('Form submission error:', error);
+        });
+    });
+}
 
     </script>
 </body>
