@@ -456,140 +456,138 @@ nav {
     transition: all 0.3s ease;
     z-index: 1;
 }
-
 /* ==========================================
-   FLOATING DOMAINS - FULL WIDTH, NO CUTTING
+   FLOATING DOMAINS - ALL ON DESKTOP, 6 ON MOBILE
 ========================================== */
 .floating-domains {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 90px;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 90px);
     pointer-events: none;
-    z-index: 0;
-    overflow: visible; /* CHANGED from hidden */
-    padding: 20px; /* ADD PADDING */
+    z-index: 5;
+    transition: opacity 0.5s ease;
+}
+
+.floating-domains.hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .domain-tag {
     position: absolute;
     font-family: 'Orbitron', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: rgba(0, 212, 255, 0.5);
-    text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
-    padding: 0.5rem 1rem;
-    border: 1px solid rgba(0, 212, 255, 0.3);
-    border-radius: 20px;
-    background: rgba(13, 27, 42, 0.4);
-    backdrop-filter: blur(8px);
+    font-size: 1rem;
+    font-weight: 700;
+    color: rgba(0, 212, 255, 0.7);
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+    padding: 0.65rem 1.3rem;
+    border: 2px solid rgba(0, 212, 255, 0.5);
+    border-radius: 25px;
+    background: rgba(13, 27, 42, 0.6);
+    backdrop-filter: blur(12px);
     white-space: nowrap;
     pointer-events: auto;
     cursor: default;
-    
-    /* Position using CSS variables */
-    left: var(--x);
-    top: var(--y);
-    
-    /* Prevent cutting */
-    transform-origin: center;
-    
-    /* Animation with smaller movements */
-    animation: floatDomainSafe var(--duration) ease-in-out infinite;
+    user-select: none;
+    animation: floatSide var(--duration) ease-in-out infinite;
     animation-delay: var(--delay);
-    
-    /* Initial state */
     opacity: 0;
     animation-fill-mode: both;
-    user-select: none;
+}
+
+.domain-left {
+    left: 2%;
+}
+
+.domain-right {
+    right: 2%;
 }
 
 .domain-tag:hover {
     color: var(--neon-cyan);
     border-color: var(--neon-blue);
-    box-shadow: 0 0 25px rgba(0, 212, 255, 0.6);
-    text-shadow: 0 0 20px rgba(0, 212, 255, 0.9);
-    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
+    text-shadow: 0 0 25px rgba(0, 212, 255, 1);
+    transform: scale(1.15);
     transition: all 0.3s ease;
-    z-index: 1;
 }
 
-/* SAFE floating animation - smaller movements to prevent cutting */
-@keyframes floatDomainSafe {
+/* Floating animation */
+@keyframes floatSide {
     0% {
         opacity: 0;
-        transform: translate(0, 0) rotate(0deg);
+        transform: translateY(0) rotate(0deg);
     }
-    5% {
-        opacity: 0.7;
-    }
-    20% {
-        transform: translate(15px, -12px) rotate(2deg);
+    10% {
         opacity: 0.8;
     }
-    40% {
-        transform: translate(-12px, 10px) rotate(-2deg);
+    25% {
+        transform: translateY(-20px) rotate(2deg);
         opacity: 0.9;
     }
-    60% {
-        transform: translate(10px, -15px) rotate(1deg);
+    50% {
+        transform: translateY(15px) rotate(-2deg);
+        opacity: 1;
+    }
+    75% {
+        transform: translateY(-15px) rotate(1deg);
         opacity: 0.85;
     }
-    80% {
-        transform: translate(-10px, 12px) rotate(-1deg);
+    90% {
         opacity: 0.7;
-    }
-    95% {
-        opacity: 0.5;
     }
     100% {
         opacity: 0;
-        transform: translate(0, 0) rotate(0deg);
+        transform: translateY(0) rotate(0deg);
     }
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-    .domain-tag {
-        font-size: 0.75rem;
-        padding: 0.45rem 0.85rem;
-    }
-    
-    /* Hide far edge tags on tablet */
-    .domain-tag:nth-child(n+13) {
-        display: none;
-    }
+/* Desktop - Show all domains */
+.mobile-hide,
+.mobile-show {
+    display: block;
 }
 
+/* === MOBILE RESPONSIVE === */
 @media (max-width: 768px) {
     .floating-domains {
-        padding: 10px;
+        display: block;
+        top: 70px;
     }
     
     .domain-tag {
-        font-size: 0.7rem;
-        padding: 0.4rem 0.75rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.9rem;
+        border-width: 1.5px;
     }
     
-    /* Show fewer on mobile */
-    .domain-tag:nth-child(n+9) {
-        display: none;
+    /* HIDE 6 domains on mobile - keep only the 6 specified */
+    .domain-tag.mobile-hide {
+        display: none !important;
+    }
+    
+    /* Adjust positions for better spacing on mobile */
+    .domain-left {
+        left: 1%;
+    }
+    
+    .domain-right {
+        right: 1%;
     }
 }
 
 @media (max-width: 480px) {
-    .domain-tag {
-        font-size: 0.65rem;
-        padding: 0.35rem 0.65rem;
+    .floating-domains {
+        top: 65px;
     }
     
-    /* Show only 6 on small mobile */
-    .domain-tag:nth-child(n+7) {
-        display: none;
+    .domain-tag {
+        font-size: 0.7rem;
+        padding: 0.45rem 0.8rem;
     }
 }
-
 
         /* SEARCH BAR (REPLACES EVENT BADGE) */
 .search-container {
@@ -2211,33 +2209,22 @@ nav {
     <section class="hero" id="home">
         <div class="hero-content">
             <div class="floating-domains">
-    <!-- FAR LEFT COLUMN -->
-    <span class="domain-tag" style="--delay: 0s; --duration: 18s; --x: 2%; --y: 12%;">Digital Forensics</span>
-    <span class="domain-tag" style="--delay: 3s; --duration: 16s; --x: 1%; --y: 35%;">Criminology</span>
-    <span class="domain-tag" style="--delay: 5s; --duration: 20s; --x: 3%; --y: 58%;">Psychology</span>
-    <span class="domain-tag" style="--delay: 2s; --duration: 17s; --x: 2%; --y: 78%;">Law</span>
+    <!-- LEFT SIDE - 6 domains -->
+    <span class="domain-tag domain-left mobile-show" style="--delay: 0s; --duration: 18s; top: 12%;">Cyber Security</span>
+    <span class="domain-tag domain-left mobile-hide" style="--delay: 1.5s; --duration: 20s; top: 22%;">Digital Forensics</span>
+    <span class="domain-tag domain-left mobile-show" style="--delay: 3s; --duration: 19s; top: 38%;">Law</span>
+    <span class="domain-tag domain-left mobile-hide" style="--delay: 4.5s; --duration: 21s; top: 54%;">Toxicology</span>
+    <span class="domain-tag domain-left mobile-show" style="--delay: 2s; --duration: 17s; top: 70%;">Criminology</span>
+    <span class="domain-tag domain-left mobile-hide" style="--delay: 5.5s; --duration: 18s; top: 86%;">Crime Scene</span>
     
-    <!-- LEFT SIDE -->
-    <span class="domain-tag" style="--delay: 4s; --duration: 19s; --x: 15%; --y: 8%;">Toxicology</span>
-    <span class="domain-tag" style="--delay: 1s; --duration: 15s; --x: 18%; --y: 48%;">Forensic Auditing</span>
-    <span class="domain-tag" style="--delay: 6s; --duration: 21s; --x: 12%; --y: 85%;">Crime Scene</span>
-    
-    <!-- CENTER -->
-    <span class="domain-tag" style="--delay: 2.5s; --duration: 18s; --x: 42%; --y: 15%;">Forensic Science</span>
-    <span class="domain-tag" style="--delay: 4.5s; --duration: 16s; --x: 45%; --y: 70%;">Clinical Psychology</span>
-    
-    <!-- RIGHT SIDE -->
-    <span class="domain-tag" style="--delay: 3.5s; --duration: 20s; --x: 72%; --y: 10%;">Cyber Security</span>
-    <span class="domain-tag" style="--delay: 1.5s; --duration: 17s; --x: 75%; --y: 45%;">Courtroom</span>
-    <span class="domain-tag" style="--delay: 5.5s; --duration: 19s; --x: 70%; --y: 80%;">Biometrics</span>
-    
-    <!-- FAR RIGHT COLUMN -->
-    <span class="domain-tag" style="--delay: 0.8s; --duration: 18s; --x: 90%; --y: 18%;">Commerce</span>
-    <span class="domain-tag" style="--delay: 4.2s; --duration: 16s; --x: 88%; --y: 38%;">Management</span>
-    <span class="domain-tag" style="--delay: 2.8s; --duration: 21s; --x: 91%; --y: 62%;">Investigation</span>
-    <span class="domain-tag" style="--delay: 6.2s; --duration: 15s; --x: 89%; --y: 85%;">Digital Evidence</span>
+    <!-- RIGHT SIDE - 6 domains -->
+    <span class="domain-tag domain-right mobile-show" style="--delay: 0.8s; --duration: 19s; top: 18%;">Forensic Science</span>
+    <span class="domain-tag domain-right mobile-hide" style="--delay: 2.3s; --duration: 16s; top: 28%;">Courtroom</span>
+    <span class="domain-tag domain-right mobile-show" style="--delay: 3.8s; --duration: 20s; top: 44%;">Management</span>
+    <span class="domain-tag domain-right mobile-hide" style="--delay: 5.3s; --duration: 18s; top: 60%;">Commerce</span>
+    <span class="domain-tag domain-right mobile-show" style="--delay: 1.5s; --duration: 21s; top: 76%;">Psychology</span>
+    <span class="domain-tag domain-right mobile-hide" style="--delay: 6.5s; --duration: 19s; top: 90%;">Biometrics</span>
 </div>
-
             <!-- Search Bar -->
            <div class="search-container">
              <input type="text" 
@@ -2567,9 +2554,9 @@ nav {
                 
                 <div class="team-card-square">
                     <div class="team-img-circle">
-                        <img src="images/team/vishnu.jpg" alt="Vishnu" onerror="this.src='images/placeholder.jpg'">
+                        <img src="images/team/vishnu.jpg" alt="Vishnulal N" onerror="this.src='images/placeholder.jpg'">
                     </div>
-                    <h4>Vishnu</h4>
+                    <h4>Vishnulal N</h4>
                     <p class="team-role">Web Design Developer</p>
                 </div>
                 
@@ -2631,17 +2618,17 @@ nav {
                 
                 <div class="team-card-square">
                     <div class="team-img-circle">
-                        <img src="images/team/butool.jpg" alt="Butool" onerror="this.src='images/placeholder.jpg'">
+                        <img src="images/team/butool.jpg" alt="Butool Zaidi" onerror="this.src='images/placeholder.jpg'">
                     </div>
-                    <h4>Butool</h4>
+                    <h4>Butool Zaidi</h4>
                     <p class="team-role">Crime Scene Management Coordinator</p>
                 </div>
                 
                 <div class="team-card-square">
                     <div class="team-img-circle">
-                        <img src="images/team/ayushi.jpg" alt="Ayushi Singa" onerror="this.src='images/placeholder.jpg'">
+                        <img src="images/team/ayushi.jpg" alt="Ayushi Sinha" onerror="this.src='images/placeholder.jpg'">
                     </div>
-                    <h4>Ayushi Singa</h4>
+                    <h4>Ayushi Sinha</h4>
                     <p class="team-role">Crime Scene Management Coordinator</p>
                 </div>
                 
@@ -3639,6 +3626,26 @@ if (faqSearch) {
         }
     });
 }
+// ========== HIDE FLOATING DOMAINS ON SCROLL ==========
+const floatingDomains = document.querySelector('.floating-domains');
+
+if (floatingDomains) {
+    window.addEventListener('scroll', function() {
+        const hero = document.querySelector('.hero');
+        if (!hero) return;
+        
+        const heroHeight = hero.offsetHeight;
+        const scrollPosition = window.scrollY;
+        
+        // Hide when scrolled past hero section (with buffer)
+        if (scrollPosition > heroHeight - 150) {
+            floatingDomains.classList.add('hidden');
+        } else {
+            floatingDomains.classList.remove('hidden');
+        }
+    });
+}
+
 
 
     </script>
