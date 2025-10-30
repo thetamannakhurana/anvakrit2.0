@@ -114,13 +114,30 @@ nav {
 
 /* Make left Anvakrit logo specifically bigger */
 .nav-logo-left .logo-img {
-    height: 80px; /* Extra big for Anvakrit logo */
+    height: 100px; /* Extra big for Anvakrit logo */
 }
 
 /* Keep right NFSU logo smaller */
 .nav-logo-right .logo-img {
-    height: 60px;
+    height: 75px;
 }
+/* Right container for hamburger + logo */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .nav-logo-right {
+        display: none;
+    }
+    
+    .nav-right {
+        gap: 0;
+    }
+}
+
 
 /* Nav Title */
 .nav-title-link {
@@ -284,90 +301,84 @@ nav {
         text-align: center;
     }
 }
-/* ========== HAMBURGER MENU - ALWAYS ENABLED ========== */
+/* ========== HAMBURGER MENU - ALWAYS VISIBLE ========== */
 
 .menu-toggle {
-    display: none; /* Hidden by default on large screens */
+    display: flex !important; /* ALWAYS SHOW */
     flex-direction: column;
-    gap: 5px;
+    gap: 3px;
     cursor: pointer;
     z-index: 10001;
-    padding: 10px;
+    padding: 8px;
 }
 
 .menu-toggle span {
-    width: 28px;
-    height: 3px;
+    width: 22px; /* SMALLER */
+    height: 2px; /* THINNER */
     background: var(--neon-blue);
-    border-radius: 3px;
+    border-radius: 2px;
     transition: all 0.3s ease;
 }
 
-/* Show hamburger on tablets and below */
-@media (max-width: 1200px) {
-    .menu-toggle {
-        display: flex; /* SHOW HAMBURGER */
-    }
-    
-    .nav-links {
-        position: fixed;
-        top: 90px;
-        right: -100%;
-        width: 300px;
-        height: calc(100vh - 90px);
-        background: rgba(10, 15, 26, 0.98);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        padding: 2rem;
-        gap: 1.5rem;
-        border-left: 2px solid rgba(0, 212, 255, 0.2);
-        transition: right 0.3s ease;
-        overflow-y: auto;
-        z-index: 10000;
-    }
-    
-    .nav-links.active {
-        right: 0;
-    }
-    
-    .nav-links li {
-        width: 100%;
-    }
-    
-    .nav-links a {
-        display: block;
-        width: 100%;
-        padding: 1rem;
-        text-align: center;
-        border-bottom: 1px solid rgba(0, 212, 255, 0.1);
-    }
-    
-    .nav-register-btn {
-        margin-top: 1rem;
-    }
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
 }
 
-/* Mobile specific adjustments */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: flex; /* SHOW HAMBURGER ON MOBILE TOO */
-    }
-    
-    .nav-links {
-        width: 250px;
-        top: 80px;
-        height: calc(100vh - 80px);
-    }
-    
-    .nav-logo-right {
-        display: none; /* Hide NFSU logo on mobile */
-    }
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
 }
 
-@media (max-width: 480px) {
-    .nav-links {
-        width: 200px;
-    }
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* HIDE DESKTOP NAV LINKS */
+.nav-links {
+    display: none !important;
+    position: fixed !important;
+    top: 90px !important;
+    right: -100% !important;
+    width: 280px !important;
+    height: calc(100vh - 90px) !important;
+    background: rgba(10, 15, 26, 0.98) !important;
+    backdrop-filter: blur(20px) !important;
+    flex-direction: column !important;
+    padding: 2rem 0 !important;
+    gap: 0 !important;
+    border-left: 2px solid rgba(0, 212, 255, 0.2) !important;
+    transition: right 0.3s ease !important;
+    overflow-y: auto !important;
+    z-index: 10000 !important;
+}
+
+.nav-links.active {
+    display: flex !important;
+    right: 0 !important;
+}
+
+.nav-links li {
+    width: 100%;
+}
+
+.nav-links a {
+    display: block !important;
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    background: rgba(0, 212, 255, 0.1);
+    padding-left: 2rem;
+}
+
+.nav-register-btn {
+    margin: 1rem 1.5rem !important;
+    text-align: center !important;
+    padding: 0.75rem 1.5rem !important;
 }
 
 
@@ -2391,23 +2402,24 @@ span[class*="domain"] {
             </a>
         </div>
 
-        <div class="menu-toggle" onclick="toggleMenu()">
+        <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#rules">Rules</a></li>
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#eligibility">Eligibility</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#faq">FAQs</a></li>
+    <li><a href="#contact">Contact Us</a></li>
+    <li><a href="#categories" class="nav-register-btn">Register Now</a></li>
+</ul>
+
+<div class="menu-toggle" onclick="toggleMenu()">
             <span></span>
             <span></span>
             <span></span>
         </div>
-
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#rules">Rules</a></li>
-            <li><a href="#categories">Categories</a></li>
-            <li><a href="#eligibility">Eligibility</a></li>
-            <li><a href="#team">Team</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact Us</a></li>
-            <li><a href="#categories" class="nav-register-btn">Register Now</a></li>
-        </ul>
 
         <!-- Right: NFSU Logo -->
         <div class="nav-logo-right">
@@ -2688,8 +2700,8 @@ span[class*="domain"] {
                 <div class="team-img-circle">
                     <img src="images/team/vyas.jpg" alt="Padma Shree Dr. J M Vyas" onerror="this.src='images/placeholder.jpg'">
                 </div>
-                <h4>Padma Shree Dr. J M Vyas</h4>
-                <p class="team-role">(Padma Shri Awardee)</p>
+                <h4>Dr. J. M. Vyas</h4>
+                <p class="team-role">Padma Shri Awardee</p>
                 <p class="team-role">Hon'ble Vice Chancellor</p>
                 <p class="team-role">National Forensic Sciences University</p>
             </div>
@@ -2703,7 +2715,7 @@ span[class*="domain"] {
                     <img src="images/team/purvi.jpg" alt="Prof. Dr. Purvi Pokhariyal" onerror="this.src='images/placeholder.jpg'">
                 </div>
                 <h4>Prof. (Dr.) Purvi Pokhariyal</h4>
-                <p class="team-role">Campus Director, Delhi Campus, NFSU</p>
+                <p class="team-role">Campus Director, National Forensic Sciences University, Delhi Campus</p>
             </div>
         </div>
         
@@ -2715,7 +2727,7 @@ span[class*="domain"] {
                     <img src="images/team/minakshi.jpg" alt="Prof Dr. Minakshi Sinha" onerror="this.src='images/placeholder.jpg'">
                 </div>
                 <h4>Prof. (Dr.) Minakshi Sinha</h4>
-                <p class="team-role">Deputy Director Training</p>
+                <p class="team-role">School of Behavorial Forensics, National Forensic Sciences University, Delhi Campus</p>
             </div>
         </div>
         
@@ -2746,7 +2758,7 @@ span[class*="domain"] {
                     <div class="team-img-circle">
                         <img src="images/team/mradul.jpg" alt="Mradul Singh" onerror="this.src='images/placeholder.jpg'">
                     </div>
-                    <h4>Ms. Mradul Singh</h4>
+                    <h4>Dr. Mradul Singh</h4>
                     <p class="team-role">Assistant Professor</p>
                 </div>
             </div>
@@ -2866,6 +2878,20 @@ span[class*="domain"] {
                     </div>
                     <h4>Shivang Tiwari</h4>
                     <p class="team-role">Food Committee Coordinator</p>
+                </div>
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/gauri.jpg" alt="Gauri" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Gauri Singh Chauhan</h4>
+                    <p class="team-role">Sponsorship Committee Coordinator</p>
+                </div>
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/yashica.jpg" alt="Yashica" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Yashica Sharma</h4>
+                    <p class="team-role">Sponsorship Committee Coordinator</p>
                 </div>
             </div>
         </div>
@@ -3633,8 +3659,11 @@ span[class*="domain"] {
         });
 
         function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
+    const navLinks = document.getElementById('navLinks');
+    const menuToggle = document.querySelector('.menu-toggle');
+    navLinks.classList.toggle('active');
+    menuToggle.classList.toggle('active'); // Add animation
+}
 
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
