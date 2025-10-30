@@ -418,40 +418,31 @@ nav {
 .domain-tag {
     position: absolute;
     font-family: 'Orbitron', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: rgba(0, 212, 255, 0.5);
-    text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
-    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: rgba(0, 212, 255, 0.9);
+    text-shadow: 0 0 20px rgba(0, 212, 255, 1),
+                 0 0 40px rgba(0, 212, 255, 0.6);
+    padding: 0;
     border: none;
-    border-radius: 20px;
-    background: rgba(13, 27, 42, 0.4);
-    backdrop-filter: blur(8px);
+    background: none;
     white-space: nowrap;
     pointer-events: auto;
     cursor: default;
-    
-    /* Position using CSS variables */
     left: var(--x);
     top: var(--y);
-    
-    /* Animation */
     animation: floatDomain var(--duration) ease-in-out infinite;
     animation-delay: var(--delay);
-    
-    /* Initial state */
     opacity: 0;
     animation-fill-mode: both;
-    
-    /* Prevent blocking main content */
     user-select: none;
 }
 
 .domain-tag:hover {
-    color: var(--neon-cyan);
-    box-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
-    text-shadow: 0 0 25px rgba(0, 212, 255, 1);
-    transform: scale(1.15);
+    color: rgba(0, 255, 255, 1);
+    text-shadow: 0 0 30px rgba(0, 255, 255, 1),
+                 0 0 60px rgba(0, 212, 255, 0.8);
+    transform: scale(1.2);
     transition: all 0.3s ease;
 }
 /* ==========================================
@@ -2158,6 +2149,16 @@ nav {
 @keyframes rotate-slow {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+/* FORCE REMOVE ALL DOMAIN BORDERS */
+.domain-tag,
+.domain-left,
+.domain-right,
+span[class*="domain"] {
+    border: none !important;
+    background: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
 }
 
     </style>
