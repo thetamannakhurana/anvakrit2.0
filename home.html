@@ -81,6 +81,18 @@ nav {
     max-width: 1400px;
     margin: 0 auto;
     gap: 2rem;
+    position: relative
+}
+/* Force nav-links to center, nav-right to stay right */
+.nav-links {
+    position: absolute !important;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Keep right section on the right */
+.nav-right {
+    margin-left: auto;
 }
 
 /* Left Brand (Logo + Title) */
@@ -2415,17 +2427,18 @@ span[class*="domain"] {
     <li><a href="#categories" class="nav-register-btn">Register Now</a></li>
 </ul>
 
-<div class="menu-toggle" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-        <!-- Right: NFSU Logo -->
-        <div class="nav-logo-right">
-            <img src="images/nfsu-logo.png" alt="NFSU Delhi" class="logo-img">
-        </div>
+<!-- Right: Hamburger + NFSU Logo -->
+<div class="nav-right">
+    <div class="menu-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
+    
+    <div class="nav-logo-right">
+        <img src="images/nfsu-logo.png" alt="NFSU Delhi" class="logo-img">
+    </div>
+</div>
 </nav>
 
 
@@ -2556,14 +2569,14 @@ span[class*="domain"] {
                         <h3>📋 What's Included</h3>
                         <ul>
                             <li>Registration Kits</li>
-                            <li>All materials required for the competition (all teams are requested to carry at least one laptop)</li>
+                            <li>All materials required for the competition (except laptops; participants are requested to carry their laptops if required, groups may share/carry at least 1)</li>
                             <li>Workshops and expert lectures</li>
                             <li>Lab visits at NFSU Delhi Campus</li>
                             <li>Certificates of Participation</li>
                             <li>Certificates of Guest Volunteer (provided participants opt for it)</li>
                             <li>Trophies/medals for the winning teams</li>
                             <li>Two meals per day during the event</li>
-                            <li><strong>Optional:</strong> Accommodation at ₹500/day per head at a first come first served basis</li>
+                            <li><strong>Optional:</strong> Individual Accommodation at ₹500/day per head at a first come first served basis</li>
                         </ul>
                     </div>
 
