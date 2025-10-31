@@ -83,17 +83,6 @@ nav {
     gap: 2rem;
     position: relative
 }
-/* Force nav-links to center, nav-right to stay right */
-.nav-links {
-    position: absolute !important;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* Keep right section on the right */
-.nav-right {
-    margin-left: auto;
-}
 
 /* Left Brand (Logo + Title) */
 .nav-brand {
@@ -172,15 +161,6 @@ nav {
 }
 
 /* Nav Links */
-.nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-}
-
 .nav-links a {
     color: var(--gray-light);
     text-decoration: none;
@@ -350,7 +330,9 @@ nav {
     position: fixed !important;
     top: 90px !important;
     right: -100% !important;
-    width: 280px !important;
+    left: auto !important; 
+    transform: none !important; 
+    width: 350px !important;
     height: calc(100vh - 90px) !important;
     background: rgba(10, 15, 26, 0.98) !important;
     backdrop-filter: blur(20px) !important;
@@ -2576,7 +2558,7 @@ span[class*="domain"] {
                             <li>Certificates of Guest Volunteer (provided participants opt for it)</li>
                             <li>Trophies/medals for the winning teams</li>
                             <li>Two meals per day during the event</li>
-                            <li><strong>Optional:</strong> Individual Accommodation at ₹500/day per head at a first come first served basis</li>
+                            <li><strong>Optional:</strong> Individual Accommodation at ₹500/day at first come first served basis</li>
                         </ul>
                     </div>
 
@@ -2612,7 +2594,7 @@ span[class*="domain"] {
                     <p><strong>Eligibility:</strong> Grades 11, 12 & Undergraduate students (all streams)</p>
                     
                     <ul>
-                        <li><strong>Mode:</strong>Group</li>
+                        <li><strong>Mode:</strong> Group</li>
                         <li><strong>Team Size:</strong> 4 members(self-formed)</li>
                         <li><strong>Capacity:</strong> 300 participants (limited)</li>
                         <li><strong>Selection:</strong> First-come, first-served basis</li>
@@ -2825,7 +2807,7 @@ span[class*="domain"] {
                     <div class="team-img-circle">
                         <img src="images/team/biplab.jpg" alt="Biplab" onerror="this.src='images/placeholder.jpg'">
                     </div>
-                    <h4>Biplab</h4>
+                    <h4>Biplab Pradhan</h4>
                     <p class="team-role">Design & Media Coordinator</p>
                 </div>
                 
@@ -3302,7 +3284,6 @@ span[class*="domain"] {
 <section class="contact" id="contact">
     <div class="container">
         <div class="section-header">
-            <span class="section-label">Get In Touch</span>
             <h2 class="section-title">Contact Us</h2>
             <p class="section-subtitle">Have questions? Reach out to our organizing team</p>
         </div>
@@ -3375,22 +3356,22 @@ span[class*="domain"] {
                     <div class="contact-person">
                         <span class="contact-name">Rithin Joseph</span>
                         <a href="tel:+919745239961">9745239961</a>
-                        <span class="contact-role">General Queries</span>
+                        <span class="contact-role">General Queries: Got a question? He has got the clue!</span>
                     </div>
                     <div class="contact-person">
                         <span class="contact-name">Vidushi Jain</span>
                         <a href="tel:+919099017566">9099017566</a>
-                        <span class="contact-role">Competition Rounds Queries</span>
+                        <span class="contact-role">Rounds and Protocols: Clarity on rules/procedures - she is your decoder!</span>
                     </div>
                     <div class="contact-person">
                         <span class="contact-name">Tamanna Khurana</span>
                         <a href="tel:+918881666088">8881666088</a>
-                        <span class="contact-role">Registration & Tech Support</span>
+                        <span class="contact-role">The Techie: Glitches, forms and login storms - she's got you covered!</span>
                     </div>
                     <div class="contact-person">
                         <span class="contact-name">Shivani Patra</span>
                         <a href="tel:+917504265920">7504265920</a>
-                        <span class="contact-role">Registration Queries</span>
+                        <span class="contact-role">Logistics Expert: From participation to logistics - all roads lead to her!</span>
                     </div>
                 </div>
             </div>
