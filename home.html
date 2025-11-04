@@ -1380,6 +1380,40 @@ nav {
     max-width: 1400px;
     margin: 0 auto;
 }
+/* Advisory Committee - 3 on top, 2 centered below */
+.advisory-committee .members-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.advisory-committee .members-grid .team-card-square:nth-child(1),
+.advisory-committee .members-grid .team-card-square:nth-child(2),
+.advisory-committee .members-grid .team-card-square:nth-child(3) {
+    grid-column: span 2;
+}
+
+.advisory-committee .members-grid .team-card-square:nth-child(4) {
+    grid-column: 2 / span 2;
+}
+
+.advisory-committee .members-grid .team-card-square:nth-child(5) {
+    grid-column: 4 / span 2;
+}
+
+/* Mobile Responsive for Advisory */
+@media (max-width: 768px) {
+    .advisory-committee .members-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .advisory-committee .members-grid .team-card-square {
+        grid-column: 1 !important;
+    }
+}
+/* Advisory section end */
 
 /* Rounded Square Cards - ALL SAME WIDTH */
 .team-card-square {
@@ -2729,7 +2763,7 @@ span[class*="domain"] {
     </div>
 </div>
 <!-- Advisory Committee -->
-<div class="team-category">
+<div class="team-category advisory-committee">
     <h3 class="team-category-title">Advisory Committee</h3>
     <div class="team-grid members-grid">
         <div class="team-card-square">
@@ -2737,7 +2771,7 @@ span[class*="domain"] {
                 <img src="images/team/sarin.jpg" alt="Prof. Dr. R. K. Sarin" onerror="this.src='images/placeholder.jpg'">
             </div>
             <h4>Prof. (Dr.) R. K. Sarin</h4>
-            <p class="team-role">Advisory Committee Member</p>
+            <p class="team-role">Professor of Practice, National Forensic Sciences University, Delhi Campus</p>
         </div>
         
         <div class="team-card-square">
@@ -2745,7 +2779,7 @@ span[class*="domain"] {
                 <img src="images/team/joshi.jpg" alt="Prof. Dr. M. C. Joshi" onerror="this.src='images/placeholder.jpg'">
             </div>
             <h4>Prof. (Dr.) M. C. Joshi</h4>
-            <p class="team-role">Advisory Committee Member</p>
+            <p class="team-role">Professor of Practice, National Forensic Sciences University, Delhi Campus</p>
         </div>
         
         <div class="team-card-square">
@@ -2753,23 +2787,23 @@ span[class*="domain"] {
                 <img src="images/team/sudhir.jpg" alt="Prof. Dr. Sudhir Sharma" onerror="this.src='images/placeholder.jpg'">
             </div>
             <h4>Prof. (Dr.) Sudhir Sharma</h4>
-            <p class="team-role">Advisory Committee Member</p>
+            <p class="team-role">Professor of Practice, National Forensic Sciences University, Delhi Campus</p>
         </div>
         
         <div class="team-card-square">
             <div class="team-img-circle">
                 <img src="images/team/yashwant.jpg" alt="Prof. Yashwant Nagle" onerror="this.src='images/placeholder.jpg'">
             </div>
-            <h4>Prof. Yashwant Nagle</h4>
-            <p class="team-role">Advisory Committee Member</p>
+            <h4>Prof. (Dr.) Yashwant K Nagle</h4>
+            <p class="team-role">Professor of Practice, National Forensic Sciences University, Delhi Campus</p>
         </div>
         
         <div class="team-card-square">
             <div class="team-img-circle">
-                <img src="images/team/ashish.jpg" alt="Dr. Ashish Deshpande" onerror="this.src='images/placeholder.jpg'">
+                <img src="images/team/basanna.jpg" alt="Prof. (Dr.) Basanna Patagundi" onerror="this.src='images/placeholder.jpg'">
             </div>
-            <h4>Dr. Ashish Deshpande</h4>
-            <p class="team-role">Advisory Committee Member</p>
+            <h4>Prof. (Dr.) Basanna Patagundi</h4>
+            <p class="team-role">Professor, National Forensic Sciences University, Delhi Campus</p>
         </div>
     </div>
 </div>
