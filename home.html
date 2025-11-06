@@ -1491,6 +1491,26 @@ nav {
         max-width: 100%;
     }
 }
+/* === TEAM SECTION - MOBILE FIX === */
+@media (max-width: 768px) {
+    /* Show Team section */
+    .team {
+        display: block !important;
+        padding: 4rem 0 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Fix Advisory Committee on mobile */
+    .advisory-committee .members-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .advisory-committee .members-grid .team-card-square {
+        grid-column: 1 !important;
+        max-width: 100% !important;
+    }
+}
 
 
 
