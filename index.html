@@ -476,6 +476,10 @@
             </div>
         </div>
     </div>
+        <!-- Background Audio -->
+    <audio id="bgAudio" autoplay loop>
+        <source src="audio/anvakrit-bg-theme.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         let progress = 0;
@@ -517,12 +521,19 @@
                 clearInterval(messageInterval);
                 statusText.textContent = 'Investigation system ready!';
 
+                                // Setup background audio
+                const bgAudio = document.getElementById('bgAudio');
+                bgAudio.volume = 0.5; // Medium volume on loading page
+                
                 setTimeout(() => {
                     loadingScreen.classList.add('hidden');
                     setTimeout(() => {
+                        // Store audio state to persist in home.html
+                        sessionStorage.setItem('audioPlaying', 'true');
                         window.location.href = 'home.html';
                     }, 1000);
                 }, 800);
+
             }
         }, 250);
     </script>

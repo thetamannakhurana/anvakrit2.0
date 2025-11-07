@@ -796,6 +796,41 @@ nav {
             flex-wrap: wrap;
             margin-top: 2.5rem;
         }
+        /* Hero CTA - Vertical Stacking */
+.hero-cta-vertical {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 500px !important;
+    margin: 0 auto !important;
+}
+
+/* Full Width Buttons */
+.btn-full-width {
+    width: 100% !important;
+    max-width: 500px !important;
+    text-align: center !important;
+    justify-content: center !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    .hero-cta-vertical {
+        max-width: 100% !important;
+        padding: 0 1rem !important;
+    }
+    
+    .btn-full-width {
+        max-width: 100% !important;
+        font-size: 0.95rem !important;
+        padding: 0.9rem 1.5rem !important;
+    }
+}
+
 
         .btn-primary {
             display: inline-block;
@@ -2434,6 +2469,9 @@ span[class*="domain"] {
 }
 
     </style>
+    <audio id="bgAudio" autoplay loop style="display: none;">
+        <source src="audio/anvakrit-bg-theme.mp3" type="audio/mpeg">
+    </audio>
 </head>
 <body>
     <canvas id="binaryRainCanvas"></canvas>
@@ -2522,10 +2560,13 @@ span[class*="domain"] {
           </p>
 
             
-            <div class="hero-cta">
-                <a href="#categories" class="btn-primary">Register Now</a>
-                <a href="#rules" class="btn-primary btn-secondary">Operational Protocols</a>
-            </div>
+            <div class="hero-cta hero-cta-vertical">
+              <a href="#categories" class="btn-primary btn-full-width">Register Now</a>
+              <a href="#rules" class="btn-primary btn-secondary btn-full-width">Operational Protocols</a>
+              <a href="documents/Anvakrit-2.0-brochure.pdf" download class="btn-primary btn-secondary btn-full-width">📄 Download Detailed Brochure</a>
+           </div>
+  
+
         </div>
     </section>
 
@@ -2784,7 +2825,7 @@ span[class*="domain"] {
 </div>
 <!-- Advisory Committee -->
 <div class="team-category advisory-committee">
-    <h3 class="team-category-title">Advisory Committee</h3>
+    <h3 class="team-category-title">Internal Advisory Committee</h3>
     <div class="team-grid members-grid">
         <div class="team-card-square">
             <div class="team-img-circle">
@@ -2986,6 +3027,20 @@ span[class*="domain"] {
                     </div>
                     <h4>Yashica Sharma</h4>
                     <p class="team-role">Sponsorship Committee Coordinator</p>
+                </div>
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/varna.jpg" alt="Varna" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Varna Vijayan</h4>
+                    <p class="team-role">Creative Affairs Committee Coordinator</p>
+                </div>
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/ishitha.jpg" alt="ishitha" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Ishitha Ralli</h4>
+                    <p class="team-role">Creative Affairs Committee Coordinator</p>
                 </div>
             </div>
         </div>
@@ -4010,7 +4065,23 @@ if (floatingDomains) {
         }
     });
 }
+// Background Audio Control
+const bgAudio = document.getElementById('bgAudio');
 
+// Check if audio was playing on loading page
+if (sessionStorage.getItem('audioPlaying')) {
+    bgAudio.volume = 0.25; // Low volume on home page
+    bgAudio.play().catch(err => console.log('Audio play failed:', err));
+}
+
+// Allow user to control audio
+window.audioToggle = () => {
+    if (bgAudio.paused) {
+        bgAudio.play();
+    } else {
+        bgAudio.pause();
+    }
+};
 
 
     </script>
