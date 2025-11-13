@@ -477,8 +477,8 @@
         </div>
     </div>
         <!-- Background Audio -->
-    <audio id="bgAudio" autoplay loop>
-        <source src="audio/anvakrit-bg-theme.mp3" type="audio/mpeg">
+    <audio id="bgAudio" autoplay loop style="display: none;">
+        <source src="audio/theme.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -521,21 +521,31 @@
                 clearInterval(messageInterval);
                 statusText.textContent = 'Investigation system ready!';
 
-                                // Setup background audio
-                const bgAudio = document.getElementById('bgAudio');
-                bgAudio.volume = 0.5; // Medium volume on loading page
-                
                 setTimeout(() => {
                     loadingScreen.classList.add('hidden');
                     setTimeout(() => {
-                        // Store audio state to persist in home.html
-                        sessionStorage.setItem('audioPlaying', 'true');
                         window.location.href = 'home.html';
                     }, 1000);
                 }, 800);
-
             }
         }, 250);
+        // Background Audio Control
+const bgAudio = document.getElementById('bgAudio');
+
+// Check if audio was playing on loading page
+if (sessionStorage.getItem('audioPlaying')) {
+    bgAudio.volume = 0.25; // Low volume on home page
+    bgAudio.play().catch(err => console.log('Audio play failed:', err));
+}
+
+// Allow user to control audio
+window.audioToggle = () => {
+    if (bgAudio.paused) {
+        bgAudio.play();
+    } else {
+        bgAudio.pause();
+    }
+};
     </script>
 </body>
 </html>

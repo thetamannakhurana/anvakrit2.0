@@ -1068,7 +1068,7 @@ nav {
 
         .categories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 3rem;
             margin-top: 3rem;
             max-width: 1000px;
@@ -1165,6 +1165,11 @@ nav {
             margin: 1.5rem 0;
             font-weight: 700;
         }
+@media (max-width: 968px) {
+    .categories-grid {
+        grid-template-columns: 1fr; /* Stack on mobile */
+    }
+}
 
         .eligibility {
             padding: 6rem 0;
@@ -2469,8 +2474,9 @@ span[class*="domain"] {
 }
 
     </style>
+        <!-- Background Audio -->
     <audio id="bgAudio" autoplay loop style="display: none;">
-        <source src="audio/anvakrit-bg-theme.mp3" type="audio/mpeg">
+        <source src="audio/theme.mp3" type="audio/mpeg">
     </audio>
 </head>
 <body>
@@ -2558,6 +2564,9 @@ span[class*="domain"] {
               <br>
               📅 February 11-13, 2026
           </p>
+           <p class="hero-prize" style="font-size: 1.5rem; color: var(--neon-cyan); margin: 1rem 0; font-weight: 700;">
+              🏆 Total Prize Pool: ₹3.6 Lakhs 🏆
+           </p>
 
             
             <div class="hero-cta hero-cta-vertical">
@@ -2586,6 +2595,26 @@ span[class*="domain"] {
             <div class="about-description">
                 <p>This year, the competition extends across all domains of forensic expertise, including forensic science, criminology, forensic accounting, and law, with a special emphasis on cybercrime and digital forensics. The theme, “Unmask the Truth in Bytes,” invites participants to tackle complex investigations that go beyond the traditional crime scene, venturing into the fast-evolving world where every clue traced physically or digitally strings together the pieces of a puzzle which shall unfurl the truth.</p>
             </div>
+            <div class="about-collaboration" style="margin-top: 3rem; padding: 2rem; background: rgba(13, 27, 42, 0.4); border-left: 4px solid var(--neon-cyan); border-radius: 10px;">
+  <h3 class="about-nfsu-title" style="color: var(--neon-cyan);">🤝 Organized in Collaboration With</h3>
+  <p style="font-size: 1.1rem; line-height: 1.8;">
+    This prestigious event is organized by <strong>National Forensic Sciences University (NFSU)</strong> in collaboration with:
+  </p>
+  <ul style="list-style: none; padding: 0; margin-top: 1.5rem;">
+    <li style="padding: 0.5rem 0; font-size: 1.1rem;">
+      🔵 <strong>Delhi Police</strong>
+    </li>
+    <li style="padding: 0.5rem 0; font-size: 1.1rem;">
+      🔵 <strong>Bureau of Police Research and Development (BPRD)</strong>
+    </li>
+    <li style="padding: 0.5rem 0; font-size: 1.1rem;">
+      🔵 <strong>National Crime Records Bureau (NCRB)</strong>
+    </li>
+    <li style="padding: 0.5rem 0; font-size: 1.1rem;">
+      🔵 <strong>Indian Cybercrime Coordination Centre (I4C)</strong>
+    </li>
+  </ul>
+</div>
 
             <div class="highlights-grid">
                 <div class="highlight-card">
@@ -2597,7 +2626,7 @@ span[class*="domain"] {
                 <div class="highlight-card">
                     <div class="highlight-icon">🏆</div>
                     <h3>Competition Format</h3>
-                    <p>Two parallel tracks for different expertise levels with exciting prizes totaling ₹1.2 Lakh across both categories.</p>
+                    <p>Three categories for different expertise levels with exciting prizes totaling <strong>₹3.6 Lakhs</strong> across all categories.</p>
                 </div>
 
                 <div class="highlight-card">
@@ -2657,72 +2686,96 @@ span[class*="domain"] {
                         </ul>
                     </div>
 
-                    <div class="rule-card">
-                        <h3>🏆 Prize Pool</h3>
-                        <ul>
-                            <li><strong>Category I:</strong> Top 3 teams share ₹60k</li>
-                            <li><strong>Category II:</strong> Top 3 teams share ₹60k</li>
-                            <li><strong>Total Prize Pool:</strong> ₹1.2 Lakh</li>
-                            <li>All participants shall receive certificates of participation</li>
-                            <li>Participants who opt to volunteer, shall receive Guest Volunteer certificates.</li>
-                        </ul>
+                   <div class="rule-card">
+                     <h3>💰 Prize Pool</h3>
+                     <ul>
+                         <li><strong>1st Prize – ₹60,000</strong></li>
+                         <li><strong>2nd Prize – ₹40,000</strong></li>
+                         <li><strong>3rd Prize – ₹20,000</strong></li>
+                         <li><strong>Total Prize Pool: ₹3.6 Lakhs</strong> 🎉</li>
+                         <li>All participants receive Certificates of Participation</li>
+                         <li>Guest Volunteer Certificates for Volunteers</li>
+                       </ul>
                     </div>
+
                 </div>
             </div>
         </div>
     </section>
+<section class="categories" id="categories">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Competition Categories</span>
+      <h2 class="section-title">Choose Your Track</h2>
+      <p class="section-subtitle">Three categories designed for different skill levels and professional stages</p>
+    </div>
 
-    <section class="categories" id="categories">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Competition Categories</span>
-                <h2 class="section-title">Choose Your Track</h2>
-                <p class="section-subtitle">Two categories designed for different skill levels and professional stages</p>
-            </div>
+    <div class="categories-grid">
+      <!-- Category I - Undergraduate Students -->
+      <div class="category-card">
+        <div class="category-icon">🎓</div>
+        <h3>Category I</h3>
+        <span class="category-label">Undergraduate Students</span>
+        
+        <p><strong>Eligibility:</strong> Undergraduate students (all streams)</p>
+        
+        <ul>
+          <li><strong>Mode:</strong> Group</li>
+          <li><strong>Team Size:</strong> 4 members (self-formed)</li>
+          <li><strong>Capacity:</strong> 300 participants (limited)</li>
+          <li><strong>Selection:</strong> First-come, first-served basis</li>
+          <li><strong>Format:</strong> Case file investigation, poster presentation, on-campus CSI</li>
+        </ul>
+        
+        <div class="category-fee">₹1,000 per person</div>
+        
+        <a href="#" class="btn-primary" onclick="openModal('cat1Modal')">View Full Details</a>
+      </div>
 
-            <div class="categories-grid">
-                <div class="category-card">
-                    <div class="category-icon">📚</div>
-                    <h3>Category I- Elementary</h3>
-                    <span class="category-label">Higher Secondary & UG Level</span>
-                    
-                    <p><strong>Eligibility:</strong> Grades 11, 12 & Undergraduate students (all streams)</p>
-                    
-                    <ul>
-                        <li><strong>Mode:</strong> Group</li>
-                        <li><strong>Team Size:</strong> 4 members(self-formed)</li>
-                        <li><strong>Capacity:</strong> 300 participants (limited)</li>
-                        <li><strong>Selection:</strong> First-come, first-served basis</li>
-                        <li><strong>Format:</strong> Case file investigation, poster presentation, on-campus CSI</li>
-                    </ul>
-                    
-                    <div class="category-fee">₹1,000 per person</div>
-                    
-                    <a href="#" class="btn-primary" onclick="openModal('cat1Modal')">View Full Details</a>
-                </div>
+      <!-- Category II - Postgraduate & PhD Students ONLY -->
+      <div class="category-card">
+        <div class="category-icon">📚</div>
+        <h3>Category II</h3>
+        <span class="category-label">Postgraduate & Ph.D. Students</span>
+        
+        <p><strong>Eligibility:</strong> Postgraduate and Doctoral students <strong>ONLY</strong></p>
+        
+        <ul>
+          <li><strong>Mode:</strong> Individual or Group</li>
+          <li><strong>Team Size:</strong> Individual/teams created by OC or Teams of 5 (Self-formed)</li>
+          <li><strong>Capacity:</strong> 200 participants (limited)</li>
+          <li><strong>Selection:</strong> First-come, first-served basis</li>
+          <li><strong>Format:</strong> Multi-scene investigation, lab analysis and report formulation, moot court presentation</li>
+        </ul>
+        
+        <div class="category-fee">₹2,000 per person</div>
+        
+        <a href="#" class="btn-primary" onclick="openModal('cat2Modal')">Register Now</a>
+      </div>
 
-                <div class="category-card">
-                    <div class="category-icon">🎓</div>
-                    <h3>Category II- Advanced</h3>
-                    <span class="category-label">PG, PhD & Professionals</span>
-                    
-                    <p><strong>Eligibility:</strong> Postgraduate, Doctoral & Professional Experts</p>
-                    
-                    <ul>
-                        <li><strong>Mode:</strong> Individual or Group</li>
-                        <li><strong>Team Size:</strong> Individual(teams created by OC) or Teams of 5(Self-formed)</li>
-                        <li><strong>Capacity:</strong> 200 participants (limited)</li>
-                        <li><strong>Selection:</strong> First-come, first-served basis</li>
-                        <li><strong>Format:</strong> Multi-scene investigation, lab analysis and report formulation, moot court presentation, etc.</li>
-                    </ul>
-                    
-                    <div class="category-fee">₹2,000 per person</div>
-                    
-                    <a href="#" class="btn-primary" onclick="openModal('cat2Modal')">View Full Details</a>
-                </div>
-            </div>
-        </div>
-    </section>
+      <!-- Category III - Professionals -->
+      <div class="category-card">
+        <div class="category-icon">💼</div>
+        <h3>Category III</h3>
+        <span class="category-label">Professionals</span>
+        
+        <p><strong>Eligibility:</strong> Working professionals in forensics, law, cybersecurity, and allied fields</p>
+        
+        <ul>
+          <li><strong>Mode:</strong> Individual or Group</li>
+          <li><strong>Team Size:</strong> Individual/teams created by OC or Teams of 5 (Self-formed)</li>
+          <li><strong>Capacity:</strong> 200 participants (limited)</li>
+          <li><strong>Selection:</strong> First-come, first-served basis</li>
+          <li><strong>Format:</strong> Multi-scene investigation, lab analysis and report formulation, moot court presentation</li>
+        </ul>
+        
+        <div class="category-fee">₹2,000 per person</div>
+        
+        <a href="#" class="btn-primary" onclick="openModal('cat2Modal')">Register Now (Same as Category II)</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <section class="eligibility" id="eligibility">
         <div class="container">
@@ -2758,7 +2811,6 @@ span[class*="domain"] {
                 <div class="eligibility-card">
                     <h3>General Requirements</h3>
                     <ul>
-                        <li>Must be Indian resident</li>
                         <li>Age: 16+ years</li>
                         <li>Fluency in English (written & spoken)</li>
                         <li>Ability to attend offline rounds at NFSU Delhi</li>
@@ -3137,7 +3189,8 @@ span[class*="domain"] {
                     <p>The competition is open to:</p>
                     <ul>
                         <li><strong>Category I (UG & Higher Secondary):</strong> Students of Grades 11, 12, and undergraduate programs across all streams.</li>
-                        <li><strong>Category II (PG & Above):</strong> Postgraduate, doctoral, and professional participants from criminology, forensic science, law, psychology, cyber/digital forensics, and allied fields.</li>
+                        <li><strong>Category II (PG & Above):</strong> Postgraduate, Ph.D. students from criminology, forensic science, law, psychology, cyber/digital forensics, and allied fields.</li>
+                        <li><strong>Category III:</strong> Working professionals</li>
                     </ul>
                 </div>
             </div>
@@ -3256,6 +3309,7 @@ span[class*="domain"] {
                     <ul>
                         <li><strong>UG Category:</strong> Teams of 4 members must register through Unstop</li>
                         <li><strong>PG Category:</strong> Participants may register individually or as a team of 5 via Google Form.</li>
+                        <li><strong>Professionals Category:</strong> Participants may register individually or as a team of 5 via Google Form.</li>
                     </ul>
                 </div>
             </div>
@@ -3269,7 +3323,8 @@ span[class*="domain"] {
                 <div class="faq-answer">
                     <ul>
                         <li><strong>Category I (UG & Higher Secondary):</strong> ₹1000/- per head</li>
-                        <li><strong>Category II (PG & Professionals):</strong> ₹2000/- per head</li>
+                        <li><strong>Category II (PG & Ph.D.):</strong> ₹2000/- per head</li>
+                        <li><strong>Category III (Professionals):</strong> ₹2000/- per head</li>
                     </ul>
                     <p>Each participant must register individually.</p>
                 </div>
@@ -3309,13 +3364,13 @@ span[class*="domain"] {
             </div>
 
             <!-- FAQ 17 -->
-            <div class="faq-item" data-keywords="prizes winners rewards money 1.2 lakh certificates volunteer">
+            <div class="faq-item" data-keywords="prizes winners rewards money 3.6 lakh certificates volunteer">
                 <div class="faq-question">
                     <span>What are the prizes?</span>
                     <span class="faq-arrow">▶</span>
                 </div>
                 <div class="faq-answer">
-                    <p>Prizes worth <strong>INR 1.2 lakh</strong> will be awarded to the Top 3 teams across categories. All participants will receive certificates of participation.</p>
+                    <p>Prizes worth <strong>INR 3.6 lakh</strong> will be awarded to the Top 3 teams across categories. All participants will receive certificates of participation.</p>
                     <p>PG participants eliminated before the finals may volunteer for the rest of the event and receive a "Guest Volunteer" Certificate.</p>
                 </div>
             </div>
@@ -3414,6 +3469,22 @@ span[class*="domain"] {
                 </div>
                 <div class="faq-answer">
                     <p>Yes! The event begins even before you realize it. From the registration phase, participants may receive clues or puzzles that can give them an edge in the competition—because in Anvakrit, <strong>"Every Detail Counts."</strong></p>
+                </div>
+            </div>
+
+            <!-- FAQ 25 -->
+            <div class="faq-item" data-keywords="category 2 postgraduate rounds structure courtroom professionals">
+                <div class="faq-question">
+                    <span>How are the rounds structured for Category III (Professionals)?</span>
+                    <span class="faq-arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Category III includes:</p>
+                    <ol>
+                        <li><strong>Case File Investigation</strong> : Analytical problem-solving based on an assigned case.</li>
+                        <li><strong>On-Campus Crime Scene</strong> : Multi-layered forensic investigation.</li>
+                        <li><strong>Mock Courtroom Presentation</strong> : Defending findings before a live jury.</li>
+                    </ol>
                 </div>
             </div>
 
@@ -3538,7 +3609,14 @@ span[class*="domain"] {
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">ANVAKRIT 2.0</div>
-                
+                <!-- NEW: Collaboration logos -->
+    <div class="collaboration-logos" style="display: flex; gap: 2rem; align-items: center; margin: 2rem 0; flex-wrap: wrap; justify-content: center;">
+      <span style="color: var(--gray-light); font-size: 0.9rem;">In collaboration with:</span>
+      <span style="color: var(--white); font-weight: 600;">Delhi Police</span>
+      <span style="color: var(--white); font-weight: 600;">BPRD</span>
+      <span style="color: var(--white); font-weight: 600;">NCRB</span>
+      <span style="color: var(--white); font-weight: 600;">I4C</span>
+    </div>
                 <div class="footer-links">
                     <a href="#home">Home</a>
                     <a href="#about">About</a>
@@ -3873,7 +3951,7 @@ const searchData = [
     { title: "Venue & Location", keywords: ["venue", "location", "where", "nfsu", "delhi"], link: "#hero", description: "NFSU Delhi Campus" },
     { title: "Gallery", keywords: ["gallery", "photos", "images", "anvakrit 1.0"], link: "#gallery" },
     { title: "Contact", keywords: ["contact", "email", "phone", "help"], link: "#contact" },
-    { title: "Prize Pool", keywords: ["prizes", "winnings", "awards"], link: "#rules", description: "₹2.4 Lakh total" },
+    { title: "Prize Pool", keywords: ["prizes", "winnings", "awards"], link: "#rules", description: "₹3.6 Lakh total - 1st: ₹60k, 2nd: ₹40k, 3rd: ₹20k" },
     { title: "Organizing Committee", keywords: ["team", "committee", "organizers", "coordinators"], link: "#team" },
     { title: "FAQs", keywords: ["faq", "questions", "answers", "help"], link: "#faq", description: "Frequently Asked Questions" },
 ];
