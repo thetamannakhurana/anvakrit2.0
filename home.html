@@ -881,6 +881,137 @@ nav {
             background: transparent;
             border: 2px solid var(--neon-blue);
         }
+/* ==================== PRIZE POOL BANNER ==================== */
+.prize-pool-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(0, 212, 255, 0.3) 100%);
+    border: 2px solid var(--neon-cyan);
+    border-radius: 50px;
+    padding: 1rem 2.5rem;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+    animation: prizePulse 2s ease-in-out infinite;
+}
+
+.prize-pool-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(0, 212, 255, 0.3),
+        transparent
+    );
+    animation: prizeShine 3s linear infinite;
+}
+
+.prize-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.prize-amount {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 
+        0 0 10px rgba(0, 212, 255, 0.8),
+        0 0 20px rgba(0, 212, 255, 0.6),
+        0 0 30px rgba(0, 212, 255, 0.4);
+    letter-spacing: 3px;
+    animation: textGlow 2s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+    0%, 100% {
+        text-shadow: 
+            0 0 10px rgba(0, 212, 255, 0.8),
+            0 0 20px rgba(0, 212, 255, 0.6),
+            0 0 30px rgba(0, 212, 255, 0.4);
+    }
+    50% {
+        text-shadow: 
+            0 0 20px rgba(0, 212, 255, 1),
+            0 0 30px rgba(0, 212, 255, 0.8),
+            0 0 40px rgba(0, 212, 255, 0.6);
+    }
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes prizePulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.5),
+                    0 0 40px rgba(0, 212, 255, 0.3),
+                    inset 0 0 20px rgba(0, 212, 255, 0.1);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(0, 212, 255, 0.7),
+                    0 0 60px rgba(0, 212, 255, 0.5),
+                    inset 0 0 30px rgba(0, 212, 255, 0.2);
+        transform: scale(1.05);
+    }
+}
+
+@keyframes prizeShine {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+@keyframes iconBounce {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(10deg);
+    }
+}
+
+@keyframes goldShimmer {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .prize-pool-banner {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem 1.5rem;
+    }
+    
+    .prize-icon {
+        font-size: 1.5rem;
+    }
+    
+    .prize-text {
+        font-size: 1rem;
+    }
+    
+    .prize-amount {
+        font-size: 1.8rem;
+    }
+}
 
         section {
             opacity: 0;
@@ -1071,23 +1202,24 @@ nav {
             grid-template-columns: repeat(3, 1fr);
             gap: 3rem;
             margin-top: 3rem;
-            max-width: 1000px;
+            max-width: 1600px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .category-card {
-            background: rgba(13, 27, 42, 0.5);
-            border: 2px solid rgba(0, 212, 255, 0.2);
-            border-radius: 15px;
-            padding: 3rem;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+       .category-card {
+    background: rgba(13, 27, 42, 0.5);
+    border: 2px solid rgba(0, 212, 255, 0.2);
+    border-radius: 15px;
+    padding: 2rem 3rem; /* REDUCED vertical (2rem), INCREASED horizontal (3rem) */
+    text-align: center;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
 
         .category-card::after {
             content: '';
@@ -1141,7 +1273,7 @@ nav {
 
         .category-card p {
             color: var(--gray-light);
-            line-height: 1.8;
+            line-height: 1.6;
             margin-bottom: 1rem;
             text-align: left;
         }
@@ -1149,13 +1281,13 @@ nav {
         .category-card ul {
             text-align: left;
             color: var(--gray-light);
-            line-height: 1.8;
+            line-height: 1.6;
             padding-left: 1.5rem;
-            margin: 1.5rem 0;
+            margin: 1rem 0;
         }
 
         .category-card ul li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .category-fee {
@@ -1177,11 +1309,15 @@ nav {
 
         .eligibility-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
             margin-top: 3rem;
         }
-
+        @media (max-width: 968px) {
+    .eligibility-grid {
+        grid-template-columns: 1fr; /* Stack on mobile */
+    }
+}
         .eligibility-card {
             background: rgba(13, 27, 42, 0.5);
             border: 1px solid rgba(0, 212, 255, 0.2);
@@ -2472,6 +2608,43 @@ span[class*="domain"] {
         margin-bottom: 1rem;
     }
 }
+.registration-badge {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.badge-pill {
+    background: rgba(0, 212, 255, 0.18);
+    border: 1.5px solid rgba(0, 212, 255, 0.9);
+    color: #e5f4ff;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    padding: 0.45rem 1.6rem;
+    border-radius: 999px;
+    cursor: default;
+    box-shadow: 0 0 14px rgba(0, 212, 255, 0.6);
+    animation: badgePulse 2.2s ease-in-out infinite;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.badge-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.9);
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 18px rgba(0, 212, 255, 0.8);
+        transform: scale(1.04);
+    }
+}
 
     </style>
         <!-- Background Audio -->
@@ -2565,10 +2738,12 @@ span[class*="domain"] {
               📅 February 11-13, 2026
           </p>
            <p class="hero-prize" style="font-size: 1.5rem; color: var(--neon-cyan); margin: 1rem 0; font-weight: 700;">
-              🏆 Total Prize Pool: ₹3.6 Lakhs 🏆
+             <div class="prize-pool-banner">
+                 <span class="prize-text">Total Prize Pool:</span>
+                 <span class="prize-amount">₹3.6 LAKHS</span>
+               </div>
            </p>
 
-            
             <div class="hero-cta hero-cta-vertical">
               <a href="#categories" class="btn-primary btn-full-width">Register Now</a>
               <a href="#rules" class="btn-primary btn-secondary btn-full-width">Operational Protocols</a>
@@ -2704,6 +2879,9 @@ span[class*="domain"] {
     </section>
 <section class="categories" id="categories">
   <div class="container">
+     <div class="registration-badge">
+      <span class="badge-pill">Revised registration fee</span>
+    </div>
     <div class="section-header">
       <span class="section-label">Competition Categories</span>
       <h2 class="section-title">Choose Your Track</h2>
@@ -2746,11 +2924,12 @@ span[class*="domain"] {
           <li><strong>Capacity:</strong> 200 participants (limited)</li>
           <li><strong>Selection:</strong> First-come, first-served basis</li>
           <li><strong>Format:</strong> Multi-scene investigation, lab analysis and report formulation, moot court presentation</li>
+          <li><strong>Note:</strong> Registration fee is inclusive of GST.</li>
         </ul>
         
         <div class="category-fee">₹2,000 per person</div>
         
-        <a href="#" class="btn-primary" onclick="openModal('cat2Modal')">Register Now</a>
+        <a href="#" class="btn-primary" onclick="openModal('cat2Modal')">View Full Details</a>
       </div>
 
       <!-- Category III - Professionals -->
@@ -2767,59 +2946,76 @@ span[class*="domain"] {
           <li><strong>Capacity:</strong> 200 participants (limited)</li>
           <li><strong>Selection:</strong> First-come, first-served basis</li>
           <li><strong>Format:</strong> Multi-scene investigation, lab analysis and report formulation, moot court presentation</li>
+           <li><strong>Note:</strong> Registration fee is inclusive of GST.</li>
         </ul>
         
         <div class="category-fee">₹2,000 per person</div>
         
-        <a href="#" class="btn-primary" onclick="openModal('cat2Modal')">Register Now (Same as Category II)</a>
+        <a href="#" class="btn-primary" onclick="openModal('cat2Modal')">View Full Details</a>
       </div>
     </div>
   </div>
 </section>
 
-    <section class="eligibility" id="eligibility">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Who Can Participate</span>
-                <h2 class="section-title">Eligibility Criteria</h2>
-                <p class="section-subtitle">Check if you qualify for participation in Anvakrit 2.0</p>
+<section class="eligibility" id="eligibility">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Who Can Participate</span>
+            <h2 class="section-title">Eligibility Criteria</h2>
+            <p class="section-subtitle">Check if you qualify for participation in Anvakrit 2.0</p>
+        </div>
+
+        <div class="eligibility-grid">
+            <!-- Category I - Undergraduate Students -->
+            <div class="eligibility-card">
+                <h3>Category I - Undergraduate Students</h3>
+                <ul>
+                    <li>Undergraduate students (all streams)</li>
+                    <li>Valid college ID required</li>
+                    <li>No prior forensic knowledge needed</li>
+                    <li>Must form teams of 4 before registration</li>
+                    <li>Age: 18+ years</li>
+                </ul>
             </div>
 
-            <div class="eligibility-grid">
-                <div class="eligibility-card">
-                    <h3>Category I - Elementary</h3>
-                    <ul>
-                        <li>Grades 11 & 12 students</li>
-                        <li>Undergraduate students (all streams)</li>
-                        <li>Valid school/college ID required</li>
-                        <li>No prior forensic knowledge needed</li>
-                        <li>Must form teams of 4 before registration</li>
-                    </ul>
-                </div>
+            <!-- Category II - PG & PhD Students ONLY -->
+            <div class="eligibility-card">
+                <h3>Category II - Postgraduate & Ph.D. Students</h3>
+                <ul>
+                    <li><strong>Postgraduate students ONLY</strong></li>
+                    <li><strong>Doctoral/Ph.D. students ONLY</strong></li>
+                    <li>Fields: Forensics, Criminology, Law, Psychology, Cyber Security</li>
+                    <li>Valid institutional ID required</li>
+                    <li>Individual or team registration (5 members)</li>
+                </ul>
+            </div>
 
-                <div class="eligibility-card">
-                    <h3>Category II - Advanced</h3>
-                    <ul>
-                        <li>Postgraduate & Doctoral students</li>
-                        <li>Professional experts in relevant fields</li>
-                        <li>Fields: Forensics, Criminology, Law, Psychology, Cyber Security</li>
-                        <li>Valid institutional ID required</li>
-                        <li>Individual or team registration (5 members)</li>
-                    </ul>
-                </div>
+            <!-- Category III - Professionals -->
+            <div class="eligibility-card">
+                <h3>Category III - Professionals</h3>
+                <ul>
+                    <li>Working professionals in relevant fields</li>
+                    <li>Fields: Forensics, Law Enforcement, Cybersecurity, Legal Practice</li>
+                    <li>Valid employee/professional ID required</li>
+                    <li>Individual or team registration (5 members)</li>
+                    <li>Minimum 1 year professional experience</li>
+                </ul>
+            </div>
 
-                <div class="eligibility-card">
-                    <h3>General Requirements</h3>
-                    <ul>
-                        <li>Age: 16+ years</li>
-                        <li>Fluency in English (written & spoken)</li>
-                        <li>Ability to attend offline rounds at NFSU Delhi</li>
-                        <li>Generic devices (access to mobile phones and laptops, at least 1 per team)</li>
-                    </ul>
-                </div>
+            <!-- General Requirements -->
+            <div class="eligibility-card">
+                <h3>General Requirements (All Categories)</h3>
+                <ul>
+                    <li>Age: 18+ years</li>
+                    <li>Fluency in English (written & spoken)</li>
+                    <li>Ability to attend offline rounds at NFSU Delhi</li>
+                    <li>Generic devices (access to mobile phones and laptops, at least 1 per team)</li>
+                </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
 <!-- Organizing Committee Section -->
 <section id="team" class="team">
