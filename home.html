@@ -1012,6 +1012,59 @@ nav {
         font-size: 1.8rem;
     }
 }
+/* ========================================
+   RESULTS BUTTON STYLING
+   ======================================== */
+.results-button-wrapper {
+    text-align: center;
+    margin: 2.5rem 0;
+}
+
+.btn-results {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+    color: var(--white);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-radius: 50px;
+    border: 2px solid var(--neon-blue);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    box-shadow: 0 10px 30px var(--shadow-blue);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    animation: resultsPulse 2s ease-in-out infinite;
+}
+
+.btn-results:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 40px var(--shadow-blue);
+}
+
+@keyframes resultsPulse {
+    0%, 100% {
+        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4), 0 0 20px rgba(0, 212, 255, 0.6);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 15px 40px rgba(0, 212, 255, 0.6), 0 0 30px rgba(0, 212, 255, 0.9);
+        transform: scale(1.03);
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .btn-results {
+        font-size: 0.95rem;
+        padding: 1rem 2rem;
+    }
+}
 
         section {
             opacity: 0;
@@ -2743,6 +2796,14 @@ span[class*="domain"] {
                  <span class="prize-amount">₹2 LAKHS</span>
                </div>
            </p>
+<!-- ========================================
+     ANSWER KEY BUTTON (RESULTS HIDDEN FOR NOW)
+     ======================================== -->
+<div class="results-button-wrapper">
+    <a href="Answer Key_Round 1_Category 1.pdf" class="btn-results" download>
+        📄 Download Answer Key - Round 1
+    </a>
+</div>
 
             <div class="hero-cta hero-cta-vertical">
               <a href="#categories" class="btn-primary btn-full-width">Register Now</a>
