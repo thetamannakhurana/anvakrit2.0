@@ -1547,8 +1547,15 @@ nav {
 /* === ORGANIZING COMMITTEE SECTION === */
 .team {
     padding: 6rem 0;
-    background: transparent; /* CHANGED */
+    background: transparent;
     position: relative;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.team .container {
+    display: block;
 }
 
 .team-category {
@@ -1557,10 +1564,10 @@ nav {
 
 .team-category-title {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: var(--neon-cyan);
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
