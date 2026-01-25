@@ -2698,6 +2698,150 @@ span[class*="domain"] {
         transform: scale(1.04);
     }
 }
+/* ==========================================
+   NAME-ONLY CARDS - NO PHOTOS
+   ========================================== */
+.names-only-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.name-card {
+    background: rgba(13, 27, 42, 0.4);
+    border: 2px solid rgba(0, 212, 255, 0.2);
+    border-radius: 15px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.name-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-blue);
+    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+}
+
+.name-card h4 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.15rem;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+.name-card p {
+    color: var(--gray-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .names-only-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    
+    .name-card {
+        padding: 1.5rem 1rem;
+    }
+}
+/* ==========================================
+   NAME-ONLY CARDS - NO PHOTOS
+   ========================================== */
+.names-only-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.name-card {
+    background: rgba(13, 27, 42, 0.4);
+    border: 2px solid rgba(0, 212, 255, 0.2);
+    border-radius: 15px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.name-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-blue);
+    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+}
+
+.name-card h4 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.15rem;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+.name-card p {
+    color: var(--gray-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Committee Section Styles */
+.committee-group {
+    background: rgba(13, 27, 42, 0.3);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.committee-group-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3rem;
+    color: var(--neon-cyan);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.committee-role-group {
+    margin-bottom: 1rem;
+}
+
+.committee-role-label {
+    font-size: 0.9rem;
+    color: var(--neon-blue);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.committee-names {
+    color: var(--gray-light);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+    .names-only-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    
+    .name-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .committee-group {
+        padding: 1.25rem;
+    }
+}
 
     </style>
         <!-- Background Audio -->
@@ -2802,7 +2946,11 @@ span[class*="domain"] {
         🏆 Round 1 Results - Top 39 Teams Qualified
     </a>
 </div>
-
+<div class="results-button-wrapper" style="margin-top: 1rem;">
+    <a href="results-round2.html" class="btn-results" style="background: linear-gradient(135deg, #006aff 0%, #4e95ff 100%); border-color: #00b7ff;">
+        🏆 Round 2 Results - Top 21 Finalists
+    </a>
+</div>
 <!-- ========================================
      ANSWER KEY BUTTON (LIVE NOW)
      ======================================== -->
@@ -3083,283 +3231,445 @@ span[class*="domain"] {
 </section>
 
 
-<!-- Organizing Committee Section -->
-<section id="team" class="team">
+<!-- FACULTY COORDINATORS SECTION -->
+<section class="team" id="team">
     <div class="container">
         <div class="section-header">
-            <span class="section-label">Meet The Team</span>
-            <h2 class="section-title">Organizing Committee</h2>
-            <p class="section-subtitle">Meet the minds behind Anvakrit 2.0</p>
+            <span class="section-label">The Team</span>
+            <h2 class="section-title">Meet Our Team</h2>
+            <p class="section-subtitle">The minds behind Anvakrit 2.0</p>
         </div>
 
-<!-- Patrons -->
-<div class="team-category">
-    <h3 class="team-category-title">Patrons</h3>
-    <div class="team-grid leadership-grid">
-        
-        <!-- 1. Chief Patron -->
-        <div class="patron-item">
-            <h6 class="patron-role-label">CHIEF PATRON</h6>
-            <div class="team-card-square">
-                <div class="team-img-circle">
-                    <img src="images/team/vyas.jpg" alt="Padma Shree Dr. J M Vyas" onerror="this.src='images/placeholder.jpg'">
+        <!-- ============================================
+             PATRONS - WITH PHOTOS
+             ============================================ -->
+        <div class="team-category">
+            <h3 class="team-category-title">Leadership</h3>
+            <div class="leadership-grid">
+                
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/jmvyas.jpg" alt="Dr. J.M. Vyas" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Padma Shri Awardee Dr. J.M. Vyas</h4>
+                    <p class="team-role">Chief Patron</p>
+                    <p style="color: var(--gray); font-size: 0.9rem;">Founder Vice Chancellor, NFSU</p>
                 </div>
-                <h4>Dr. J. M. Vyas</h4>
-                <p class="team-role">Padma Shri Awardee</p>
-                <p class="team-role">Hon'ble Vice Chancellor</p>
-                <p class="team-role">National Forensic Sciences University</p>
-            </div>
-        </div>
-        
-        <!-- 2. Patron -->
-        <div class="patron-item">
-            <h6 class="patron-role-label">PATRON</h6>
-            <div class="team-card-square">
-                <div class="team-img-circle">
-                    <img src="images/team/purvi.jpg" alt="Prof. Dr. Purvi Pokhariyal" onerror="this.src='images/placeholder.jpg'">
-                </div>
-                <h4>Prof. (Dr.) Purvi Pokhariyal</h4>
-                <p class="team-role">Campus Director, National Forensic Sciences University, Delhi Campus</p>
-            </div>
-        </div>
-        
-        <!-- 3. Chair -->
-        <div class="patron-item">
-            <h6 class="patron-role-label">CHAIR</h6>
-            <div class="team-card-square">
-                <div class="team-img-circle">
-                    <img src="images/team/minakshi.jpg" alt="Prof Dr. Minakshi Sinha" onerror="this.src='images/placeholder.jpg'">
-                </div>
-                <h4>Prof. (Dr.) Minakshi Sinha</h4>
-                <p class="team-role">School of Behavorial Forensics, National Forensic Sciences University, Delhi Campus</p>
-            </div>
-        </div>
-        
-    </div>
-</div>
-<!-- Advisory Committee -->
-<div class="team-category advisory-committee">
-    <h3 class="team-category-title">Internal Advisory Committee</h3>
-    <div class="team-grid members-grid">
-        <div class="team-card-square">
-            <div class="team-img-circle">
-                <img src="images/team/sarin.jpg" alt="Prof. Dr. R. K. Sarin" onerror="this.src='images/placeholder.jpg'">
-            </div>
-            <h4>Prof. (Dr.) R. K. Sarin</h4>
-            <p class="team-role">Professor of Practice, National Forensic Sciences University, Delhi Campus</p>
-        </div>
-        
-        <div class="team-card-square">
-            <div class="team-img-circle">
-                <img src="images/team/joshi.jpg" alt="Prof. Dr. M. C. Joshi" onerror="this.src='images/placeholder.jpg'">
-            </div>
-            <h4>Prof. (Dr.) M. C. Joshi</h4>
-            <p class="team-role">Professor of Practice, National Forensic Sciences University, Delhi Campus</p>
-        </div>
-        
-        <div class="team-card-square">
-            <div class="team-img-circle">
-                <img src="images/team/sudhir.jpg" alt="Prof. Dr. Sudhir Sharma" onerror="this.src='images/placeholder.jpg'">
-            </div>
-            <h4>Prof. (Dr.) Sudhir Sharma</h4>
-            <p class="team-role">Professor of Practice, National Forensic Sciences University, Delhi Campus</p>
-        </div>
-        
-        <div class="team-card-square">
-            <div class="team-img-circle">
-                <img src="images/team/yashwant.jpg" alt="Prof. Yashwant Nagle" onerror="this.src='images/placeholder.jpg'">
-            </div>
-            <h4>Prof. (Dr.) Yashwant K Nagle</h4>
-            <p class="team-role">Professor of Practice, National Forensic Sciences University, Delhi Campus</p>
-        </div>
-        
-        <div class="team-card-square">
-            <div class="team-img-circle">
-                <img src="images/team/basanna.jpg" alt="Prof. (Dr.) Basanna Patagundi" onerror="this.src='images/placeholder.jpg'">
-            </div>
-            <h4>Prof. (Dr.) Basanna Patagundi</h4>
-            <p class="team-role">Professor, National Forensic Sciences University, Delhi Campus</p>
-        </div>
-    </div>
-</div>
 
-        <!-- Faculty Coordinators -->
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/purvi.jpg" alt="Prof. Dr. Purvi Pokhariyal" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Prof. (Dr.) Purvi Pokhariyal</h4>
+                    <p class="team-role">Patron</p>
+                    <p style="color: var(--gray); font-size: 0.9rem;">Campus Director, NFSU Delhi Campus</p>
+                </div>
+
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/minakshi.jpg" alt="Prof. Dr. Minakshi Sinha" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Prof. (Dr.) Minakshi Sinha</h4>
+                    <p class="team-role">Chair</p>
+                    <p style="color: var(--gray); font-size: 0.9rem;">School of Behavioural Forensics, NFSU Delhi Campus</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================
+             INTERNAL ADVISORY COMMITTEE - NAMES ONLY
+             ============================================ -->
+        <div class="team-category">
+            <h3 class="team-category-title">Internal Advisory Committee</h3>
+            <div class="names-only-grid">
+                
+                <div class="name-card">
+                    <h4>Prof. (Dr.) R. K. Sarin</h4>
+                    <p>Professor of Practice<br>School of Forensic Science<br>NFSU Delhi Campus</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Prof. (Dr.) M. C. Joshi</h4>
+                    <p>Professor of Practice<br>School of Forensic Science<br>NFSU Delhi Campus</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Prof. (Dr.) Sudhir Sharma</h4>
+                    <p>Professor of Practice<br>School of Forensic Science<br>NFSU Delhi Campus</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Prof. (Dr.) Yashwant K Nagle</h4>
+                    <p>Professor of Practice<br>School of Behavioural Forensics<br>NFSU Delhi Campus</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Shri Jaspal Singh, IPS (Retd.)</h4>
+                    <p>Chair Professor<br>School of Behavioural Forensics<br>NFSU Delhi Campus</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Prof. (Dr.) Basanna Patagundi</h4>
+                    <p>Professor<br>School of Management Studies<br>NFSU Delhi Campus</p>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- ============================================
+             ORGANIZING COMMITTEE - BIG CARDS (Like Brochure)
+             ============================================ -->
+        <div class="team-category">
+            <h3 class="team-category-title">Organizing Committee</h3>
+            <div class="names-only-grid" style="max-width: 1400px;">
+                
+                <div class="name-card" style="padding: 2.5rem 2rem;">
+                    <h4 style="font-size: 1.3rem; margin-bottom: 1rem;">Prof. (Dr.) Basanna Patagundi</h4>
+                    <p style="font-size: 1rem; line-height: 1.8;">Professor<br>School of Management Studies,<br>NFSU Delhi Campus</p>
+                </div>
+                
+                <div class="name-card" style="padding: 2.5rem 2rem;">
+                    <h4 style="font-size: 1.3rem; margin-bottom: 1rem;">Dr. Mradul Singh</h4>
+                    <p style="font-size: 1rem; line-height: 1.8;">Assistant Professor<br>School of Law, Forensic Justice & Policy Studies,<br>NFSU Delhi Campus</p>
+                </div>
+                
+                <div class="name-card" style="padding: 2.5rem 2rem;">
+                    <h4 style="font-size: 1.3rem; margin-bottom: 1rem;">Mr. Rithin Joseph</h4>
+                    <p style="font-size: 1rem; line-height: 1.8;">Assistant Professor<br>School of Behavioural Forensics,<br>NFSU Delhi Campus</p>
+                </div>
+                
+                <div class="name-card" style="padding: 2.5rem 2rem;">
+                    <h4 style="font-size: 1.3rem; margin-bottom: 1rem;">Ms. Vernika Mehta</h4>
+                    <p style="font-size: 1rem; line-height: 1.8;">Assistant Professor<br>School of Forensic Science,<br>NFSU Delhi Campus</p>
+                </div>
+                
+                <div class="name-card" style="padding: 2.5rem 2rem;">
+                    <h4 style="font-size: 1.3rem; margin-bottom: 1rem;">Ms. Vidushi Jain</h4>
+                    <p style="font-size: 1rem; line-height: 1.8;">Research Scholar<br>School of Behavioural Forensics,<br>NFSU Delhi Campus</p>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- ============================================
+             FACULTY COORDINATORS - COMPACT FORMAT
+             ============================================ -->
         <div class="team-category">
             <h3 class="team-category-title">Faculty Coordinators</h3>
-            <div class="team-grid coordinators-grid">
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/sweety.jpg" alt="Sweety Sharma" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Dr. Sweety Sharma</h4>
-                    <p class="team-role">Assistant Professor</p>
+            
+            <!-- 1. Judges and Speakers Committee -->
+            <div class="committee-group">
+                <h4 class="committee-group-title">Judges and Speakers Committee</h4>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Convenors:</p>
+                    <p class="committee-names">Prof. (Dr.) M. C. Joshi, Prof. (Dr.) Sudhir Sharma</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Co-Convenor:</p>
+                    <p class="committee-names">Dr. Hunny Matiyani</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Members:</p>
+                    <p class="committee-names">Dr. Tanya Chauhan, Dr. Tilak Ram Chandrakar</p>
+                </div>
+            </div>
+
+            <!-- 2. Crime Scene Management Committee -->
+            <div class="committee-group">
+                <h4 class="committee-group-title">Crime Scene Management Committee</h4>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Convenors:</p>
+                    <p class="committee-names">Prof. (Dr.) R.K. Sarin, Prof. (Dr.) Sudhir Sharma</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Co-Convenor:</p>
+                    <p class="committee-names">Dr. Neha Tomar</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Members:</p>
+                    <p class="committee-names">Prof. (Dr.) Yashwant Nagle, Dr. Manu Sharma, Dr. Tanvi Yadav, Dr. Brahm Prakash, Dr. Neha Singh, Dr. Tilak Chandrakar, Dr. Rutwik Shedge, Dr. Megha Chauhan</p>
+                </div>
+            </div>
+
+            <!-- 3. Sponsorship Committee -->
+            <div class="committee-group">
+                <h4 class="committee-group-title">Sponsorship Committee</h4>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Convenors:</p>
+                    <p class="committee-names">Prof. (Dr.) R.K. Sarin, Prof. (Dr.) M. C. Joshi</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Co-Convenor:</p>
+                    <p class="committee-names">Dr. Manu Sharma</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Members:</p>
+                    <p class="committee-names">Dr. Pankaj Sharma, Dr. Veeravel V., Mr. Rithin Joseph, Dr. Virendra Chavda</p>
+                </div>
+            </div>
+
+            <!-- 4. Finance and Accounts Committee -->
+            <div class="committee-group">
+                <h4 class="committee-group-title">Finance and Accounts Committee</h4>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Convenor:</p>
+                    <p class="committee-names">Mr. Harsh Kapoor</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Members:</p>
+                    <p class="committee-names">Mr. Mithilesh Khatwani, Mr. Priyanshu Joshi, Mr. Sanjeev Kumar, Mr. Vipin Goyal, Mr. Aditya Pande</p>
+                </div>
+            </div>
+
+            <!-- 5. Printing Committee -->
+            <div class="committee-group">
+                <h4 class="committee-group-title">Printing Committee</h4>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Convenor:</p>
+                    <p class="committee-names">Dr. Navtika Singh Nautiyal</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Members:</p>
+                    <p class="committee-names">Dr. Rohit Kanojia, Dr. Vikas Rai, Ms. Ridhima Singh, Mr. Sudhir, Mr. Sonu Kumar</p>
+                </div>
+            </div>
+
+            <!-- 6. Venue & Dias Committee -->
+            <div class="committee-group">
+                <h4 class="committee-group-title">Venue & Dias Committee</h4>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Convenor:</p>
+                    <p class="committee-names">Dr. Richa Rohatgi</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Members:</p>
+                    <p class="committee-names">Dr. Tirupathi Chellapalli, Dr. Parul Arora, Ms. Vernika Mehta, Ms. Nishtha Grover, Mr. Mrinal Mishra, Mr. Harsh Kapoor, Mr. Priyanshu Joshi, Mr. Sonu Kumar</p>
+                </div>
+            </div>
+
+            <!-- 7. Accommodation Committee -->
+            <div class="committee-group">
+                <h4 class="committee-group-title">Accommodation Committee</h4>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Convenor:</p>
+                    <p class="committee-names">Dr. Trikalagya Tiwari</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Members:</p>
+                    <p class="committee-names">Dr. Mradul Singh, Mr. Harsh Kapoor, Mr. Priyanshu Joshi, Mr. Harshit Gajjar, Mr. Rajan Kumar, Mr. Amit Kumar</p>
+                </div>
+            </div>
+
+            <!-- 8. Registration & Reception Committee -->
+            <div class="committee-group">
+                <h4 class="committee-group-title">Registration & Reception Committee</h4>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Convenor:</p>
+                    <p class="committee-names">Dr. Manu Sharma</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Members:</p>
+                    <p class="committee-names">Dr. Arpit Sharma, Mr. Arjun Harjan, Ms. Khushali Kumar, Mr. Vijay Singh</p>
+                </div>
+            </div>
+
+            <!-- 9. Food Committee -->
+            <div class="committee-group">
+                <h4 class="committee-group-title">Food Committee</h4>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Convenor:</p>
+                    <p class="committee-names">Dr. Mohammed Subhan Attar</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Members:</p>
+                    <p class="committee-names">Ms. Kanupriya Shrivastava, Mr. Priyanshu Joshi, Mr. Sonu Kumar, Mr. Deepak Kumar</p>
+                </div>
+            </div>
+
+            <!-- 10. Transportation Committee -->
+            <div class="committee-group">
+                <h4 class="committee-group-title">Transportation Committee</h4>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Convenor:</p>
+                    <p class="committee-names">Dr. Chothmal Kumawat</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Members:</p>
+                    <p class="committee-names">Ms. Aashi Yadav, Mr. Sonu Sharma, Mr. Amit Kumar, Mr. Vijay Singh</p>
+                </div>
+            </div>
+
+            <!-- 11. IT and Live Streaming Committee -->
+            <div class="committee-group">
+                <h4 class="committee-group-title">IT and Live Streaming Committee</h4>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Convenor:</p>
+                    <p class="committee-names">Dr. Brahm Prakash</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Members:</p>
+                    <p class="committee-names">Dr. Santroop Tanwar, Dr. Bhagvanbhai Karnavat, Mr. Gaurav Goyal, Mr. Jitender Kumar, Mr. Yogesh</p>
+                </div>
+            </div>
+
+            <!-- 12. Media & Rapporteuring Committee -->
+            <div class="committee-group">
+                <h4 class="committee-group-title">Media & Rapporteuring Committee</h4>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Convenor:</p>
+                    <p class="committee-names">Dr. Archana Patel</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Members:</p>
+                    <p class="committee-names">Dr. Arati Sharma, Mr. Aditya Partap Singh, Ms. Mahua Bhattacharyya, Mr. Yogesh</p>
+                </div>
+            </div>
+
+            <!-- 13. Cultural Committee -->
+            <div class="committee-group">
+                <h4 class="committee-group-title">Cultural Committee</h4>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Convenor:</p>
+                    <p class="committee-names">Dr. Somabha Bandopadhyay</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Members:</p>
+                    <p class="committee-names">Dr. Priyanka Samuel, Ms. Garima Puri</p>
+                </div>
+            </div>
+
+            <!-- 14. Help Desk and Medical Assistance -->
+            <div class="committee-group">
+                <h4 class="committee-group-title">Help Desk and Medical Assistance</h4>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Convenor:</p>
+                    <p class="committee-names">Dr. Tanvi Yadav</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Members:</p>
+                    <p class="committee-names">Dr. Vandana Shriharsh, Ms. Khushali Kumar</p>
+                </div>
+            </div>
+
+            <!-- 15. Moot Court Committee -->
+            <div class="committee-group">
+                <h4 class="committee-group-title">Moot Court Committee</h4>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Convenor:</p>
+                    <p class="committee-names">Dr. Arpit Sharma</p>
+                </div>
+                <div class="committee-role-group">
+                    <p class="committee-role-label">Members:</p>
+                    <p class="committee-names">Dr. Tanvi Yadav, Dr. Somabha Bandopadhyay</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ============================================
+             STUDENT COORDINATORS - NAMES ONLY
+             ============================================ -->
+        <div class="team-category">
+            <h3 class="team-category-title">Student Coordinators</h3>
+            <div class="names-only-grid">
+                
+                <div class="name-card">
+                    <h4>Vidushi Jain</h4>
+                    <p>Inter Committee Coordinator &<br>Content Coordinator</p>
                 </div>
                 
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/rithin.jpg" alt="Rithin Joseph" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Mr. Rithin Joseph</h4>
-                    <p class="team-role">Assistant Professor</p>
+                <div class="name-card">
+                    <h4>Tamanna Khurana</h4>
+                    <p>Registration Coordinator &<br>Web Design Developer</p>
                 </div>
                 
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/mradul1.jpg" alt="Mradul Singh" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Dr. Mradul Singh</h4>
-                    <p class="team-role">Assistant Professor</p>
+                <div class="name-card">
+                    <h4>Shivani Patra</h4>
+                    <p>Registration Coordinator &<br>Content Coordinator</p>
                 </div>
+                
+                <div class="name-card">
+                    <h4>Vishnulal N</h4>
+                    <p>Web Design Developer</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Deepshikha Jana</h4>
+                    <p>Design & Media Coordinator</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Biplab Pradhan</h4>
+                    <p>Design & Media Coordinator</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Satakshi</h4>
+                    <p>Logistics Coordinator</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Somya Bhatt</h4>
+                    <p>Logistics Coordinator</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Sunidhi Nagpal</h4>
+                    <p>Registration Kits Coordinator</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Arjun Harjan</h4>
+                    <p>Online Competition Developer</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Ayushi Sinha</h4>
+                    <p>Online Competition Developer</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Sayantika Saha</h4>
+                    <p>Crime Scene Management Coordinator</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Butool Zaidi</h4>
+                    <p>Crime Scene Management Coordinator</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Shivang Tiwari</h4>
+                    <p>Food Committee Coordinator</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Gauri Singh Chauhan</h4>
+                    <p>Sponsorship Coordinator</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Yashica Sharma</h4>
+                    <p>Sponsorship Coordinator</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Ishitha Ralli</h4>
+                    <p>Creative Affairs Committee Coordinator</p>
+                </div>
+                
+                <div class="name-card">
+                    <h4>Varna Vijayan</h4>
+                    <p>Creative Affairs Committee Coordinator</p>
+                </div>
+                
             </div>
         </div>
 
-        <!-- Committee Coordinators -->
-        <div class="team-category">
-            <h3 class="team-category-title">Committee Coordinators</h3>
-            <div class="team-grid members-grid">
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/vidushi.jpg" alt="Vidushi Jain" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Vidushi Jain</h4>
-                    <p class="team-role">Inter Committee & Content Coordinator</p>
-                </div>
-                
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/tamanna.jpg" alt="Tamanna Khurana" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Tamanna Khurana</h4>
-                    <p class="team-role">Registration & Web Design Developer</p>
-                </div>
-                
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/shivani.jpg" alt="Shivani Patra" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Shivani Patra</h4>
-                    <p class="team-role">Registration & Content Coordinator</p>
-                </div>
-                
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/vishnu.jpg" alt="Vishnulal N" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Vishnulal N</h4>
-                    <p class="team-role">Web Design Developer</p>
-                </div>
-                
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/deepshikha.jpg" alt="Deepshikha Jana" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Deepshikha Jana</h4>
-                    <p class="team-role">Design & Media Coordinator</p>
-                </div>
-                
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/biplab.jpg" alt="Biplab" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Biplab Pradhan</h4>
-                    <p class="team-role">Design & Media Coordinator</p>
-                </div>
-                
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/satakshi.jpg" alt="Satakshi Dwivedi" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Satakshi</h4>
-                    <p class="team-role">Logistics Coordinator</p>
-                </div>
-                
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/somya.jpg" alt="Somya Bhatt" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Somya Bhatt</h4>
-                    <p class="team-role">Logistics Coordinator</p>
-                </div>
-                
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/sunidhi.jpg" alt="Sunidhi Nagpal" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Sunidhi Nagpal</h4>
-                    <p class="team-role">Registration Kits Coordinator</p>
-                </div>
-                
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/arjun.jpg" alt="Arjun Hargan" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Arjun Hargan</h4>
-                    <p class="team-role">Online Competition Developer</p>
-                </div>
-                
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/sayantika.jpg" alt="Sayantika Saha" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Sayantika Saha</h4>
-                    <p class="team-role">Online Competition Developer</p>
-                </div>
-                
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/butool.jpg" alt="Butool Zaidi" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Butool Zaidi</h4>
-                    <p class="team-role">Crime Scene Management Coordinator</p>
-                </div>
-                
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/ayushi.jpg" alt="Ayushi Sinha" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Ayushi Sinha</h4>
-                    <p class="team-role">Crime Scene Management Coordinator</p>
-                </div>
-                
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/shivang.jpg" alt="Shivang" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Shivang Tiwari</h4>
-                    <p class="team-role">Food Committee Coordinator</p>
-                </div>
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/gauri.jpg" alt="Gauri" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Gauri Singh Chauhan</h4>
-                    <p class="team-role">Sponsorship Committee Coordinator</p>
-                </div>
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/yashica.jpg" alt="Yashica" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Yashica Sharma</h4>
-                    <p class="team-role">Sponsorship Committee Coordinator</p>
-                </div>
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/varna.jpg" alt="Varna" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Varna Vijayan</h4>
-                    <p class="team-role">Creative Affairs Committee Coordinator</p>
-                </div>
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/ishitha.jpg" alt="ishitha" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Ishitha Ralli</h4>
-                    <p class="team-role">Creative Affairs Committee Coordinator</p>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
+
 
     <section class="gallery" id="gallery">
         <div class="container">
