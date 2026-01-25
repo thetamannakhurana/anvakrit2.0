@@ -3018,33 +3018,37 @@ span[class*="domain"] {
            </p>
 
     
-    <!-- 2. Register as Attendee -->
+    <div class="hero-cta hero-cta-vertical">
+    
+    <!-- 1. Register as Attendee -->
     <a href="#attendee-registration" class="btn-primary btn-full-width">
         👤 Register as Attendee
     </a>
-    
-    <!-- 3. Operational Protocols -->
+
+    <!-- 2. Operational Protocols -->
     <a href="#rules" class="btn-primary btn-secondary btn-full-width">
         📋 Operational Protocols
     </a>
-    
-    <!-- 4. Download Brochure -->
+
+    <!-- 3. Download Brochure -->
     <a href="documents/Anvakrit-2.0-brochure.pdf" download class="btn-primary btn-secondary btn-full-width">
         📄 Download Detailed Brochure
     </a>
-    
-    <!-- 5. Results Dropdown -->
-    <div class="hero-results-dropdown">
+
+    <!-- 4. View Results Dropdown -->
+    <div class="hero-results-dropdown" style="width: 100%; max-width: 500px;">
         <button class="btn-results-dropdown" onclick="toggleResultsDropdown()">
             📊 View Results ▼
         </button>
         <div class="results-dropdown-menu" id="heroResultsMenu">
-            <a href="results.html">Round 1 Results</a>
-            <a href="results-round2.html">Round 2 Results</a>
-            <a href="Answer Key_Round 1_Category 1.pdf" target="_blank">Answer Key</a>
+            <a href="results.html">📈 Round 1 Results - Top 39 Teams</a>
+            <a href="results-round2.html">🏆 Round 2 Results - Top 21 Finalists</a>
+            <a href="Answer KeyRound 1Category 1.pdf" target="_blank">📝 Download Answer Key</a>
         </div>
     </div>
+
 </div>
+
 
 
     </section>
@@ -4860,10 +4864,12 @@ window.audioToggle = () => {
     }
 };
 
-// HERO RESULTS DROPDOWN TOGGLE
+// HERO RESULTS DROPDOWN TOGGLE - FIXED
 function toggleResultsDropdown() {
     const menu = document.getElementById('heroResultsMenu');
-    menu.classList.toggle('active');
+    if (menu) {
+        menu.classList.toggle('active');
+    }
 }
 
 // Close dropdown when clicking outside
@@ -4871,9 +4877,18 @@ document.addEventListener('click', function(event) {
     const dropdown = document.querySelector('.hero-results-dropdown');
     const menu = document.getElementById('heroResultsMenu');
     
-    if (dropdown && !dropdown.contains(event.target)) {
-        menu.classList.remove('active');
+    if (!dropdown) return;
+    
+    if (!dropdown.contains(event.target)) {
+        if (menu) {
+            menu.classList.remove('active');
+        }
     }
+});
+
+// Prevent closing when clicking inside dropdown
+document.querySelector('.hero-results-dropdown')?.addEventListener('click', function(e) {
+    e.stopPropagation();
 });
 
     </script>
