@@ -1443,7 +1443,7 @@ nav {
         }
 
         .gallery-item::after {
-            content: '🔍';
+            content: 'ðŸ”';
             position: absolute;
             top: 50%;
             left: 50%;
@@ -2698,256 +2698,6 @@ span[class*="domain"] {
         transform: scale(1.04);
     }
 }
-/* ==========================================
-   NAME-ONLY CARDS - NO PHOTOS
-   ========================================== */
-.names-only-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.name-card {
-    background: rgba(13, 27, 42, 0.4);
-    border: 2px solid rgba(0, 212, 255, 0.2);
-    border-radius: 15px;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-}
-
-.name-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--neon-blue);
-    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
-}
-
-.name-card h4 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.15rem;
-    color: var(--white);
-    margin-bottom: 0.8rem;
-    font-weight: 700;
-}
-
-.name-card p {
-    color: var(--gray-light);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin: 0;
-}
-
-@media (max-width: 768px) {
-    .names-only-grid {
-        grid-template-columns: 1fr;
-        gap: 1.25rem;
-    }
-    
-    .name-card {
-        padding: 1.5rem 1rem;
-    }
-}
-/* ==========================================
-   NAME-ONLY CARDS - NO PHOTOS
-   ========================================== */
-.names-only-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.name-card {
-    background: rgba(13, 27, 42, 0.4);
-    border: 2px solid rgba(0, 212, 255, 0.2);
-    border-radius: 15px;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-}
-
-.name-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--neon-blue);
-    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
-}
-
-.name-card h4 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.15rem;
-    color: var(--white);
-    margin-bottom: 0.8rem;
-    font-weight: 700;
-}
-
-.name-card p {
-    color: var(--gray-light);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin: 0;
-}
-
-/* Committee Section Styles */
-.committee-group {
-    background: rgba(13, 27, 42, 0.3);
-    border: 1px solid rgba(0, 212, 255, 0.15);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.committee-group-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.3rem;
-    color: var(--neon-cyan);
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.committee-role-group {
-    margin-bottom: 1rem;
-}
-
-.committee-role-label {
-    font-size: 0.9rem;
-    color: var(--neon-blue);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 0.5rem;
-}
-
-.committee-names {
-    color: var(--gray-light);
-    font-size: 1rem;
-    line-height: 1.8;
-}
-
-@media (max-width: 768px) {
-    .names-only-grid {
-        grid-template-columns: 1fr;
-        gap: 1.25rem;
-    }
-    
-    .name-card {
-        padding: 1.5rem 1rem;
-    }
-    
-    .committee-group {
-        padding: 1.25rem;
-    }
-}
-/* HERO RESULTS DROPDOWN */
-.hero-results-dropdown {
-    position: relative;
-    width: 100%;
-}
-
-.btn-results-dropdown {
-    width: 100%;
-    padding: 1.2rem 2rem;
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-    border: 2px solid rgba(59, 130, 246, 0.5);
-    border-radius: 15px;
-    color: var(--white);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-}
-
-.btn-results-dropdown:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
-    background: linear-gradient(135deg, #2563eb, #60a5fa);
-}
-
-.results-dropdown-menu {
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    left: 0;
-    width: 100%;
-    background: rgba(10, 15, 26, 0.98);
-    border: 2px solid rgba(59, 130, 246, 0.3);
-    border-radius: 12px;
-    padding: 0.5rem 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-    z-index: 100;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.results-dropdown-menu.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.results-dropdown-menu a {
-    display: block;
-    padding: 1rem 1.5rem;
-    color: var(--white);
-    text-decoration: none;
-    transition: all 0.2s ease;
-    border-radius: 8px;
-    margin: 0 0.5rem;
-}
-
-.results-dropdown-menu a:hover {
-    background: rgba(59, 130, 246, 0.2);
-    color: var(--neon-cyan);
-    transform: translateX(5px);
-}
-
-/* Prize Pool Banner Styling (already exists, but ensure it's styled) */
-.prize-pool-banner {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(0, 212, 255, 0.15));
-    border: 2px solid var(--neon-cyan);
-    border-radius: 15px;
-    padding: 1.2rem 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.prize-text {
-    font-size: 1rem;
-    color: var(--white);
-    font-weight: 600;
-}
-
-.prize-amount {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: var(--neon-cyan);
-    text-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
-}
-
-@media (max-width: 768px) {
-    .prize-amount {
-        font-size: 1.5rem;
-    }
-    
-    .btn-results-dropdown {
-        font-size: 1rem;
-        padding: 1rem 1.5rem;
-    }
-}
 
     </style>
         <!-- Background Audio -->
@@ -3023,7 +2773,7 @@ span[class*="domain"] {
              <input type="text" 
                  id="siteSearch" 
                  class="search-input" 
-                 placeholder="🔍 Search: rules, dates, rounds, categories..."
+                 placeholder="ðŸ” Search: rules, dates, rounds, categories..."
                  autocomplete="off">
             <div id="searchResults" class="search-results"></div>
        </div>
@@ -3036,47 +2786,46 @@ span[class*="domain"] {
             <p class="hero-subtitle">National Crime Scene Investigation Competition</p>
             
             <p class="hero-dates">
-             📍 <a href="https://maps.app.goo.gl/eD2Z6Yhrdo8k9kDcA" target="_blank" rel="noopener noreferrer" class="venue-link">National Forensic Sciences University, Delhi</a>
+             ðŸ“ <a href="https://maps.app.goo.gl/eD2Z6Yhrdo8k9kDcA" target="_blank" rel="noopener noreferrer" class="venue-link">National Forensic Sciences University, Delhi</a>
               <br>
-              📅 February 11-13, 2026
+              ðŸ“… February 11-13, 2026
           </p>
-           
+           <p class="hero-prize" style="font-size: 1.5rem; color: var(--neon-cyan); margin: 1rem 0; font-weight: 700;">
+             <div class="prize-pool-banner">
+                 <span class="prize-text">Total Prize Pool:</span>
+                 <span class="prize-amount">â‚¹2 LAKHS</span>
+               </div>
+           </p>
 
-<div class="hero-cta hero-cta-vertical">
-    <!-- 1. Prize Pool (Display Only) -->
-    <div class="prize-pool-banner">
-        <span class="prize-text">Total Prize Pool:</span>
-        <span class="prize-amount">₹2 LAKHS</span>
-    </div>
-    
-    <!-- 2. Register as Attendee -->
-    <a href="#attendee-registration" class="btn-primary btn-full-width">
-        👤 Register as Attendee
+<div class="results-button-wrapper">
+    <a href="results.html" class="btn-results">
+        ðŸ† Round 1 Results - Top 39 Teams Qualified
     </a>
-    
-    <!-- 3. Operational Protocols -->
-    <a href="#rules" class="btn-primary btn-secondary btn-full-width">
-        📋 Operational Protocols
+</div>
+<div class="results-button-wrapper" style="margin-top: 1rem;">
+    <a href="results-round2.html" class="btn-results" style="background: linear-gradient(135deg, #006aff 0%, #4e95ff 100%); border-color: #00b7ff;">
+        ðŸ† Round 2 Results - Top 21 Finalists
     </a>
-    
-    <!-- 4. Download Brochure -->
-    <a href="documents/Anvakrit-2.0-brochure.pdf" download class="btn-primary btn-secondary btn-full-width">
-        📄 Download Detailed Brochure
+</div>
+<!-- ========================================
+     ANSWER KEY BUTTON (LIVE NOW)
+     ======================================== -->
+<div class="results-button-wrapper">
+    <a href="Answer Key_Round 1_Category 1.pdf" class="btn-results">
+        ðŸ“„ Download Answer Key - Round 1
     </a>
-    
-    <!-- 5. Results Dropdown -->
-    <div class="hero-results-dropdown">
-        <button class="btn-results-dropdown" onclick="toggleResultsDropdown()">
-            📊 View Results ▼
-        </button>
-        <div class="results-dropdown-menu" id="heroResultsMenu">
-            <a href="results.html">Round 1 Results</a>
-            <a href="results-round2.html">Round 2 Results</a>
-            <a href="Answer Key_Round 1_Category 1.pdf" target="_blank">Answer Key</a>
-        </div>
-    </div>
 </div>
 
+
+            <div class="hero-cta hero-cta-vertical">
+              <a href="#categories" class="btn-primary btn-full-width">Register Now</a>
+              <a href="#rules" class="btn-primary btn-secondary btn-full-width">Operational Protocols</a>
+              <a href="documents/Anvakrit-2.0-brochure.pdf" download class="btn-primary btn-secondary btn-full-width">ðŸ“„ Download Detailed Brochure</a>
+           </div>
+  
+
+        </div>
+    </section>
 
     <section class="about" id="about">
         <div class="container">
@@ -3092,41 +2841,41 @@ span[class*="domain"] {
             </div>
 
             <div class="about-description">
-                <p>This year, the competition extends across all domains of forensic expertise, including forensic science, criminology, forensic accounting, and law, with a special emphasis on cybercrime and digital forensics. The theme, “Unmask the Truth in Bytes,” invites participants to tackle complex investigations that go beyond the traditional crime scene, venturing into the fast-evolving world where every clue traced physically or digitally strings together the pieces of a puzzle which shall unfurl the truth.</p>
+                <p>This year, the competition extends across all domains of forensic expertise, including forensic science, criminology, forensic accounting, and law, with a special emphasis on cybercrime and digital forensics. The theme, â€œUnmask the Truth in Bytes,â€ invites participants to tackle complex investigations that go beyond the traditional crime scene, venturing into the fast-evolving world where every clue traced physically or digitally strings together the pieces of a puzzle which shall unfurl the truth.</p>
             </div>
             <div class="about-collaboration" style="margin-top: 3rem; padding: 2rem; background: rgba(13, 27, 42, 0.4); border-left: 4px solid var(--neon-cyan); border-radius: 10px;">
-  <h3 class="about-nfsu-title" style="color: var(--neon-cyan);">🤝 Organized in Collaboration With</h3>
+  <h3 class="about-nfsu-title" style="color: var(--neon-cyan);">ðŸ¤ Organized in Collaboration With</h3>
   <p style="font-size: 1.1rem; line-height: 1.8;">
     This prestigious event is organized by <strong>National Forensic Sciences University (NFSU)</strong> in collaboration with:
   </p>
   <ul style="list-style: none; padding: 0; margin-top: 1.5rem;">
     <li style="padding: 0.5rem 0; font-size: 1.1rem;">
-      🔵 <strong>Delhi Police</strong>
+      ðŸ”µ <strong>Delhi Police</strong>
     </li>
     <li style="padding: 0.5rem 0; font-size: 1.1rem;">
-      🔵 <strong>Bureau of Police Research and Development (BPRD)</strong>
+      ðŸ”µ <strong>Bureau of Police Research and Development (BPRD)</strong>
     </li>
     <li style="padding: 0.5rem 0; font-size: 1.1rem;">
-      🔵 <strong>National Crime Records Bureau (NCRB)</strong>
+      ðŸ”µ <strong>National Crime Records Bureau (NCRB)</strong>
     </li>
   </ul>
 </div>
 
             <div class="highlights-grid">
                 <div class="highlight-card">
-                    <div class="highlight-icon">🎯</div>
+                    <div class="highlight-icon">ðŸŽ¯</div>
                     <h3>Mission</h3>
                     <p>Test your investigative skills through multi-scene investigations with domain-integrated challenges in real-world crime scenarios.</p>
                 </div>
 
                 <div class="highlight-card">
-                    <div class="highlight-icon">🏆</div>
+                    <div class="highlight-icon">ðŸ†</div>
                     <h3>Competition Format</h3>
-                    <p>Three categories for different expertise levels with exciting prizes totaling <strong>₹2 Lakhs</strong> across all categories.</p>
+                    <p>Three categories for different expertise levels with exciting prizes totaling <strong>â‚¹2 Lakhs</strong> across all categories.</p>
                 </div>
 
                 <div class="highlight-card">
-                    <div class="highlight-icon">🎓</div>
+                    <div class="highlight-icon">ðŸŽ“</div>
                     <h3>Experience & Learning</h3>
                     <p>Held at NFSU Delhi Campus with state-of-the-art facilities, workshops, and immersive crime scene challenges.</p>
                 </div>
@@ -3145,7 +2894,7 @@ span[class*="domain"] {
             <div class="rules-content">
                 <div class="rules-grid">
                     <div class="rule-card">
-                        <h3>🔒 Standard Protocols</h3>
+                        <h3>ðŸ”’ Standard Protocols</h3>
                         <ul>
                             <li>Valid institutional/school ID card <strong>mandatory</strong> for offline rounds</li>
                             <li>Registration is <strong>non-refundable</strong> once confirmed</li>
@@ -3156,7 +2905,7 @@ span[class*="domain"] {
                     </div>
 
                     <div class="rule-card">
-                        <h3>🎯 Competition Conduct</h3>
+                        <h3>ðŸŽ¯ Competition Conduct</h3>
                         <ul>
                             <li>Maintain integrity and professionalism throughout amongst team members and other teams</li>
                             <li>Participants must strictly follow instructions of the Organizing Committee</li>
@@ -3168,7 +2917,7 @@ span[class*="domain"] {
                     </div>
 
                     <div class="rule-card">
-                        <h3>📋 What's Included</h3>
+                        <h3>ðŸ“‹ What's Included</h3>
                         <ul>
                             <li>Registration Kits</li>
                             <li>All materials required for the competition (except laptops; participants are requested to carry their laptops if required, groups may share/carry at least 1)</li>
@@ -3178,17 +2927,17 @@ span[class*="domain"] {
                             <li>Certificates of Guest Volunteer (provided participants opt for it)</li>
                             <li>Trophies/medals for the winning teams</li>
                             <li>Two meals per day during the event</li>
-                            <li><strong>Optional:</strong> Individual Accommodation at ₹500/day at first come first served basis</li>
+                            <li><strong>Optional:</strong> Individual Accommodation at â‚¹500/day at first come first served basis</li>
                         </ul>
                     </div>
 
                    <div class="rule-card">
-                     <h3>💰 Prize Pool</h3>
+                     <h3>ðŸ’° Prize Pool</h3>
                      <ul>
-                         <li><strong>1st Prize – ₹50,000</strong></li>
-                         <li><strong>2nd Prize – ₹30,000</strong></li>
-                         <li><strong>3rd Prize – ₹20,000</strong></li>
-                         <li><strong>Total Prize Pool: ₹2 Lakhs</strong> 🎉</li>
+                         <li><strong>1st Prize â€“ â‚¹50,000</strong></li>
+                         <li><strong>2nd Prize â€“ â‚¹30,000</strong></li>
+                         <li><strong>3rd Prize â€“ â‚¹20,000</strong></li>
+                         <li><strong>Total Prize Pool: â‚¹2 Lakhs</strong> ðŸŽ‰</li>
                          <li>All participants receive Certificates of Participation</li>
                          <li>Guest Volunteer Certificates for Volunteers</li>
                        </ul>
@@ -3212,7 +2961,7 @@ span[class*="domain"] {
     <div class="categories-grid">
       <!-- Category I - Undergraduate Students -->
       <div class="category-card">
-        <div class="category-icon">🎓</div>
+        <div class="category-icon">ðŸŽ“</div>
         <h3>Category I</h3>
         <span class="category-label">Undergraduate Students</span>
         
@@ -3226,14 +2975,14 @@ span[class*="domain"] {
           <li><strong>Format:</strong> Case file investigation, poster presentation, on-campus CSI</li>
         </ul>
         
-        <div class="category-fee">₹1,000 per person</div>
+        <div class="category-fee">â‚¹1,000 per person</div>
         
         <a href="#" class="btn-primary" onclick="openModal('cat1Modal')">View Full Details</a>
       </div>
 
       <!-- Category II - Postgraduate & PhD Students ONLY -->
       <div class="category-card">
-        <div class="category-icon">📚</div>
+        <div class="category-icon">ðŸ“š</div>
         <h3>Category II</h3>
         <span class="category-label">Postgraduate & Ph.D. Students</span>
         
@@ -3248,14 +2997,14 @@ span[class*="domain"] {
           <li><strong>Note:</strong> Registration fee is inclusive of GST.</li>
         </ul>
         
-        <div class="category-fee">₹2,000 per person</div>
+        <div class="category-fee">â‚¹2,000 per person</div>
         
         <a href="#" class="btn-primary" onclick="openModal('cat2Modal')">View Full Details</a>
       </div>
 
       <!-- Category III - Professionals -->
       <div class="category-card">
-        <div class="category-icon">💼</div>
+        <div class="category-icon">ðŸ’¼</div>
         <h3>Category III</h3>
         <span class="category-label">Professionals</span>
         
@@ -3270,7 +3019,7 @@ span[class*="domain"] {
            <li><strong>Note:</strong> Registration fee is inclusive of GST.</li>
         </ul>
         
-        <div class="category-fee">₹2,000 per person</div>
+        <div class="category-fee">â‚¹2,000 per person</div>
         
         <a href="#" class="btn-primary" onclick="openModal('cat2Modal')">View Full Details</a>
       </div>
@@ -3338,445 +3087,283 @@ span[class*="domain"] {
 </section>
 
 
-<!-- FACULTY COORDINATORS SECTION -->
-<section class="team" id="team">
+<!-- Organizing Committee Section -->
+<section id="team" class="team">
     <div class="container">
         <div class="section-header">
-            <span class="section-label">The Team</span>
-            <h2 class="section-title">Meet Our Team</h2>
-            <p class="section-subtitle">The minds behind Anvakrit 2.0</p>
+            <span class="section-label">Meet The Team</span>
+            <h2 class="section-title">Organizing Committee</h2>
+            <p class="section-subtitle">Meet the minds behind Anvakrit 2.0</p>
         </div>
 
-        <!-- ============================================
-             PATRONS - WITH PHOTOS
-             ============================================ -->
-        <div class="team-category">
-            <h3 class="team-category-title">Leadership</h3>
-            <div class="leadership-grid">
-                
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/vyas.jpg" alt="Dr. J.M. Vyas" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Padma Shri Awardee Dr. J.M. Vyas</h4>
-                    <p class="team-role">Chief Patron</p>
-                    <p style="color: var(--gray); font-size: 0.9rem;">Founder Vice Chancellor, NFSU</p>
+<!-- Patrons -->
+<div class="team-category">
+    <h3 class="team-category-title">Patrons</h3>
+    <div class="team-grid leadership-grid">
+        
+        <!-- 1. Chief Patron -->
+        <div class="patron-item">
+            <h6 class="patron-role-label">CHIEF PATRON</h6>
+            <div class="team-card-square">
+                <div class="team-img-circle">
+                    <img src="images/team/vyas.jpg" alt="Padma Shree Dr. J M Vyas" onerror="this.src='images/placeholder.jpg'">
                 </div>
-
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/purvi.jpg" alt="Prof. Dr. Purvi Pokhariyal" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Prof. (Dr.) Purvi Pokhariyal</h4>
-                    <p class="team-role">Patron</p>
-                    <p style="color: var(--gray); font-size: 0.9rem;">Campus Director, NFSU Delhi Campus</p>
-                </div>
-
-                <div class="team-card-square">
-                    <div class="team-img-circle">
-                        <img src="images/team/minakshi.jpg" alt="Prof. Dr. Minakshi Sinha" onerror="this.src='images/placeholder.jpg'">
-                    </div>
-                    <h4>Prof. (Dr.) Minakshi Sinha</h4>
-                    <p class="team-role">Chair</p>
-                    <p style="color: var(--gray); font-size: 0.9rem;">School of Behavioural Forensics, NFSU Delhi Campus</p>
-                </div>
-
+                <h4>Dr. J. M. Vyas</h4>
+                <p class="team-role">Padma Shri Awardee</p>
+                <p class="team-role">Hon'ble Vice Chancellor</p>
+                <p class="team-role">National Forensic Sciences University</p>
             </div>
         </div>
-
-        <!-- ============================================
-             INTERNAL ADVISORY COMMITTEE - NAMES ONLY
-             ============================================ -->
-        <div class="team-category">
-            <h3 class="team-category-title">Internal Advisory Committee</h3>
-            <div class="names-only-grid">
-                
-                <div class="name-card">
-                    <h4>Prof. (Dr.) R. K. Sarin</h4>
-                    <p>Professor of Practice<br>School of Forensic Science<br>NFSU Delhi Campus</p>
+        
+        <!-- 2. Patron -->
+        <div class="patron-item">
+            <h6 class="patron-role-label">PATRON</h6>
+            <div class="team-card-square">
+                <div class="team-img-circle">
+                    <img src="images/team/purvi.jpg" alt="Prof. Dr. Purvi Pokhariyal" onerror="this.src='images/placeholder.jpg'">
                 </div>
-                
-                <div class="name-card">
-                    <h4>Prof. (Dr.) M. C. Joshi</h4>
-                    <p>Professor of Practice<br>School of Forensic Science<br>NFSU Delhi Campus</p>
-                </div>
-                
-                <div class="name-card">
-                    <h4>Prof. (Dr.) Sudhir Sharma</h4>
-                    <p>Professor of Practice<br>School of Forensic Science<br>NFSU Delhi Campus</p>
-                </div>
-                
-                <div class="name-card">
-                    <h4>Prof. (Dr.) Yashwant K Nagle</h4>
-                    <p>Professor of Practice<br>School of Behavioural Forensics<br>NFSU Delhi Campus</p>
-                </div>
-                
-                <div class="name-card">
-                    <h4>Shri Jaspal Singh, IPS (Retd.)</h4>
-                    <p>Chair Professor<br>School of Behavioural Forensics<br>NFSU Delhi Campus</p>
-                </div>
-                
-                <div class="name-card">
-                    <h4>Prof. (Dr.) Basanna Patagundi</h4>
-                    <p>Professor<br>School of Management Studies<br>NFSU Delhi Campus</p>
-                </div>
-                
+                <h4>Prof. (Dr.) Purvi Pokhariyal</h4>
+                <p class="team-role">Campus Director, National Forensic Sciences University, Delhi Campus</p>
             </div>
         </div>
-
-        <!-- ============================================
-             ORGANIZING COMMITTEE - BIG CARDS (Like Brochure)
-             ============================================ -->
-        <div class="team-category">
-            <h3 class="team-category-title">Organizing Committee</h3>
-            <div class="names-only-grid" style="max-width: 1400px;">
-                
-                <div class="name-card" style="padding: 2.5rem 2rem;">
-                    <h4 style="font-size: 1.3rem; margin-bottom: 1rem;">Prof. (Dr.) Basanna Patagundi</h4>
-                    <p style="font-size: 1rem; line-height: 1.8;">Professor<br>School of Management Studies,<br>NFSU Delhi Campus</p>
+        
+        <!-- 3. Chair -->
+        <div class="patron-item">
+            <h6 class="patron-role-label">CHAIR</h6>
+            <div class="team-card-square">
+                <div class="team-img-circle">
+                    <img src="images/team/minakshi.jpg" alt="Prof Dr. Minakshi Sinha" onerror="this.src='images/placeholder.jpg'">
                 </div>
-                
-                <div class="name-card" style="padding: 2.5rem 2rem;">
-                    <h4 style="font-size: 1.3rem; margin-bottom: 1rem;">Dr. Mradul Singh</h4>
-                    <p style="font-size: 1rem; line-height: 1.8;">Assistant Professor<br>School of Law, Forensic Justice & Policy Studies,<br>NFSU Delhi Campus</p>
-                </div>
-                
-                <div class="name-card" style="padding: 2.5rem 2rem;">
-                    <h4 style="font-size: 1.3rem; margin-bottom: 1rem;">Mr. Rithin Joseph</h4>
-                    <p style="font-size: 1rem; line-height: 1.8;">Assistant Professor<br>School of Behavioural Forensics,<br>NFSU Delhi Campus</p>
-                </div>
-                
-                <div class="name-card" style="padding: 2.5rem 2rem;">
-                    <h4 style="font-size: 1.3rem; margin-bottom: 1rem;">Ms. Vernika Mehta</h4>
-                    <p style="font-size: 1rem; line-height: 1.8;">Assistant Professor<br>School of Forensic Science,<br>NFSU Delhi Campus</p>
-                </div>
-                
-                <div class="name-card" style="padding: 2.5rem 2rem;">
-                    <h4 style="font-size: 1.3rem; margin-bottom: 1rem;">Ms. Vidushi Jain</h4>
-                    <p style="font-size: 1rem; line-height: 1.8;">Research Scholar<br>School of Behavioural Forensics,<br>NFSU Delhi Campus</p>
-                </div>
-                
+                <h4>Prof. (Dr.) Minakshi Sinha</h4>
+                <p class="team-role">School of Behavorial Forensics, National Forensic Sciences University, Delhi Campus</p>
             </div>
         </div>
+        
+    </div>
+</div>
+<!-- Advisory Committee -->
+<div class="team-category advisory-committee">
+    <h3 class="team-category-title">Internal Advisory Committee</h3>
+    <div class="team-grid members-grid">
+        <div class="team-card-square">
+            <div class="team-img-circle">
+                <img src="images/team/sarin.jpg" alt="Prof. Dr. R. K. Sarin" onerror="this.src='images/placeholder.jpg'">
+            </div>
+            <h4>Prof. (Dr.) R. K. Sarin</h4>
+            <p class="team-role">Professor of Practice, National Forensic Sciences University, Delhi Campus</p>
+        </div>
+        
+        <div class="team-card-square">
+            <div class="team-img-circle">
+                <img src="images/team/joshi.jpg" alt="Prof. Dr. M. C. Joshi" onerror="this.src='images/placeholder.jpg'">
+            </div>
+            <h4>Prof. (Dr.) M. C. Joshi</h4>
+            <p class="team-role">Professor of Practice, National Forensic Sciences University, Delhi Campus</p>
+        </div>
+        
+        <div class="team-card-square">
+            <div class="team-img-circle">
+                <img src="images/team/sudhir.jpg" alt="Prof. Dr. Sudhir Sharma" onerror="this.src='images/placeholder.jpg'">
+            </div>
+            <h4>Prof. (Dr.) Sudhir Sharma</h4>
+            <p class="team-role">Professor of Practice, National Forensic Sciences University, Delhi Campus</p>
+        </div>
+        
+        <div class="team-card-square">
+            <div class="team-img-circle">
+                <img src="images/team/yashwant.jpg" alt="Prof. Yashwant Nagle" onerror="this.src='images/placeholder.jpg'">
+            </div>
+            <h4>Prof. (Dr.) Yashwant K Nagle</h4>
+            <p class="team-role">Professor of Practice, National Forensic Sciences University, Delhi Campus</p>
+        </div>
+        
+        <div class="team-card-square">
+            <div class="team-img-circle">
+                <img src="images/team/basanna.jpg" alt="Prof. (Dr.) Basanna Patagundi" onerror="this.src='images/placeholder.jpg'">
+            </div>
+            <h4>Prof. (Dr.) Basanna Patagundi</h4>
+            <p class="team-role">Professor, National Forensic Sciences University, Delhi Campus</p>
+        </div>
+    </div>
+</div>
 
-        <!-- ============================================
-             FACULTY COORDINATORS - COMPACT FORMAT
-             ============================================ -->
+        <!-- Faculty Coordinators -->
         <div class="team-category">
             <h3 class="team-category-title">Faculty Coordinators</h3>
-            
-            <!-- 1. Judges and Speakers Committee -->
-            <div class="committee-group">
-                <h4 class="committee-group-title">Judges and Speakers Committee</h4>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Convenors:</p>
-                    <p class="committee-names">Prof. (Dr.) M. C. Joshi, Prof. (Dr.) Sudhir Sharma</p>
+            <div class="team-grid coordinators-grid">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/sweety.jpg" alt="Sweety Sharma" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Dr. Sweety Sharma</h4>
+                    <p class="team-role">Assistant Professor</p>
                 </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Co-Convenor:</p>
-                    <p class="committee-names">Dr. Hunny Matiyani</p>
+                
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/rithin.jpg" alt="Rithin Joseph" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Mr. Rithin Joseph</h4>
+                    <p class="team-role">Assistant Professor</p>
                 </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Members:</p>
-                    <p class="committee-names">Dr. Tanya Chauhan, Dr. Tilak Ram Chandrakar</p>
-                </div>
-            </div>
-
-            <!-- 2. Crime Scene Management Committee -->
-            <div class="committee-group">
-                <h4 class="committee-group-title">Crime Scene Management Committee</h4>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Convenors:</p>
-                    <p class="committee-names">Prof. (Dr.) R.K. Sarin, Prof. (Dr.) Sudhir Sharma</p>
-                </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Co-Convenor:</p>
-                    <p class="committee-names">Dr. Neha Tomar</p>
-                </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Members:</p>
-                    <p class="committee-names">Prof. (Dr.) Yashwant Nagle, Dr. Manu Sharma, Dr. Tanvi Yadav, Dr. Brahm Prakash, Dr. Neha Singh, Dr. Tilak Chandrakar, Dr. Rutwik Shedge, Dr. Megha Chauhan</p>
+                
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/mradul1.jpg" alt="Mradul Singh" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Dr. Mradul Singh</h4>
+                    <p class="team-role">Assistant Professor</p>
                 </div>
             </div>
-
-            <!-- 3. Sponsorship Committee -->
-            <div class="committee-group">
-                <h4 class="committee-group-title">Sponsorship Committee</h4>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Convenors:</p>
-                    <p class="committee-names">Prof. (Dr.) R.K. Sarin, Prof. (Dr.) M. C. Joshi</p>
-                </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Co-Convenor:</p>
-                    <p class="committee-names">Dr. Manu Sharma</p>
-                </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Members:</p>
-                    <p class="committee-names">Dr. Pankaj Sharma, Dr. Veeravel V., Mr. Rithin Joseph, Dr. Virendra Chavda</p>
-                </div>
-            </div>
-
-            <!-- 4. Finance and Accounts Committee -->
-            <div class="committee-group">
-                <h4 class="committee-group-title">Finance and Accounts Committee</h4>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Convenor:</p>
-                    <p class="committee-names">Mr. Harsh Kapoor</p>
-                </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Members:</p>
-                    <p class="committee-names">Mr. Mithilesh Khatwani, Mr. Priyanshu Joshi, Mr. Sanjeev Kumar, Mr. Vipin Goyal, Mr. Aditya Pande</p>
-                </div>
-            </div>
-
-            <!-- 5. Printing Committee -->
-            <div class="committee-group">
-                <h4 class="committee-group-title">Printing Committee</h4>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Convenor:</p>
-                    <p class="committee-names">Dr. Navtika Singh Nautiyal</p>
-                </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Members:</p>
-                    <p class="committee-names">Dr. Rohit Kanojia, Dr. Vikas Rai, Ms. Ridhima Singh, Mr. Sudhir, Mr. Sonu Kumar</p>
-                </div>
-            </div>
-
-            <!-- 6. Venue & Dias Committee -->
-            <div class="committee-group">
-                <h4 class="committee-group-title">Venue & Dias Committee</h4>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Convenor:</p>
-                    <p class="committee-names">Dr. Richa Rohatgi</p>
-                </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Members:</p>
-                    <p class="committee-names">Dr. Tirupathi Chellapalli, Dr. Parul Arora, Ms. Vernika Mehta, Ms. Nishtha Grover, Mr. Mrinal Mishra, Mr. Harsh Kapoor, Mr. Priyanshu Joshi, Mr. Sonu Kumar</p>
-                </div>
-            </div>
-
-            <!-- 7. Accommodation Committee -->
-            <div class="committee-group">
-                <h4 class="committee-group-title">Accommodation Committee</h4>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Convenor:</p>
-                    <p class="committee-names">Dr. Trikalagya Tiwari</p>
-                </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Members:</p>
-                    <p class="committee-names">Dr. Mradul Singh, Mr. Harsh Kapoor, Mr. Priyanshu Joshi, Mr. Harshit Gajjar, Mr. Rajan Kumar, Mr. Amit Kumar</p>
-                </div>
-            </div>
-
-            <!-- 8. Registration & Reception Committee -->
-            <div class="committee-group">
-                <h4 class="committee-group-title">Registration & Reception Committee</h4>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Convenor:</p>
-                    <p class="committee-names">Dr. Manu Sharma</p>
-                </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Members:</p>
-                    <p class="committee-names">Dr. Arpit Sharma, Mr. Arjun Harjan, Ms. Khushali Kumar, Mr. Vijay Singh</p>
-                </div>
-            </div>
-
-            <!-- 9. Food Committee -->
-            <div class="committee-group">
-                <h4 class="committee-group-title">Food Committee</h4>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Convenor:</p>
-                    <p class="committee-names">Dr. Mohammed Subhan Attar</p>
-                </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Members:</p>
-                    <p class="committee-names">Ms. Kanupriya Shrivastava, Mr. Priyanshu Joshi, Mr. Sonu Kumar, Mr. Deepak Kumar</p>
-                </div>
-            </div>
-
-            <!-- 10. Transportation Committee -->
-            <div class="committee-group">
-                <h4 class="committee-group-title">Transportation Committee</h4>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Convenor:</p>
-                    <p class="committee-names">Dr. Chothmal Kumawat</p>
-                </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Members:</p>
-                    <p class="committee-names">Ms. Aashi Yadav, Mr. Sonu Sharma, Mr. Amit Kumar, Mr. Vijay Singh</p>
-                </div>
-            </div>
-
-            <!-- 11. IT and Live Streaming Committee -->
-            <div class="committee-group">
-                <h4 class="committee-group-title">IT and Live Streaming Committee</h4>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Convenor:</p>
-                    <p class="committee-names">Dr. Brahm Prakash</p>
-                </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Members:</p>
-                    <p class="committee-names">Dr. Santroop Tanwar, Dr. Bhagvanbhai Karnavat, Mr. Gaurav Goyal, Mr. Jitender Kumar, Mr. Yogesh</p>
-                </div>
-            </div>
-
-            <!-- 12. Media & Rapporteuring Committee -->
-            <div class="committee-group">
-                <h4 class="committee-group-title">Media & Rapporteuring Committee</h4>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Convenor:</p>
-                    <p class="committee-names">Dr. Archana Patel</p>
-                </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Members:</p>
-                    <p class="committee-names">Dr. Arati Sharma, Mr. Aditya Partap Singh, Ms. Mahua Bhattacharyya, Mr. Yogesh</p>
-                </div>
-            </div>
-
-            <!-- 13. Cultural Committee -->
-            <div class="committee-group">
-                <h4 class="committee-group-title">Cultural Committee</h4>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Convenor:</p>
-                    <p class="committee-names">Dr. Somabha Bandopadhyay</p>
-                </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Members:</p>
-                    <p class="committee-names">Dr. Priyanka Samuel, Ms. Garima Puri</p>
-                </div>
-            </div>
-
-            <!-- 14. Help Desk and Medical Assistance -->
-            <div class="committee-group">
-                <h4 class="committee-group-title">Help Desk and Medical Assistance</h4>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Convenor:</p>
-                    <p class="committee-names">Dr. Tanvi Yadav</p>
-                </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Members:</p>
-                    <p class="committee-names">Dr. Vandana Shriharsh, Ms. Khushali Kumar</p>
-                </div>
-            </div>
-
-            <!-- 15. Moot Court Committee -->
-            <div class="committee-group">
-                <h4 class="committee-group-title">Moot Court Committee</h4>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Convenor:</p>
-                    <p class="committee-names">Dr. Arpit Sharma</p>
-                </div>
-                <div class="committee-role-group">
-                    <p class="committee-role-label">Members:</p>
-                    <p class="committee-names">Dr. Tanvi Yadav, Dr. Somabha Bandopadhyay</p>
-                </div>
-            </div>
-
         </div>
 
-        <!-- ============================================
-             STUDENT COORDINATORS - NAMES ONLY
-             ============================================ -->
+        <!-- Committee Coordinators -->
         <div class="team-category">
-            <h3 class="team-category-title">Student Coordinators</h3>
-            <div class="names-only-grid">
-                
-                <div class="name-card">
+            <h3 class="team-category-title">Committee Coordinators</h3>
+            <div class="team-grid members-grid">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/vidushi.jpg" alt="Vidushi Jain" onerror="this.src='images/placeholder.jpg'">
+                    </div>
                     <h4>Vidushi Jain</h4>
-                    <p>Inter Committee Coordinator &<br>Content Coordinator</p>
+                    <p class="team-role">Inter Committee & Content Coordinator</p>
                 </div>
                 
-                <div class="name-card">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/tamanna.jpg" alt="Tamanna Khurana" onerror="this.src='images/placeholder.jpg'">
+                    </div>
                     <h4>Tamanna Khurana</h4>
-                    <p>Registration Coordinator &<br>Web Design Developer</p>
+                    <p class="team-role">Registration & Web Design Developer</p>
                 </div>
                 
-                <div class="name-card">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/shivani.jpg" alt="Shivani Patra" onerror="this.src='images/placeholder.jpg'">
+                    </div>
                     <h4>Shivani Patra</h4>
-                    <p>Registration Coordinator &<br>Content Coordinator</p>
+                    <p class="team-role">Registration & Content Coordinator</p>
                 </div>
                 
-                <div class="name-card">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/vishnu.jpg" alt="Vishnulal N" onerror="this.src='images/placeholder.jpg'">
+                    </div>
                     <h4>Vishnulal N</h4>
-                    <p>Web Design Developer</p>
+                    <p class="team-role">Web Design Developer</p>
                 </div>
                 
-                <div class="name-card">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/deepshikha.jpg" alt="Deepshikha Jana" onerror="this.src='images/placeholder.jpg'">
+                    </div>
                     <h4>Deepshikha Jana</h4>
-                    <p>Design & Media Coordinator</p>
+                    <p class="team-role">Design & Media Coordinator</p>
                 </div>
                 
-                <div class="name-card">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/biplab.jpg" alt="Biplab" onerror="this.src='images/placeholder.jpg'">
+                    </div>
                     <h4>Biplab Pradhan</h4>
-                    <p>Design & Media Coordinator</p>
+                    <p class="team-role">Design & Media Coordinator</p>
                 </div>
                 
-                <div class="name-card">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/satakshi.jpg" alt="Satakshi Dwivedi" onerror="this.src='images/placeholder.jpg'">
+                    </div>
                     <h4>Satakshi</h4>
-                    <p>Logistics Coordinator</p>
+                    <p class="team-role">Logistics Coordinator</p>
                 </div>
                 
-                <div class="name-card">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/somya.jpg" alt="Somya Bhatt" onerror="this.src='images/placeholder.jpg'">
+                    </div>
                     <h4>Somya Bhatt</h4>
-                    <p>Logistics Coordinator</p>
+                    <p class="team-role">Logistics Coordinator</p>
                 </div>
                 
-                <div class="name-card">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/sunidhi.jpg" alt="Sunidhi Nagpal" onerror="this.src='images/placeholder.jpg'">
+                    </div>
                     <h4>Sunidhi Nagpal</h4>
-                    <p>Registration Kits Coordinator</p>
+                    <p class="team-role">Registration Kits Coordinator</p>
                 </div>
                 
-                <div class="name-card">
-                    <h4>Arjun Harjan</h4>
-                    <p>Online Competition Developer</p>
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/arjun.jpg" alt="Arjun Hargan" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Arjun Hargan</h4>
+                    <p class="team-role">Online Competition Developer</p>
                 </div>
                 
-                <div class="name-card">
-                    <h4>Ayushi Sinha</h4>
-                    <p>Online Competition Developer</p>
-                </div>
-                
-                <div class="name-card">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/sayantika.jpg" alt="Sayantika Saha" onerror="this.src='images/placeholder.jpg'">
+                    </div>
                     <h4>Sayantika Saha</h4>
-                    <p>Crime Scene Management Coordinator</p>
+                    <p class="team-role">Online Competition Developer</p>
                 </div>
                 
-                <div class="name-card">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/butool.jpg" alt="Butool Zaidi" onerror="this.src='images/placeholder.jpg'">
+                    </div>
                     <h4>Butool Zaidi</h4>
-                    <p>Crime Scene Management Coordinator</p>
+                    <p class="team-role">Crime Scene Management Coordinator</p>
                 </div>
                 
-                <div class="name-card">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/ayushi.jpg" alt="Ayushi Sinha" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Ayushi Sinha</h4>
+                    <p class="team-role">Crime Scene Management Coordinator</p>
+                </div>
+                
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/shivang.jpg" alt="Shivang" onerror="this.src='images/placeholder.jpg'">
+                    </div>
                     <h4>Shivang Tiwari</h4>
-                    <p>Food Committee Coordinator</p>
+                    <p class="team-role">Food Committee Coordinator</p>
                 </div>
-                
-                <div class="name-card">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/gauri.jpg" alt="Gauri" onerror="this.src='images/placeholder.jpg'">
+                    </div>
                     <h4>Gauri Singh Chauhan</h4>
-                    <p>Sponsorship Coordinator</p>
+                    <p class="team-role">Sponsorship Committee Coordinator</p>
                 </div>
-                
-                <div class="name-card">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/yashica.jpg" alt="Yashica" onerror="this.src='images/placeholder.jpg'">
+                    </div>
                     <h4>Yashica Sharma</h4>
-                    <p>Sponsorship Coordinator</p>
+                    <p class="team-role">Sponsorship Committee Coordinator</p>
                 </div>
-                
-                <div class="name-card">
-                    <h4>Ishitha Ralli</h4>
-                    <p>Creative Affairs Committee Coordinator</p>
-                </div>
-                
-                <div class="name-card">
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/varna.jpg" alt="Varna" onerror="this.src='images/placeholder.jpg'">
+                    </div>
                     <h4>Varna Vijayan</h4>
-                    <p>Creative Affairs Committee Coordinator</p>
+                    <p class="team-role">Creative Affairs Committee Coordinator</p>
                 </div>
-                
+                <div class="team-card-square">
+                    <div class="team-img-circle">
+                        <img src="images/team/ishitha.jpg" alt="ishitha" onerror="this.src='images/placeholder.jpg'">
+                    </div>
+                    <h4>Ishitha Ralli</h4>
+                    <p class="team-role">Creative Affairs Committee Coordinator</p>
+                </div>
             </div>
         </div>
-
     </div>
 </section>
-
 
     <section class="gallery" id="gallery">
         <div class="container">
@@ -3789,16 +3376,16 @@ span[class*="domain"] {
             <div class="gallery-grid" id="galleryGrid"></div>
 
             <div class="gallery-view-more">
-                <a href="gallery.html" class="btn-primary btn-secondary">View All Photos →</a>
+                <a href="gallery.html" class="btn-primary btn-secondary">View All Photos â†’</a>
             </div>
         </div>
     </section>
 
     <div id="galleryModal" class="gallery-modal">
         <div class="gallery-modal-content">
-            <button class="modal-close" onclick="closeGalleryModal()">×</button>
-            <button class="gallery-nav gallery-prev" onclick="changeGalleryImage(-1)">‹</button>
-            <button class="gallery-nav gallery-next" onclick="changeGalleryImage(1)">›</button>
+            <button class="modal-close" onclick="closeGalleryModal()">Ã—</button>
+            <button class="gallery-nav gallery-prev" onclick="changeGalleryImage(-1)">â€¹</button>
+            <button class="gallery-nav gallery-next" onclick="changeGalleryImage(1)">â€º</button>
             <img id="galleryModalImage" src="" alt="Anvakrit 1.0">
             <div class="image-counter" id="imageCounter"></div>
         </div>
@@ -3817,7 +3404,7 @@ span[class*="domain"] {
             <input type="text" 
                    id="faqSearch" 
                    class="faq-search-input" 
-                   placeholder="🔍 Search FAQs... (e.g., registration, fees, dates, category)"
+                   placeholder="ðŸ” Search FAQs... (e.g., registration, fees, dates, category)"
                    autocomplete="off">
             <div id="faqCount" class="faq-count"></div>
         </div>
@@ -3829,7 +3416,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="anvakrit what is ncsic competition forensic investigation">
                 <div class="faq-question">
                     <span>What is Anvakrit 2.0?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>Anvakrit 2.0 is the second edition of the National Crime Scene Investigation Competition (NCSIC), organized by the National Forensic Sciences University, Delhi Campus. It provides hands-on experience in forensic investigation, bridging theory and practice through simulated crime scenes, digital forensics, and courtroom presentations.</p>
@@ -3840,7 +3427,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="when where dates venue nfsu delhi february 2026 location">
                 <div class="faq-question">
                     <span>When and where will Anvakrit 2.0 be held?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>The event will take place from <strong>11th to 13th February 2026</strong> at the <strong>National Forensic Sciences University, Delhi Campus</strong>.</p>
@@ -3851,7 +3438,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="theme decoding truth bytes digital forensics">
                 <div class="faq-question">
                     <span>What is the theme for this year's edition?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>The theme for Anvakrit 2.0 is <strong>"Unmasking the Truth in Bytes."</strong> It focuses on Digital Forensics, encouraging participants to explore the intersection of physical and digital evidence in modern investigations.</p>
@@ -3862,7 +3449,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="eligibility who can participate category undergraduate postgraduate students">
                 <div class="faq-question">
                     <span>Who can participate?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>The competition is open to:</p>
@@ -3878,7 +3465,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="prior knowledge forensic experience required category 1">
                 <div class="faq-question">
                     <span>Do I need prior forensic knowledge to participate?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>No prior forensic knowledge is required for Category I participants. The event is designed to foster curiosity, teamwork, and creative problem-solving while introducing participants to the basics of forensic investigation.</p>
@@ -3889,7 +3476,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="rounds structure category 1 undergraduate case file poster presentation crime scene">
                 <div class="faq-question">
                     <span>How are the rounds structured for Category I (UG & Higher Secondary)?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>Category I includes three rounds:</p>
@@ -3905,7 +3492,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="internet device policy online rounds malpractice disqualification camera">
                 <div class="faq-question">
                     <span>What is the internet/device policy during online rounds?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <ul>
@@ -3920,7 +3507,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="links round 1 round 2 category 1 email unstop submission">
                 <div class="faq-question">
                     <span>How will we receive the links for Round 1 and Round 2 for Category 1?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>All registered participants will receive official communication via email or the Unstop dashboard.</p>
@@ -3932,7 +3519,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="plagiarism ai chatgpt intellectual property similarity 12 percent tools">
                 <div class="faq-question">
                     <span>What is the policy on plagiarism, intellectual property, or AI-tool usage?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <ul>
@@ -3949,7 +3536,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="technical issues support contact help online rounds login submission">
                 <div class="faq-question">
                     <span>Who should I contact for technical issues during online rounds?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>For any technical problems (login, link access, submission errors), participants can reach out to the Anvakrit 2.0 Technical Support Team through:</p>
@@ -3965,7 +3552,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="category 2 postgraduate rounds structure courtroom professionals">
                 <div class="faq-question">
                     <span>How are the rounds structured for Category II (PG & Professionals)?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>Category II includes:</p>
@@ -3981,7 +3568,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="register registration how unstop google form teams">
                 <div class="faq-question">
                     <span>How do I register for Anvakrit 2.0?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>Registration will be conducted on a first-come, first-serve basis.</p>
@@ -3997,13 +3584,13 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="registration fees cost payment 1000 2000 per head">
                 <div class="faq-question">
                     <span>What are the registration fees?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <ul>
-                        <li><strong>Category I (UG & Higher Secondary):</strong> ₹1000/- per head</li>
-                        <li><strong>Category II (PG & Ph.D.):</strong> ₹2000/- per head</li>
-                        <li><strong>Category III (Professionals):</strong> ₹2000/- per head</li>
+                        <li><strong>Category I (UG & Higher Secondary):</strong> â‚¹1000/- per head</li>
+                        <li><strong>Category II (PG & Ph.D.):</strong> â‚¹2000/- per head</li>
+                        <li><strong>Category III (Professionals):</strong> â‚¹2000/- per head</li>
                     </ul>
                     <p>Each participant must register individually.</p>
                 </div>
@@ -4013,7 +3600,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="refundable refund non-refundable cancellation">
                 <div class="faq-question">
                     <span>Is the registration fee refundable?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>The registration fee is <strong>non-refundable</strong> under all circumstances.</p>
@@ -4024,7 +3611,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="last date deadline registration close december 2025">
                 <div class="faq-question">
                     <span>What is the last date for registration?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>The last date to register is <strong>27th December 2025</strong>. Confirmation will be sent after verification by the Organizing Committee.</p>
@@ -4035,7 +3622,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="change team members composition after registration">
                 <div class="faq-question">
                     <span>Can I change my team members after registration?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>No, changes in team members or composition will not be allowed after registration. Any failure to adhere to the registration process will be treated as withdrawal.</p>
@@ -4046,7 +3633,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="prizes winners rewards money 2 lakh certificates volunteer">
                 <div class="faq-question">
                     <span>What are the prizes?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>Prizes worth <strong>INR 2 lakh</strong> will be awarded to the Top 3 teams across categories. All participants will receive certificates of participation.</p>
@@ -4058,7 +3645,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="what bring documents id laptop stationery formal attire">
                 <div class="faq-question">
                     <span>What should participants bring?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <ul>
@@ -4075,10 +3662,10 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="accommodation stay lodging 500 per day">
                 <div class="faq-question">
                     <span>Will accommodation be provided?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
-                    <p>Yes, accommodation is available at <strong>₹500 per day</strong>. Details regarding location, facilities, and timings will be shared after registration. Participants must follow the accommodation rules and timings strictly.</p>
+                    <p>Yes, accommodation is available at <strong>â‚¹500 per day</strong>. Details regarding location, facilities, and timings will be shared after registration. Participants must follow the accommodation rules and timings strictly.</p>
                 </div>
             </div>
 
@@ -4086,7 +3673,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="dress code formal attire indian western comfortable">
                 <div class="faq-question">
                     <span>What is the dress code for the competition?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>Participants must wear <strong>formal attire</strong> (Indian or Western). Since the competition involves physical activity at the crime scene, comfortable formal clothing is recommended.</p>
@@ -4097,7 +3684,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="expected conduct behavior professionalism disqualification rules">
                 <div class="faq-question">
                     <span>What is expected of participants during the competition?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>Participants must maintain professionalism, discipline, and respect toward organizers, judges, and peers. Any malpractice or disruptive behavior will lead to disqualification.</p>
@@ -4116,7 +3703,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="evaluation judging criteria speed accuracy creativity presentation">
                 <div class="faq-question">
                     <span>How will participants be evaluated?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>Evaluation is based on:</p>
@@ -4124,7 +3711,7 @@ span[class*="domain"] {
                         <li>Speed and accuracy (Case File Investigation)</li>
                         <li>Creativity and presentation (Poster Round)</li>
                         <li>Observation, documentation, and teamwork (Final CSI Challenge)</li>
-                        <li>Technical and practical knowledge (Courtroom Presentation – PG Category)</li>
+                        <li>Technical and practical knowledge (Courtroom Presentation â€“ PG Category)</li>
                     </ul>
                 </div>
             </div>
@@ -4133,7 +3720,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="unique special learning investigation competition interdisciplinary">
                 <div class="faq-question">
                     <span>What makes Anvakrit 2.0 unique?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>Anvakrit 2.0 combines learning, investigation, and competition; offering real-world forensic exposure, surprise puzzles from registration onwards, and interdisciplinary collaboration that goes beyond the crime scene.</p>
@@ -4144,10 +3731,10 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="surprises hidden challenges clues puzzles every detail counts">
                 <div class="faq-question">
                     <span>Will there be any surprises or hidden challenges?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
-                    <p>Yes! The event begins even before you realize it. From the registration phase, participants may receive clues or puzzles that can give them an edge in the competition—because in Anvakrit, <strong>"Every Detail Counts."</strong></p>
+                    <p>Yes! The event begins even before you realize it. From the registration phase, participants may receive clues or puzzles that can give them an edge in the competitionâ€”because in Anvakrit, <strong>"Every Detail Counts."</strong></p>
                 </div>
             </div>
 
@@ -4155,7 +3742,7 @@ span[class*="domain"] {
             <div class="faq-item" data-keywords="category 2 postgraduate rounds structure courtroom professionals">
                 <div class="faq-question">
                     <span>How are the rounds structured for Category III (Professionals)?</span>
-                    <span class="faq-arrow">▶</span>
+                    <span class="faq-arrow">â–¶</span>
                 </div>
                 <div class="faq-answer">
                     <p>Category III includes:</p>
@@ -4197,22 +3784,22 @@ span[class*="domain"] {
     <div class="contact-row-top">
             <!-- Top Row: Email, Venue, Social (Equal Size) -->
             <div class="contact-card">
-                <div class="contact-icon">📧</div>
+                <div class="contact-icon">ðŸ“§</div>
                 <h3>Email</h3>
                 <a href="mailto:csi_dc@nfsu.ac.in">csi_dc@nfsu.ac.in</a>
             </div>
 
             <div class="contact-card">
-                <div class="contact-icon">📍</div>
+                <div class="contact-icon">ðŸ“</div>
                 <h3>Venue</h3>
                 <a href="https://maps.app.goo.gl/hJ4ev6dJCQswCsUd6" target="_blank" rel="noopener noreferrer" class="venue-link">
                     National Forensic Sciences University<br>Delhi Campus
-                    <span class="map-icon">🗺️</span>
+                    <span class="map-icon">ðŸ—ºï¸</span>
                 </a>
             </div>
 
             <div class="contact-card">
-                <div class="contact-icon">🌐</div>
+                <div class="contact-icon">ðŸŒ</div>
                 <h3>Follow Us</h3>
                 <div class="social-links-contact">
                     <a href="https://www.instagram.com/anvakrit.nfsudelhi/" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram">
@@ -4254,7 +3841,7 @@ span[class*="domain"] {
 
             <!-- Bottom Row: Contact Numbers (Full Width) -->
             <div class="contact-card contact-card-full">
-                <div class="contact-icon">📞</div>
+                <div class="contact-icon">ðŸ“ž</div>
                 <h3>Contact Numbers</h3>
                 <div class="contact-list-horizontal">
                     <div class="contact-person">
@@ -4317,18 +3904,18 @@ span[class*="domain"] {
 
     <div id="cat1Modal" class="modal">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('cat1Modal')">×</button>
+            <button class="modal-close" onclick="closeModal('cat1Modal')">Ã—</button>
             <h2>Category I: Higher Secondary & UG Level</h2>
             
             <div class="highlight-box">
-                <strong>📅 Event Dates:</strong> February 11-13, 2026<br>
-                <strong>💰 Registration Fee:</strong> ₹1,000 per person<br>
-                <strong>👥 Team Size:</strong> 4 members<br>
-                <strong>📌 Capacity:</strong> 300 participants<br>
-                <strong>📍 Venue:</strong> NFSU Delhi Campus
+                <strong>ðŸ“… Event Dates:</strong> February 11-13, 2026<br>
+                <strong>ðŸ’° Registration Fee:</strong> â‚¹1,000 per person<br>
+                <strong>ðŸ‘¥ Team Size:</strong> 4 members<br>
+                <strong>ðŸ“Œ Capacity:</strong> 300 participants<br>
+                <strong>ðŸ“ Venue:</strong> NFSU Delhi Campus
             </div>
 
-            <h3>📋 Competition Rounds</h3>
+            <h3>ðŸ“‹ Competition Rounds</h3>
             <p><strong>Round 1(online): Case File Investigation</strong></p>
             <p>Teams receive a case file to test investigative and critical thinking skills.</p>
 
@@ -4338,15 +3925,15 @@ span[class*="domain"] {
             <p><strong>Round 3(offline): On-Campus Crime Scene</strong></p>
             <p>At NFSU Delhi with immersive crime scene investigation.</p>
 
-            <h3>✅ Eligibility</h3>
+            <h3>âœ… Eligibility</h3>
             <ul>
                 <li>Grades 11, 12 & undergraduate students (all streams)</li>
                 <li>Valid ID card required</li>
                 <li>No prior forensic knowledge required</li>
             </ul>
 
-            <h3>🏆 Prizes</h3>
-            <p>Top 3 teams share <strong>₹1L</strong></p>
+            <h3>ðŸ† Prizes</h3>
+            <p>Top 3 teams share <strong>â‚¹1L</strong></p>
 
             <a href="https://unstop.com/competitions/anvakrit-20-national-crime-scene-investigation-competition-national-forensic-sciences-university-delhi-1575775" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 2rem;">Register Now</a>
         </div>
@@ -4354,18 +3941,18 @@ span[class*="domain"] {
 
     <div id="cat2Modal" class="modal">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('cat2Modal')">×</button>
+            <button class="modal-close" onclick="closeModal('cat2Modal')">Ã—</button>
             <h2>Category II: PG, PhD & Professionals</h2>
             
             <div class="highlight-box">
-                <strong>📅 Event Dates:</strong> February 11-13, 2026<br>
-                <strong>💰 Registration Fee:</strong> ₹2,000 per person<br>
-                <strong>👥 Team Size:</strong> Individual or Teams of 5<br>
-                <strong>📌 Capacity:</strong> 200 participants<br>
-                <strong>📍 Venue:</strong> NFSU Delhi Campus
+                <strong>ðŸ“… Event Dates:</strong> February 11-13, 2026<br>
+                <strong>ðŸ’° Registration Fee:</strong> â‚¹2,000 per person<br>
+                <strong>ðŸ‘¥ Team Size:</strong> Individual or Teams of 5<br>
+                <strong>ðŸ“Œ Capacity:</strong> 200 participants<br>
+                <strong>ðŸ“ Venue:</strong> NFSU Delhi Campus
             </div>
 
-            <h3>📋 Competition Rounds(all offline)</h3>
+            <h3>ðŸ“‹ Competition Rounds(all offline)</h3>
             <p><strong>Round 1: Case File Investigation</strong></p>
             <p>Advanced case file investigation with complex scenarios.</p>
 
@@ -4375,15 +3962,15 @@ span[class*="domain"] {
             <p><strong>Round 3: Mock Courtroom Presentation</strong></p>
             <p>Present findings to a live jury in a courtroom setting.</p>
 
-            <h3>✅ Eligibility</h3>
+            <h3>âœ… Eligibility</h3>
             <ul>
                 <li>Postgraduate, doctoral students & professionals</li>
                 <li>Fields: Forensics, Criminology, Law, Psychology, Cyber Security</li>
                 <li>Valid institutional ID required</li>
             </ul>
 
-            <h3>🏆 Prizes</h3>
-            <p>Top 3 teams share <strong>₹1L</strong></p>
+            <h3>ðŸ† Prizes</h3>
+            <p>Top 3 teams share <strong>â‚¹1L</strong></p>
 
             <a href="https://forms.gle/uPrctBYUw8yhmDDx9" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 2rem;">Register Now</a>
         </div>
@@ -4570,43 +4157,6 @@ span[class*="domain"] {
     navLinks.classList.toggle('active');
     menuToggle.classList.toggle('active'); // Add animation
 }
-// MODAL FUNCTIONS (MISSING!)
-function openModal(modalId) {
-    event.preventDefault();
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-}
-
-// Close modal when clicking outside
-document.querySelectorAll('.modal').forEach(modal => {
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
-});
-
-// Close modal with ESC key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        document.querySelectorAll('.modal.active').forEach(modal => {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-    }
-});
 
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
@@ -4663,12 +4213,12 @@ const searchData = [
     { title: "Competition Rounds", keywords: ["rounds", "stages", "process", "format"], link: "#categories", description: "Three rounds of investigation" },
     { title: "Category I - Students", keywords: ["category 1", "students", "undergraduate", "ug"], link: "#categories" },
     { title: "Category II - Professionals", keywords: ["category 2", "professionals", "pg", "phd"], link: "#categories" },
-    { title: "Registration Fee", keywords: ["fee", "cost", "price", "payment"], link: "#categories", description: "₹1,000 (Cat I) / ₹2,000 (Cat II)" },
+    { title: "Registration Fee", keywords: ["fee", "cost", "price", "payment"], link: "#categories", description: "â‚¹1,000 (Cat I) / â‚¹2,000 (Cat II)" },
     { title: "Eligibility Criteria", keywords: ["eligibility", "requirements", "who can participate"], link: "#eligibility" },
     { title: "Venue & Location", keywords: ["venue", "location", "where", "nfsu", "delhi"], link: "#hero", description: "NFSU Delhi Campus" },
     { title: "Gallery", keywords: ["gallery", "photos", "images", "anvakrit 1.0"], link: "#gallery" },
     { title: "Contact", keywords: ["contact", "email", "phone", "help"], link: "#contact" },
-    { title: "Prize Pool", keywords: ["prizes", "winnings", "awards"], link: "#rules", description: "₹2 Lakh total - 1st: ₹50k, 2nd: ₹30k, 3rd: ₹20k" },
+    { title: "Prize Pool", keywords: ["prizes", "winnings", "awards"], link: "#rules", description: "â‚¹2 Lakh total - 1st: â‚¹50k, 2nd: â‚¹30k, 3rd: â‚¹20k" },
     { title: "Organizing Committee", keywords: ["team", "committee", "organizers", "coordinators"], link: "#team" },
     { title: "FAQs", keywords: ["faq", "questions", "answers", "help"], link: "#faq", description: "Frequently Asked Questions" },
 ];
@@ -4749,7 +4299,7 @@ if (contactForm) {
         .then(response => {
             if (response.ok) {
                 // Success
-                submitBtn.textContent = '✓ Message Sent Successfully!';
+                submitBtn.textContent = 'âœ“ Message Sent Successfully!';
                 submitBtn.style.background = 'linear-gradient(135deg, #00ff88, #00cc66)';
                 contactForm.reset();
                 
@@ -4766,7 +4316,7 @@ if (contactForm) {
         })
         .catch(error => {
             // Error
-            submitBtn.textContent = '✗ Error! Please Try Again';
+            submitBtn.textContent = 'âœ— Error! Please Try Again';
             submitBtn.style.background = 'linear-gradient(135deg, #ff4444, #cc0000)';
             submitBtn.disabled = false;
             submitBtn.style.opacity = '1';
@@ -4878,21 +4428,6 @@ window.audioToggle = () => {
     }
 };
 
-// HERO RESULTS DROPDOWN TOGGLE
-function toggleResultsDropdown() {
-    const menu = document.getElementById('heroResultsMenu');
-    menu.classList.toggle('active');
-}
-
-// Close dropdown when clicking outside
-document.addEventListener('click', function(event) {
-    const dropdown = document.querySelector('.hero-results-dropdown');
-    const menu = document.getElementById('heroResultsMenu');
-    
-    if (dropdown && !dropdown.contains(event.target)) {
-        menu.classList.remove('active');
-    }
-});
 
     </script>
 </body>
