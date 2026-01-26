@@ -3080,13 +3080,13 @@ input.warning {
 
     <!-- 4. View Results Dropdown -->
     <div class="hero-results-dropdown" style="width: 100%; max-width: 500px;">
-        <button class="btn-results-dropdown" onclick="toggleResultsDropdown()">
-            📊 View Results ▼
-        </button>
+        <button class="btn-results-dropdown" onclick="toggleResultsDropdown(event)">
+    📊 View Results ▼
+</button>
         <div class="results-dropdown-menu" id="heroResultsMenu">
             <a href="results.html">📈 Round 1 Results - Top 39 Teams</a>
             <a href="results-round2.html">🏆 Round 2 Results - Top 21 Finalists</a>
-            <a href="Answer Key_Round 1_Category 1.pdf" target="_blank">📝 Download Answer Key</a>
+            <a href="AnswerKey_Round1_Category1.pdf" target="_blank">📝 Download Answer Key</a>
         </div>
     </div>
 
@@ -5040,11 +5040,21 @@ window.audioToggle = () => {
     }
 };
 
-// HERO RESULTS DROPDOWN TOGGLE - FIXED
-function toggleResultsDropdown() {
+// ========================================
+// HERO RESULTS DROPDOWN - FIXED
+// ========================================
+
+function toggleResultsDropdown(event) {
+    if (event) {
+        event.stopPropagation();
+    }
+    
     const menu = document.getElementById('heroResultsMenu');
     if (menu) {
         menu.classList.toggle('active');
+        console.log('Dropdown toggled:', menu.classList.contains('active'));
+    } else {
+        console.error('Dropdown menu not found!');
     }
 }
 
@@ -5053,18 +5063,30 @@ document.addEventListener('click', function(event) {
     const dropdown = document.querySelector('.hero-results-dropdown');
     const menu = document.getElementById('heroResultsMenu');
     
-    if (!dropdown) return;
+    if (!dropdown || !menu) return;
     
-    if (!dropdown.contains(event.target)) {
-        if (menu) {
-            menu.classList.remove('active');
-        }
+    // If clicking inside dropdown, do nothing (let links work)
+    if (dropdown.contains(event.target)) {
+        return;
+    }
+    
+    // If clicking outside, close the dropdown
+    if (menu.classList.contains('active')) {
+        menu.classList.remove('active');
     }
 });
 
-// Prevent closing when clicking inside dropdown
-document.querySelector('.hero-results-dropdown')?.addEventListener('click', function(e) {
-    e.stopPropagation();
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('✅ Results dropdown initialized');
+    
+    // Make sure dropdown menu exists
+    const menu = document.getElementById('heroResultsMenu');
+    if (menu) {
+        console.log('✅ Dropdown menu found');
+    } else {
+        console.error('❌ Dropdown menu NOT found');
+    }
 });
 
 // ========================================
