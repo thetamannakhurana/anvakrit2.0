@@ -3090,9 +3090,10 @@ input.warning {
         📄 Download Detailed Brochure
     </a>
 
-    <!-- 4. View Results Dropdown -->
-   <div class="hero-results-dropdown" style="width: 100%; max-width: 500px; position: relative; z-index: 100;">
-    <button class="btn-results-dropdown" onclick="toggleResultsDropdown(event)">
+    <!-- 3.results -->
+
+    <div class="hero-results-dropdown" style="width: 100%; max-width: 500px; position: relative; z-index: 100;">
+    <button class="btn-results-dropdown" type="button" onclick="toggleResultsDropdown(event)">
         📊 View Results ▼
     </button>
     <div class="results-dropdown-menu" id="heroResultsMenu">
@@ -3106,23 +3107,6 @@ input.warning {
             📝 Download Answer Key
         </a>
     </div>
-</div>
-
-<div class="results-dropdown-menu" id="heroResultsMenu">
-    <!-- Round 1 - WORKING -->
-    <a href="results.html" onclick="console.log('Round 1 clicked')">
-        📈 Round 1 Results - Top 39 Teams
-    </a>
-    
-    <!-- Round 2 - TEST THIS -->
-    <a href="results-round2.html" onclick="console.log('Round 2 clicked')" target="_blank">
-        🏆 Round 2 Results - Top 21 Finalists
-    </a>
-    
-    <!-- Answer Key - TEST THIS -->
-    <a href="AnswerKeyRound1Category1.pdf" onclick="console.log('Answer Key clicked')" target="_blank" download>
-        📝 Download Answer Key
-    </a>
 </div>
 
 
@@ -5074,7 +5058,7 @@ window.audioToggle = () => {
 };
 
 // ========================================
-// HERO RESULTS DROPDOWN - WORKING VERSION
+// HERO RESULTS DROPDOWN - FINAL FIX
 // ========================================
 
 function toggleResultsDropdown(event) {
@@ -5084,23 +5068,24 @@ function toggleResultsDropdown(event) {
     }
     
     const menu = document.getElementById('heroResultsMenu');
-    const button = event.target;
+    const button = event ? event.target : document.querySelector('.btn-results-dropdown');
     
-    if (menu) {
-        const isActive = menu.classList.contains('active');
-        menu.classList.toggle('active');
-        
-        // Update button arrow
-        if (menu.classList.contains('active')) {
-            button.innerHTML = '📊 View Results ▲';
-        } else {
-            button.innerHTML = '📊 View Results ▼';
-        }
-        
-        console.log('Dropdown toggled:', menu.classList.contains('active'));
-    } else {
-        console.error('Dropdown menu not found!');
+    if (!menu) {
+        console.error('❌ Dropdown menu not found!');
+        return;
     }
+    
+    const isActive = menu.classList.contains('active');
+    menu.classList.toggle('active');
+    
+    // Update button text
+    if (button) {
+        button.innerHTML = menu.classList.contains('active') 
+            ? '📊 View Results ▲' 
+            : '📊 View Results ▼';
+    }
+    
+    console.log('✅ Dropdown toggled:', menu.classList.contains('active'));
 }
 
 // Close dropdown when clicking outside
@@ -5109,43 +5094,44 @@ document.addEventListener('click', function(event) {
     const menu = document.getElementById('heroResultsMenu');
     const button = document.querySelector('.btn-results-dropdown');
     
-    if (!dropdown || !menu || !button) return;
+    if (!dropdown || !menu) return;
     
-    // If clicking inside dropdown menu (on links), let it work
-    if (menu.contains(event.target)) {
-        // Link clicked - dropdown will close naturally after navigation
+    // Don't close if clicking inside dropdown
+    if (dropdown.contains(event.target)) {
         return;
     }
     
-    // If clicking on button, let toggleResultsDropdown handle it
-    if (button.contains(event.target)) {
-        return;
-    }
-    
-    // If clicking outside, close the dropdown
-    if (!dropdown.contains(event.target)) {
+    // Close if clicking outside
+    if (menu.classList.contains('active')) {
         menu.classList.remove('active');
-        button.innerHTML = '📊 View Results ▼';
+        if (button) {
+            button.innerHTML = '📊 View Results ▼';
+        }
     }
 });
 
-// Prevent dropdown button from submitting forms
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
-    const button = document.querySelector('.btn-results-dropdown');
-    if (button) {
-        button.type = 'button'; // Ensure it's not a submit button
+    console.log('✅ Results dropdown script loaded');
+    
+    const menu = document.getElementById('heroResultsMenu');
+    const links = document.querySelectorAll('.results-dropdown-menu a');
+    
+    if (menu) {
+        console.log('✅ Dropdown menu found with', links.length, 'links');
+    } else {
+        console.error('❌ Dropdown menu NOT found!');
     }
     
-    // Log when links are clicked
-    const dropdownLinks = document.querySelectorAll('.results-dropdown-menu a');
-    dropdownLinks.forEach((link, index) => {
+    // Test each link
+    links.forEach((link, index) => {
+        console.log(`Link ${index + 1}:`, link.href);
+        
         link.addEventListener('click', function(e) {
-            console.log(`Link ${index + 1} clicked:`, this.href);
-            // Don't prevent default - let the link work
+            console.log(`✅ Link ${index + 1} clicked:`, this.href);
+            // Let the link navigate normally
         });
     });
-    
-    console.log('✅ Results dropdown initialized');
 });
 
 // ========================================
