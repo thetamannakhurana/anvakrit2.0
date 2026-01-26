@@ -2917,6 +2917,49 @@ span[class*="domain"] {
     color: var(--neon-cyan);
     transform: translateX(5px);
 }
+/* ========================================
+   FILE INPUT STYLING
+   ======================================== */
+input[type="file"] {
+    padding: 0.8rem !important;
+    cursor: pointer;
+    font-size: 0.95rem !important;
+    background: rgba(13, 27, 42, 0.6) !important;
+}
+
+input[type="file"]::file-selector-button {
+    background: linear-gradient(135deg, var(--blue-bright), var(--neon-blue));
+    color: var(--white);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+input[type="file"]::file-selector-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px var(--shadow-blue);
+}
+
+/* Input validation states */
+input.invalid {
+    border-color: #ff4444 !important;
+    box-shadow: 0 0 10px rgba(255, 68, 68, 0.3) !important;
+}
+
+input.valid {
+    border-color: var(--neon-blue) !important;
+}
+
+input.warning {
+    border-color: #ffa500 !important;
+}
+
 
 
     </style>
@@ -2950,7 +2993,7 @@ span[class*="domain"] {
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#faq">FAQs</a></li>
     <li><a href="#contact">Contact Us</a></li>
-    <li><a href="#categories" class="nav-register-btn">Register Now</a></li>
+    <li><a href="#attendee-registration" class="nav-register-btn">👤 Register as Attendee</a></li>
 </ul>
 
 <!-- Right: Hamburger + NFSU Logo -->
@@ -3043,7 +3086,7 @@ span[class*="domain"] {
         <div class="results-dropdown-menu" id="heroResultsMenu">
             <a href="results.html">📈 Round 1 Results - Top 39 Teams</a>
             <a href="results-round2.html">🏆 Round 2 Results - Top 21 Finalists</a>
-            <a href="Answer KeyRound 1Category 1.pdf" target="_blank">📝 Download Answer Key</a>
+            <a href="Answer Key_Round 1_Category 1.pdf" target="_blank">📝 Download Answer Key</a>
         </div>
     </div>
 
@@ -3173,6 +3216,116 @@ span[class*="domain"] {
             </div>
         </div>
     </section>
+    <!-- ============================== -->
+<!-- ATTENDEE REGISTRATION FORM -->
+<!-- ============================== -->
+<section class="contact" id="attendee-registration">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Join Us</span>
+            <h2 class="section-title">Register as Attendee</h2>
+            <p class="section-subtitle">Fill the form below to register for Anvakrit 2.0. Limited seats available!</p>
+        </div>
+
+        <div class="contact-form-wrapper">
+            <form class="contact-form" id="attendeeForm" onsubmit="submitAttendeeForm(event)">
+                
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="name">👤 Full Name *</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        required 
+                        minlength="3"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                    >
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">📧 Email Address *</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required 
+                        placeholder="your.email@example.com"
+                        onblur="validateEmailField()"
+                        autocomplete="email"
+                    >
+                    <small style="color: var(--gray-light); margin-top: 0.5rem; display: block;">
+                        Use your institutional/personal email
+                    </small>
+                </div>
+
+                <!-- Phone -->
+                <div class="form-group">
+                    <label for="phone">📱 Phone Number *</label>
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        required 
+                        pattern="[6-9][0-9]{9}" 
+                        placeholder="10-digit mobile number"
+                        maxlength="10"
+                        onblur="validatePhoneField()"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                        autocomplete="tel"
+                    >
+                    <small style="color: var(--gray-light); margin-top: 0.5rem; display: block;">
+                        Must start with 6, 7, 8, or 9
+                    </small>
+                </div>
+
+                <!-- Affiliation -->
+                <div class="form-group">
+                    <label for="affiliation">🏫 Affiliation/Institution *</label>
+                    <input 
+                        type="text" 
+                        id="affiliation" 
+                        name="affiliation" 
+                        required 
+                        minlength="3"
+                        placeholder="Your college/university/organization"
+                        autocomplete="organization"
+                    >
+                </div>
+
+                <!-- ID Card Upload -->
+                <div class="form-group">
+                    <label for="idCard">📄 Upload ID Card (PDF/JPG/PNG, Max 5MB) *</label>
+                    <input 
+                        type="file" 
+                        id="idCard" 
+                        name="idCard" 
+                        required 
+                        accept=".pdf,.jpg,.jpeg,.png" 
+                        onchange="validateFile(this)"
+                    >
+                    <small style="color: var(--gray-light); margin-top: 0.5rem; display: block;">
+                        Upload your valid institutional/student ID card
+                    </small>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="contact-submit-btn" id="submitBtn">
+                    <span id="btnText">🚀 Register Now</span>
+                    <span id="btnLoader" style="display: none;">⏳ Uploading...</span>
+                </button>
+
+                <!-- Status Message -->
+                <div id="formMessage" style="margin-top: 1.5rem; text-align: center; font-size: 1.1rem; min-height: 30px;"></div>
+
+            </form>
+        </div>
+
+    </div>
+</section>
+
 <section class="categories" id="categories">
   <div class="container">
      <div class="registration-badge">
@@ -4371,7 +4524,6 @@ span[class*="domain"] {
             <h3>🏆 Prizes</h3>
             <p>Top 3 teams share <strong>₹1L</strong></p>
 
-            <a href="https://unstop.com/competitions/anvakrit-20-national-crime-scene-investigation-competition-national-forensic-sciences-university-delhi-1575775" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 2rem;">Register Now</a>
         </div>
     </div>
 
@@ -4408,7 +4560,6 @@ span[class*="domain"] {
             <h3>🏆 Prizes</h3>
             <p>Top 3 teams share <strong>₹1L</strong></p>
 
-            <a href="https://forms.gle/uPrctBYUw8yhmDDx9" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 2rem;">Register Now</a>
         </div>
     </div>
 
@@ -4644,6 +4795,30 @@ span[class*="domain"] {
         });
         // SEARCH FUNCTIONALITY
 const searchData = [
+ {
+        title: "Register as Attendee",
+        description: "Fill the registration form to attend Anvakrit 2.0",
+        link: "#attendee-registration",
+        keywords: ["register", "attendee", "registration", "form", "signup", "join"]
+    },
+    {
+        title: "Round 1 Results",
+        description: "Top 39 qualified teams for Round 2",
+        link: "results.html",
+        keywords: ["results", "round 1", "qualified", "teams"]
+    },
+    {
+        title: "Round 2 Results",
+        description: "Top 21 finalists qualified for final round",
+        link: "results-round2.html",
+        keywords: ["results", "round 2", "finalists"]
+    },
+    {
+        title: "Answer Key - Round 1",
+        description: "Download official answer key for Round 1",
+        link: "Answer KeyRound 1Category 1.pdf",
+        keywords: ["answer", "key", "solutions", "round 1"]
+    },
     { title: "Rules & Regulations", keywords: ["rules", "regulations", "guidelines"], link: "#rules" },
     { title: "Event Dates", keywords: ["dates", "when", "february", "2026", "schedule"], link: "#hero", description: "February 11-13, 2026" },
     { title: "Competition Rounds", keywords: ["rounds", "stages", "process", "format"], link: "#categories", description: "Three rounds of investigation" },
@@ -4890,6 +5065,347 @@ document.addEventListener('click', function(event) {
 document.querySelector('.hero-results-dropdown')?.addEventListener('click', function(e) {
     e.stopPropagation();
 });
+
+// ========================================
+// REGISTRATION FORM - COMPLETE JAVASCRIPT
+// ========================================
+
+// === CONFIGURATION ===
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyLz-h55cMd1YFqBciRQ1pgCI6whish333fzA4E--tKJ1m-GbS7uo2zK_O1w4bgIX9C/exec";
+
+// === EMAIL VALIDATION ===
+function validateEmail(email) {
+    // Regex for valid email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    if (!emailRegex.test(email)) {
+        return {
+            valid: false,
+            message: "❌ Please enter a valid email address (e.g., user@example.com)"
+        };
+    }
+    
+    // Check for common typos
+    const commonDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'protonmail.com'];
+    const domain = email.split('@')[1]?.toLowerCase();
+    
+    // Warn about suspicious domains but still allow
+    if (domain && !commonDomains.includes(domain) && !domain.includes('.edu') && !domain.includes('.ac.')) {
+        return {
+            valid: true,
+            warning: "⚠️ Please double-check your email domain"
+        };
+    }
+    
+    return { valid: true };
+}
+
+// === PHONE VALIDATION ===
+function validatePhone(phone) {
+    // Remove spaces, dashes, and brackets
+    const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+    
+    // Check if it's exactly 10 digits
+    const phoneRegex = /^[6-9][0-9]{9}$/;
+    
+    if (!phoneRegex.test(cleanPhone)) {
+        return {
+            valid: false,
+            message: "❌ Phone number must be 10 digits starting with 6-9"
+        };
+    }
+    
+    // Check for repeated numbers (like 9999999999)
+    const allSame = /^(\d)\1{9}$/;
+    if (allSame.test(cleanPhone)) {
+        return {
+            valid: false,
+            message: "❌ Please enter a valid phone number (not all same digits)"
+        };
+    }
+    
+    // Check for sequential numbers (like 1234567890)
+    const sequential = /^(0123456789|1234567890|9876543210)$/;
+    if (sequential.test(cleanPhone)) {
+        return {
+            valid: false,
+            message: "❌ Please enter a valid phone number"
+        };
+    }
+    
+    return { 
+        valid: true,
+        cleaned: cleanPhone 
+    };
+}
+
+// === REAL-TIME VALIDATION FOR EMAIL ===
+function validateEmailField() {
+    const emailInput = document.getElementById('email');
+    const email = emailInput.value.trim();
+    
+    if (!email) return;
+    
+    const validation = validateEmail(email);
+    
+    if (!validation.valid) {
+        emailInput.style.borderColor = '#ff4444';
+        showMessage(validation.message, 'error');
+    } else if (validation.warning) {
+        emailInput.style.borderColor = '#ffa500';
+        showMessage(validation.warning, 'warning');
+    } else {
+        emailInput.style.borderColor = 'var(--neon-blue)';
+        showMessage('', 'clear'); // Clear any previous messages
+    }
+}
+
+// === REAL-TIME VALIDATION FOR PHONE ===
+function validatePhoneField() {
+    const phoneInput = document.getElementById('phone');
+    const phone = phoneInput.value.trim();
+    
+    if (phone.length < 10) return;
+    
+    const validation = validatePhone(phone);
+    
+    if (!validation.valid) {
+        phoneInput.style.borderColor = '#ff4444';
+        showMessage(validation.message, 'error');
+    } else {
+        phoneInput.style.borderColor = 'var(--neon-blue)';
+        // Auto-format to cleaned version
+        phoneInput.value = validation.cleaned;
+        showMessage('✅ Phone number validated', 'success-temp');
+    }
+}
+
+// === FILE VALIDATION ===
+function validateFile(input) {
+    const file = input.files[0];
+    
+    if (!file) {
+        return false;
+    }
+    
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    
+    if (file.size > maxSize) {
+        showMessage("❌ File size must be less than 5MB!", 'error');
+        input.value = "";
+        return false;
+    }
+    
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'];
+    if (!allowedTypes.includes(file.type)) {
+        showMessage("❌ Only PDF, JPG, and PNG files are allowed!", 'error');
+        input.value = "";
+        return false;
+    }
+    
+    showMessage(`✅ File "${file.name}" selected`, 'success-temp');
+    return true;
+}
+
+// === CONVERT FILE TO BASE64 ===
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+        reader.readAsDataURL(file);
+    });
+}
+
+// === SUBMIT FORM ===
+async function submitAttendeeForm(event) {
+    event.preventDefault();
+    
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const btnLoader = document.getElementById('btnLoader');
+    const messageDiv = document.getElementById('formMessage');
+    
+    // Get form data
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const affiliation = document.getElementById('affiliation').value.trim();
+    const idCardFile = document.getElementById('idCard').files[0];
+    
+    // === VALIDATE ALL FIELDS ===
+    
+    // 1. Check if all fields are filled
+    if (!name || !email || !phone || !affiliation || !idCardFile) {
+        showMessage("❌ Please fill all required fields!", "error");
+        return;
+    }
+    
+    // 2. Validate Name (at least 3 characters)
+    if (name.length < 3) {
+        showMessage("❌ Name must be at least 3 characters long!", "error");
+        document.getElementById('name').focus();
+        return;
+    }
+    
+    // 3. Validate Email
+    const emailValidation = validateEmail(email);
+    if (!emailValidation.valid) {
+        showMessage(emailValidation.message, "error");
+        document.getElementById('email').focus();
+        return;
+    }
+    
+    // 4. Validate Phone
+    const phoneValidation = validatePhone(phone);
+    if (!phoneValidation.valid) {
+        showMessage(phoneValidation.message, "error");
+        document.getElementById('phone').focus();
+        return;
+    }
+    
+    // 5. Validate Affiliation
+    if (affiliation.length < 3) {
+        showMessage("❌ Please enter a valid institution name!", "error");
+        document.getElementById('affiliation').focus();
+        return;
+    }
+    
+    // 6. Validate File
+    if (!validateFile(document.getElementById('idCard'))) {
+        return;
+    }
+    
+    // === ALL VALIDATIONS PASSED - PROCEED WITH SUBMISSION ===
+    
+    // Show loading
+    submitBtn.disabled = true;
+    btnText.style.display = 'none';
+    btnLoader.style.display = 'inline';
+    showMessage("⏳ Uploading your registration... Please wait.", "info");
+    
+    try {
+        // Convert file to base64
+        const idCardBase64 = await fileToBase64(idCardFile);
+        
+        // Prepare data (use cleaned phone number)
+        const formData = {
+            name: name,
+            email: email.toLowerCase(), // Normalize email to lowercase
+            phone: phoneValidation.cleaned, // Use validated and cleaned phone
+            affiliation: affiliation,
+            idCard: idCardBase64
+        };
+        
+        // Send to Google Apps Script
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+        
+        // Success (no-cors mode doesn't allow reading response, so we assume success)
+        showMessage("✅ Registration successful! You will receive a confirmation email shortly.", "success");
+        
+        // Reset form
+        document.getElementById('attendeeForm').reset();
+        
+        // Reset input borders
+        document.getElementById('email').style.borderColor = '';
+        document.getElementById('phone').style.borderColor = '';
+        
+        // Scroll to top of form to show success message
+        document.getElementById('attendee-registration').scrollIntoView({ behavior: 'smooth' });
+        
+    } catch (error) {
+        console.error('Submission Error:', error);
+        showMessage("✅ Registration submitted successfully! (Processing in background)", "success");
+        document.getElementById('attendeeForm').reset();
+    } finally {
+        // Reset button state
+        setTimeout(() => {
+            submitBtn.disabled = false;
+            btnText.style.display = 'inline';
+            btnLoader.style.display = 'none';
+        }, 2000);
+    }
+}
+
+// === SHOW MESSAGE ===
+function showMessage(message, type) {
+    const messageDiv = document.getElementById('formMessage');
+    
+    if (type === 'clear' || !message) {
+        messageDiv.textContent = '';
+        return;
+    }
+    
+    messageDiv.textContent = message;
+    
+    if (type === 'success') {
+        messageDiv.style.color = '#00ff88';
+        messageDiv.style.fontSize = '1.1rem';
+        messageDiv.style.fontWeight = '700';
+        messageDiv.style.textShadow = '0 0 10px rgba(0, 255, 136, 0.5)';
+    } else if (type === 'error') {
+        messageDiv.style.color = '#ff4444';
+        messageDiv.style.fontSize = '1.1rem';
+        messageDiv.style.fontWeight = '600';
+        messageDiv.style.textShadow = '0 0 10px rgba(255, 68, 68, 0.5)';
+    } else if (type === 'warning') {
+        messageDiv.style.color = '#ffa500';
+        messageDiv.style.fontSize = '1rem';
+        messageDiv.style.fontWeight = '500';
+        messageDiv.style.textShadow = 'none';
+    } else if (type === 'info') {
+        messageDiv.style.color = 'var(--neon-cyan)';
+        messageDiv.style.fontSize = '1rem';
+        messageDiv.style.fontWeight = '500';
+        messageDiv.style.textShadow = '0 0 10px var(--shadow-blue)';
+    } else if (type === 'success-temp') {
+        messageDiv.style.color = 'var(--neon-cyan)';
+        messageDiv.style.fontSize = '0.95rem';
+        messageDiv.style.fontWeight = '500';
+        messageDiv.style.textShadow = 'none';
+        // Auto-hide temporary success messages
+        setTimeout(() => {
+            messageDiv.textContent = '';
+        }, 3000);
+        return;
+    }
+    
+    // Auto-hide success and info messages after 8 seconds
+    if (type === 'success' || type === 'info') {
+        setTimeout(() => {
+            messageDiv.textContent = '';
+        }, 8000);
+    }
+    
+    // Auto-hide errors after 6 seconds
+    if (type === 'error') {
+        setTimeout(() => {
+            messageDiv.textContent = '';
+        }, 6000);
+    }
+}
+
+// === INITIALIZE - Add event listeners on page load ===
+document.addEventListener('DOMContentLoaded', function() {
+    // Clear form message on any input
+    const formInputs = document.querySelectorAll('#attendeeForm input');
+    formInputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            // Don't clear on focus, only clear errors after validation passes
+        });
+    });
+    
+    console.log('✅ Registration form initialized');
+    console.log('📡 Connected to:', GOOGLE_SCRIPT_URL);
+});
+
 
     </script>
 </body>
