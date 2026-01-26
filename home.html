@@ -3262,24 +3262,25 @@ input.warning {
                 </div>
 
                 <!-- Phone -->
-                <div class="form-group">
-                    <label for="phone">📱 Phone Number *</label>
-                    <input 
-                        type="tel" 
-                        id="phone" 
-                        name="phone" 
-                        required 
-                        pattern="[6-9][0-9]{9}" 
-                        placeholder="10-digit mobile number"
-                        maxlength="10"
-                        onblur="validatePhoneField()"
-                        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                        autocomplete="tel"
-                    >
-                    <small style="color: var(--gray-light); margin-top: 0.5rem; display: block;">
-                        Must start with 6, 7, 8, or 9
-                    </small>
-                </div>
+<div class="form-group">
+    <label for="phone">📱 Phone Number *</label>
+    <input 
+        type="tel" 
+        id="phone" 
+        name="phone" 
+        required 
+        pattern="[0-9]{10}" 
+        placeholder="Enter 10-digit phone number"
+        maxlength="10"
+        onblur="validatePhoneField()"
+        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+        autocomplete="tel"
+    >
+    <small style="color: var(--gray-light); margin-top: 0.5rem; display: block;">
+        Must be exactly 10 digits
+    </small>
+</div>
+
 
                 <!-- Affiliation -->
                 <div class="form-group">
@@ -5071,7 +5072,7 @@ document.querySelector('.hero-results-dropdown')?.addEventListener('click', func
 // ========================================
 
 // === CONFIGURATION ===
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyLz-h55cMd1YFqBciRQ1pgCI6whish333fzA4E--tKJ1m-GbS7uo2zK_O1w4bgIX9C/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzwTL_B6ZWs14eGzgTvg77JgQDamj8ueuTLUx9LHnxftN7P3IptWaJEueg_KCwFgSOG/exec";
 
 // === EMAIL VALIDATION ===
 function validateEmail(email) {
@@ -5100,18 +5101,18 @@ function validateEmail(email) {
     return { valid: true };
 }
 
-// === PHONE VALIDATION ===
+// === PHONE VALIDATION - UPDATED (Any 10 digits) ===
 function validatePhone(phone) {
     // Remove spaces, dashes, and brackets
     const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
     
-    // Check if it's exactly 10 digits
-    const phoneRegex = /^[6-9][0-9]{9}$/;
+    // Check if it's exactly 10 digits (any starting digit)
+    const phoneRegex = /^[0-9]{10}$/;
     
     if (!phoneRegex.test(cleanPhone)) {
         return {
             valid: false,
-            message: "❌ Phone number must be 10 digits starting with 6-9"
+            message: "❌ Phone number must be exactly 10 digits"
         };
     }
     
@@ -5138,6 +5139,7 @@ function validatePhone(phone) {
         cleaned: cleanPhone 
     };
 }
+
 
 // === REAL-TIME VALIDATION FOR EMAIL ===
 function validateEmailField() {
