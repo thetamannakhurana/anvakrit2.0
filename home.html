@@ -3142,14 +3142,15 @@ input.warning {
         📊 View Results ▼
     </button>
     <div class="results-dropdown-menu" id="heroResultsMenu">
-        <a href="results.html" target="_blank">
+        <a href="results.html">
             📈 Round 1 Results - Top 39 Teams
         </a>
-        <a href="results-round2.html" target="_blank">
+        <a href="results-round2.html">
             🏆 Round 2 Results - Top 21 Finalists
         </a>
     </div>
 </div>
+
 
 
 
@@ -5100,7 +5101,7 @@ window.audioToggle = () => {
 };
 
 // ========================================
-// HERO RESULTS DROPDOWN - FINAL FIX
+// HERO RESULTS DROPDOWN - FIXED VERSION
 // ========================================
 
 function toggleResultsDropdown(event) {
@@ -5113,21 +5114,17 @@ function toggleResultsDropdown(event) {
     const button = event ? event.target : document.querySelector('.btn-results-dropdown');
     
     if (!menu) {
-        console.error('❌ Dropdown menu not found!');
+        console.error('Dropdown menu not found!');
         return;
     }
     
-    const isActive = menu.classList.contains('active');
+    // Toggle dropdown
     menu.classList.toggle('active');
     
     // Update button text
     if (button) {
-        button.innerHTML = menu.classList.contains('active') 
-            ? '📊 View Results ▲' 
-            : '📊 View Results ▼';
+        button.innerHTML = menu.classList.contains('active') ? 'View Results ▲' : 'View Results ▼';
     }
-    
-    console.log('✅ Dropdown toggled:', menu.classList.contains('active'));
 }
 
 // Close dropdown when clicking outside
@@ -5139,42 +5136,34 @@ document.addEventListener('click', function(event) {
     if (!dropdown || !menu) return;
     
     // Don't close if clicking inside dropdown
-    if (dropdown.contains(event.target)) {
-        return;
-    }
+    if (dropdown.contains(event.target)) return;
     
     // Close if clicking outside
     if (menu.classList.contains('active')) {
         menu.classList.remove('active');
-        if (button) {
-            button.innerHTML = '📊 View Results ▼';
-        }
+        if (button) button.innerHTML = 'View Results ▼';
     }
 });
 
-// Initialize on page load
+// Initialize dropdown - NO EVENT LISTENERS ON LINKS!
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('✅ Results dropdown script loaded');
+    console.log('Results dropdown initialized');
     
     const menu = document.getElementById('heroResultsMenu');
     const links = document.querySelectorAll('.results-dropdown-menu a');
     
     if (menu) {
-        console.log('✅ Dropdown menu found with', links.length, 'links');
+        console.log('✅ Dropdown found with', links.length, 'links');
+        
+        // Just log href for debugging - don't add event listeners!
+        links.forEach((link, index) => {
+            console.log(`Link ${index + 1}:`, link.href);
+        });
     } else {
         console.error('❌ Dropdown menu NOT found!');
     }
-    
-    // Test each link
-    links.forEach((link, index) => {
-        console.log(`Link ${index + 1}:`, link.href);
-        
-        link.addEventListener('click', function(e) {
-            console.log(`✅ Link ${index + 1} clicked:`, this.href);
-            // Let the link navigate normally
-        });
-    });
 });
+
 
 // ========================================
 // REGISTRATION FORM - COMPLETE JAVASCRIPT
