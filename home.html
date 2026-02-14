@@ -3094,6 +3094,15 @@ input.warning {
   font-family: 'Rajdhani', sans-serif;
 }
 
+.team-members.active {
+  max-height: 800px !important;
+  opacity: 1 !important;
+  padding: 1.5rem 0 0 0 !important;
+  border-top: 2px solid var(--neon-blue);
+  margin-top: 1rem;
+}
+.winner-card { cursor: pointer; }
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .winners-grid {
@@ -5647,6 +5656,9 @@ function revealTeam(card,teamId) {
   }
 }
 
+function showTeamMembers(id) {
+  document.getElementById(id).classList.toggle('active');
+}
 
     </script>
 </body>
