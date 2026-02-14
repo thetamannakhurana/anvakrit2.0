@@ -3063,18 +3063,23 @@ input.warning {
 
 /* Team Members POP Animation */
 .team-members {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transform: scale(0.8) translateY(20px);
-    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    max-height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    transform: scale(0.8) translateY(20px) !important;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    padding: 0 !important;
 }
 
 .team-members.active {
-    max-height: 600px;
-    opacity: 1;
-    transform: scale(1) translateY(0);
+    max-height: 800px !important;
+    opacity: 1 !important;
+    transform: scale(1) translateY(0) !important;
+    padding: 1.5rem 0 !important;
+    border-top: 2px solid var(--neon-blue) !important;
+    margin-top: 1rem !important;
 }
+
 
 
 .member {
@@ -5684,223 +5689,125 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('📡 Connected to:', GOOGLE_SCRIPT_URL);
 });
 
-// 🔥 COMPLETE WINNER TOGGLE + FIREWORKS SYSTEM
-let canvas, ctx, fireworks = [], animationId;
-
-function initFireworks() {
-    canvas = document.getElementById('fireworksCanvas');
-    if (!canvas) return;
-    ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-
-function createFirework(x, y) {
-    const colors = ['#00d4ff', '#00eaff', '#2563eb', '#ff00ff', '#ffff00'];
-    for(let i = 0; i < 30; i++) {
-        fireworks.push({
-            x, y,
-            vx: (Math.random() - 0.5) * 15,
-            vy: (Math.random() - 0.5) * 15,
-            color: colors[Math.floor(Math.random() * colors.length)],
-            life: 120,
-            decay: 1.5,
-            size: Math.random() * 5 + 2,
-            gravity: 0.015
-        });
-    }
-}
-
-function animateFireworks() {
-    if (!canvas || !ctx) return;
-    ctx.fillStyle = 'rgba(0,0,0,0.15)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+function initTeamToggle() {
+    console.log("🔧 Team toggle initializing...");
     
-    for(let i = fireworks.length - 1; i >= 0; i--) {
-        const f = fireworks[i];
-        f.x += f.vx;
-        f.y += f.vy;
-        f.vy += f.gravity;
-        f.life -= f.decay;
-        f.size *= 0.97;
+    document.querySelectorAll('.toggle-members-btn').forEach((btn, index) => {
+        console.log(`Button ${index}:`, btn);
         
-        if(f.life <= 0) {
-            fireworks.splice(i, 1);
-            continue;
-        }
-        
-        ctx.save();
-        ctx.globalAlpha = f.life / 120;
-        ctx.fillStyle = f.color;
-        ctx.shadowColor = f.color;
-        ctx.shadowBlur = 20;
-        ctx.beginPath();
-        ctx.arc(f.x, f.y, f.size, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-    }
-    
-    if(fireworks.length > 0) {
-        animationId = requestAnimationFrame(animateFireworks);
-    }
-}
-
-function launchFireworks(card) {
-    const rect = card.getBoundingClientRect();
-    const x = rect.left + rect.width / 2 + window.scrollX;
-    const y = rect.top + rect.height / 2 + window.scrollY;
-    
-    canvas.classList.add('active');
-    createFirework(x, y);
-    if(animationId) cancelAnimationFrame(animationId);
-    animateFireworks();
-}
-
-// 🔥 MAIN TOGGLE FUNCTION
-function showTeamMembers(teamId) {
-    const teamMembers = document.getElementById(teamId);
-    const button = document.querySelector(`[data-team="${teamId}"]`);
-    const card = teamMembers.closest('.winner-card');
-    
-    const isShowing = !teamMembers.classList.contains('active');
-    
-    if(isShowing) {
-        // 🎆 SHOW TEAM + FIREWORKS
-        teamMembers.classList.add('active');
-        button.classList.add('active');
-        button.textContent = 'Hide Team Members';
-        launchFireworks(card);
-    } else {
-        // Hide team
-        teamMembers.classList.remove('active');
-        button.classList.remove('active');
-        button.textContent = 'View Team Members';
-    }
-}
-
-// 🛠️ INITIALIZE EVERYTHING
-document.addEventListener('DOMContentLoaded', function() {
-    initFireworks();
-    
-    // Add click listeners to ALL buttons
-    document.querySelectorAll('.toggle-members-btn').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            const teamId = this.getAttribute('data-team');
-            showTeamMembers(teamId);
-        });
-    });
-    
-    // Resize fireworks canvas
-    window.addEventListener('resize', () => {
-        if(canvas) {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-    });
-    
-    // Close all when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.winner-card')) {
-            document.querySelectorAll('.team-members.active').forEach(el => {
-                el.classList.remove('active');
-                const button = document.querySelector(`[data-team="${el.id}"]`);
-                if(button) {
-                    button.classList.remove('active');
-                    button.textContent = 'View Team Members';
-                }
-            });
-            fireworks = [];
-            canvas.classList.remove('active');
-        }
-    });
-});
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Toggle function
-    document.querySelectorAll('.toggle-members-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
+            
             const teamId = this.getAttribute('data-team');
             const teamDiv = document.getElementById(teamId);
-            const isActive = teamDiv.classList.contains('active');
             
-            if(isActive) {
-                teamDiv.classList.remove('active');
-                this.textContent = 'View Team Members';
-                this.classList.remove('active');
-            } else {
-                // Close all others first
-                document.querySelectorAll('.team-members.active').forEach(div => {
+            console.log('Team ID:', teamId);
+            console.log('Team Div:', teamDiv);
+            
+            if (!teamDiv) {
+                console.error('❌ Team div not found:', teamId);
+                return;
+            }
+            
+            const isActive = teamDiv.classList.contains('active');
+            console.log('Is active:', isActive);
+            
+            // Close ALL other teams first
+            document.querySelectorAll('.team-members.active').forEach(div => {
+                if (div.id !== teamId) {
                     div.classList.remove('active');
                     const otherBtn = document.querySelector(`[data-team="${div.id}"]`);
-                    if(otherBtn) {
+                    if (otherBtn) {
                         otherBtn.textContent = 'View Team Members';
                         otherBtn.classList.remove('active');
                     }
-                });
-                
-                // Open this one + fireworks
+                }
+            });
+            
+            if (isActive) {
+                // Hide this team
+                teamDiv.classList.remove('active');
+                this.textContent = 'View Team Members';
+                this.classList.remove('active');
+                console.log('✅ Team closed:', teamId);
+            } else {
+                // Show this team
                 teamDiv.classList.add('active');
                 this.textContent = 'Hide Team Members';
                 this.classList.add('active');
+                console.log('✅ Team opened:', teamId);
                 
-                // Simple fireworks
+                // Fireworks
                 fireworksEffect();
             }
         });
     });
     
-    function fireworksEffect() {
-        const canvas = document.getElementById('fireworksCanvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        canvas.style.opacity = '1';
-        
-        let particles = [];
-        for(let i = 0; i < 50; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                vx: (Math.random() - 0.5) * 10,
-                vy: (Math.random() - 0.5) * 10,
-                life: 100,
-                color: `hsl(${Math.random()*60 + 180}, 100%, 50%)`
-            });
-        }
-        
-        function animate() {
-            ctx.fillStyle = 'rgba(0,0,0,0.1)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach((p, i) => {
-                p.x += p.vx;
-                p.y += p.vy;
-                p.life--;
-                p.vx *= 0.98;
-                p.vy *= 0.98;
-                
-                ctx.save();
-                ctx.globalAlpha = p.life / 100;
-                ctx.fillStyle = p.color;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-                
-                if(p.life < 0) particles.splice(i, 1);
-            });
-            
-            if(particles.length > 0) requestAnimationFrame(animate);
-            else canvas.style.opacity = '0';
-        }
-        animate();
+    console.log("✅ Team toggle ready!");
+}
+
+// Fireworks effect
+function fireworksEffect() {
+    const canvas = document.getElementById('fireworksCanvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.classList.add('active');
+    
+    let particles = [];
+    for(let i = 0; i < 50; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 10,
+            vy: (Math.random() - 0.5) * 10,
+            life: 100,
+            color: `hsl(${Math.random()*60 + 180}, 100%, 50%)`
+        });
     }
-});
+    
+    function animate() {
+        ctx.fillStyle = 'rgba(0,0,0,0.1)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach((p, i) => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.life--;
+            p.vx *= 0.98;
+            p.vy *= 0.98;
+            
+            ctx.save();
+            ctx.globalAlpha = p.life / 100;
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+            
+            if(p.life < 0) particles.splice(i, 1);
+        });
+        
+        if(particles.length > 0) requestAnimationFrame(animate);
+        else setTimeout(() => canvas.classList.remove('active'), 500);
+    }
+    animate();
+}
+
+// Initialize when page loads
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTeamToggle);
+} else {
+    initTeamToggle();
+}
+
+// Re-init on resize
+window.addEventListener('resize', initTeamToggle);
 </script>
+
 
 <canvas id="fireworksCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;opacity:0;"></canvas>
 
