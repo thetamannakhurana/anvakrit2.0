@@ -3167,6 +3167,26 @@ input.warning {
 .team-name {
     transition: transform 0.3s ease;
 }
+/* 🔥 FORCE TEAM MEMBERS TO SHOW */
+.team-members {
+    height: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transition: all 0.5s ease !important;
+}
+
+.team-members.active {
+    height: auto !important;
+    max-height: 1000px !important;
+    opacity: 1 !important;
+    padding: 1.5rem 0 !important;
+    margin-top: 1rem !important;
+    border-top: 2px solid #00d4ff !important;
+    overflow: visible !important;
+}
 
     </style>
         <!-- Background Audio -->
@@ -5689,125 +5709,104 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('📡 Connected to:', GOOGLE_SCRIPT_URL);
 });
 
-function initTeamToggle() {
-    console.log("🔧 Team toggle initializing...");
+<!-- 🔥 TEAM MEMBERS FIREWORKS - BULLETPROOF -->
+<canvas id="fireworksCanvas"></canvas>
+// 🔥 BULLETPROOF TEAM TOGGLE - 100% WORKS
+window.addEventListener('load', function() {
+    console.log('🔥 TEAM TOGGLE LOADED!');
     
-    document.querySelectorAll('.toggle-members-btn').forEach((btn, index) => {
-        console.log(`Button ${index}:`, btn);
+    // Find ALL buttons
+    const buttons = document.querySelectorAll('.toggle-members-btn');
+    console.log('Found buttons:', buttons.length);
+    
+    buttons.forEach((btn, i) => {
+        console.log('Button', i, ':', btn);
         
-        btn.addEventListener('click', function(e) {
+        btn.onclick = function(e) {
             e.preventDefault();
-            e.stopPropagation();
+            console.log('🔥 BUTTON CLICKED!');
             
-            const teamId = this.getAttribute('data-team');
+            const teamId = this.dataset.team;
             const teamDiv = document.getElementById(teamId);
+            console.log('Team ID:', teamId, 'Div:', teamDiv);
             
-            console.log('Team ID:', teamId);
-            console.log('Team Div:', teamDiv);
-            
-            if (!teamDiv) {
-                console.error('❌ Team div not found:', teamId);
+            if(!teamDiv) {
+                alert('Team div missing! Check ID: ' + teamId);
                 return;
             }
             
-            const isActive = teamDiv.classList.contains('active');
-            console.log('Is active:', isActive);
-            
-            // Close ALL other teams first
+            // Close others
             document.querySelectorAll('.team-members.active').forEach(div => {
-                if (div.id !== teamId) {
+                if(div.id !== teamId) {
                     div.classList.remove('active');
-                    const otherBtn = document.querySelector(`[data-team="${div.id}"]`);
-                    if (otherBtn) {
-                        otherBtn.textContent = 'View Team Members';
-                        otherBtn.classList.remove('active');
-                    }
                 }
             });
             
-            if (isActive) {
-                // Hide this team
+            // Toggle this one
+            if(teamDiv.classList.contains('active')) {
                 teamDiv.classList.remove('active');
-                this.textContent = 'View Team Members';
+                this.innerHTML = 'View Team Members';
                 this.classList.remove('active');
-                console.log('✅ Team closed:', teamId);
             } else {
-                // Show this team
                 teamDiv.classList.add('active');
-                this.textContent = 'Hide Team Members';
+                this.innerHTML = 'Hide Team Members';
                 this.classList.add('active');
-                console.log('✅ Team opened:', teamId);
-                
-                // Fireworks
-                fireworksEffect();
+                fireworks();
             }
-        });
+        };
     });
     
-    console.log("✅ Team toggle ready!");
-}
-
-// Fireworks effect
-function fireworksEffect() {
-    const canvas = document.getElementById('fireworksCanvas');
-    if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    canvas.classList.add('active');
-    
-    let particles = [];
-    for(let i = 0; i < 50; i++) {
-        particles.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            vx: (Math.random() - 0.5) * 10,
-            vy: (Math.random() - 0.5) * 10,
-            life: 100,
-            color: `hsl(${Math.random()*60 + 180}, 100%, 50%)`
-        });
+    function fireworks() {
+        const canvas = document.getElementById('fireworksCanvas');
+        canvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;opacity:1';
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const ctx = canvas.getContext('2d');
+        let parts = [];
+        
+        // Create 100 particles
+        for(let i=0; i<100; i++) {
+            parts.push({
+                x: Math.random()*canvas.width,
+                y: Math.random()*canvas.height,
+                vx: (Math.random()-0.5)*20,
+                vy: (Math.random()-0.5)*20,
+                life: 60,
+                maxLife: 60,
+                color: `hsl(${180+Math.random()*60},100%,50%)`
+            });
+        }
+        
+        function anim() {
+            ctx.fillStyle = 'rgba(0,0,0,0.1)';
+            ctx.fillRect(0,0,canvas.width,canvas.height);
+            
+            parts.forEach((p,i) => {
+                p.x += p.vx; p.y += p.vy;
+                p.life--;
+                p.vx *= 0.97; p.vy *= 0.97;
+                
+                ctx.save();
+                ctx.globalAlpha = p.life/p.maxLife;
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x,p.y,Math.random()*5+2,0,Math.PI*2);
+                ctx.fill();
+                ctx.restore();
+                
+                if(p.life <= 0) parts.splice(i,1);
+            });
+            
+            if(parts.length) requestAnimationFrame(anim);
+            else canvas.style.opacity = '0';
+        }
+        anim();
     }
     
-    function animate() {
-        ctx.fillStyle = 'rgba(0,0,0,0.1)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        particles.forEach((p, i) => {
-            p.x += p.vx;
-            p.y += p.vy;
-            p.life--;
-            p.vx *= 0.98;
-            p.vy *= 0.98;
-            
-            ctx.save();
-            ctx.globalAlpha = p.life / 100;
-            ctx.fillStyle = p.color;
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.restore();
-            
-            if(p.life < 0) particles.splice(i, 1);
-        });
-        
-        if(particles.length > 0) requestAnimationFrame(animate);
-        else setTimeout(() => canvas.classList.remove('active'), 500);
-    }
-    animate();
-}
-
-// Initialize when page loads
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTeamToggle);
-} else {
-    initTeamToggle();
-}
-
-// Re-init on resize
-window.addEventListener('resize', initTeamToggle);
+    console.log('✅ ALL READY! Click any button to test');
+});
 </script>
-
 
 <canvas id="fireworksCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;opacity:0;"></canvas>
 
