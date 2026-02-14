@@ -3128,14 +3128,18 @@ input.warning {
 .team-members {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.5s ease, opacity 0.5s ease;
     opacity: 0;
+    transform: scale(0.8) translateY(20px);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .team-members.active {
-    max-height: 500px; /* Adjust based on content */
+    max-height: 600px;
     opacity: 1;
+    transform: scale(1) translateY(0);
+    box-shadow: 0 20px 60px rgba(0, 212, 255, 0.4);
 }
+
 
 
 /* Smooth team name animation */
@@ -3401,7 +3405,7 @@ input.warning {
       <div class="winners-grid">
         
         <!-- 1ST PLACE - CIPHER SIRENS -->
-        <div class="winner-card gold" onclick="showTeamMembers('team1')">
+        <div class="winner-card gold">
           <div class="winner-rank">
             <span class="trophy-icon">🥇</span>
             <h4>1st Place</h4>
@@ -3409,9 +3413,11 @@ input.warning {
           </div>
           <div class="winner-info">
             <h3 class="team-name">CIPHER SIRENS</h3>
-<button class="toggle-members-btn" data-team="team1">
-    View Team Members
-</button>          </div>
+          </div>
+          <!-- ✅ FIXED: Button OUTSIDE winner-info, CORRECT data-team -->
+          <button class="toggle-members-btn" data-team="team1">
+            View Team Members
+          </button>
           <div class="team-members" id="team1">
             <div class="member">
               <span class="member-name">AFRAJABEEN RON</span>
@@ -3427,10 +3433,9 @@ input.warning {
             </div>
           </div>
         </div>
-<canvas id="fireworksCanvas"></canvas>
 
         <!-- 2ND PLACE - LUX VERITAS -->
-        <div class="winner-card silver" onclick="showTeamMembers('team2')">
+        <div class="winner-card silver">
           <div class="winner-rank">
             <span class="trophy-icon">🥈</span>
             <h4>2nd Place</h4>
@@ -3438,9 +3443,11 @@ input.warning {
           </div>
           <div class="winner-info">
             <h3 class="team-name">LUX VERITAS</h3>
-<button class="toggle-members-btn" data-team="team1">
-    View Team Members
-</button>          </div>
+          </div>
+          <!-- ✅ FIXED: data-team="team2" -->
+          <button class="toggle-members-btn" data-team="team2">
+            View Team Members
+          </button>
           <div class="team-members" id="team2">
             <div class="member">
               <span class="member-name">ALSHA P A</span>
@@ -3458,7 +3465,7 @@ input.warning {
         </div>
 
         <!-- 3RD PLACE - THE SCENE DECODERS -->
-        <div class="winner-card bronze" onclick="showTeamMembers('team3')">
+        <div class="winner-card bronze">
           <div class="winner-rank">
             <span class="trophy-icon">🥉</span>
             <h4>3rd Place</h4>
@@ -3466,9 +3473,11 @@ input.warning {
           </div>
           <div class="winner-info">
             <h3 class="team-name">THE SCENE DECODERS</h3>
-<button class="toggle-members-btn" data-team="team1">
-    View Team Members
-</button>          </div>
+          </div>
+          <!-- ✅ FIXED: data-team="team3" -->
+          <button class="toggle-members-btn" data-team="team3">
+            View Team Members
+          </button>
           <div class="team-members" id="team3">
             <div class="member">
               <span class="member-name">Tisha Girkar</span>
@@ -3491,8 +3500,9 @@ input.warning {
     <div class="category-winners" style="margin-top: 4rem;">
       <h3 class="winner-category-title">Category II - Postgraduate & Ph.D. Students</h3>
       <div class="winners-grid">
+        
         <!-- 1ST PLACE - GROUP 7 -->
-        <div class="winner-card gold" onclick="showTeamMembers('team4')">
+        <div class="winner-card gold">
           <div class="winner-rank">
             <span class="trophy-icon">🥇</span>
             <h4>1st Place</h4>
@@ -3500,9 +3510,11 @@ input.warning {
           </div>
           <div class="winner-info">
             <h3 class="team-name">GROUP 7</h3>
-<button class="toggle-members-btn" data-team="team1">
-    View Team Members
-</button>          </div>
+          </div>
+          <!-- ✅ FIXED: data-team="team4" -->
+          <button class="toggle-members-btn" data-team="team4">
+            View Team Members
+          </button>
           <div class="team-members" id="team4">
             <div class="member">
               <span class="member-name">Rishabh Kumar</span>
@@ -3523,7 +3535,7 @@ input.warning {
         </div>
 
         <!-- 2ND PLACE - GROUP 6 -->
-        <div class="winner-card silver" onclick="showTeamMembers('team5')">
+        <div class="winner-card silver">
           <div class="winner-rank">
             <span class="trophy-icon">🥈</span>
             <h4>2nd Place</h4>
@@ -3531,10 +3543,11 @@ input.warning {
           </div>
           <div class="winner-info">
             <h3 class="team-name">GROUP 6</h3>
-<button class="toggle-members-btn" data-team="team1">
-    View Team Members
-</button>
           </div>
+          <!-- ✅ FIXED: data-team="team5" -->
+          <button class="toggle-members-btn" data-team="team5">
+            View Team Members
+          </button>
           <div class="team-members" id="team5">
             <div class="member">
               <span class="member-name">T. Amulya</span>
@@ -3555,7 +3568,7 @@ input.warning {
         </div>
 
         <!-- 3RD PLACE - GROUP 9 -->
-        <div class="winner-card bronze" onclick="showTeamMembers('team6')">
+        <div class="winner-card bronze">
           <div class="winner-rank">
             <span class="trophy-icon">🥉</span>
             <h4>3rd Place</h4>
@@ -3563,9 +3576,11 @@ input.warning {
           </div>
           <div class="winner-info">
             <h3 class="team-name">GROUP 9</h3>
-<button class="toggle-members-btn" data-team="team1">
-    View Team Members
-</button>          </div>
+          </div>
+          <!-- ✅ FIXED: data-team="team6" -->
+          <button class="toggle-members-btn" data-team="team6">
+            View Team Members
+          </button>
           <div class="team-members" id="team6">
             <div class="member">
               <span class="member-name">Dheeraj Kumar</span>
@@ -3601,6 +3616,10 @@ input.warning {
     </div>
   </div>
 </section>
+
+<!-- 🔥 MOVE THIS canvas to END OF BODY (before closing </body> tag) -->
+<canvas id="fireworksCanvas"></canvas>
+
 
 
 <section class="categories" id="categories">
@@ -5649,152 +5668,122 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('📡 Connected to:', GOOGLE_SCRIPT_URL);
 });
 
-// Fireworks + Toggle Functionality
-let canvas, ctx;
-let fireworks = [];
-let animationId;
+// 🔥 FIREWORKS + POP EFFECT
+let canvas, ctx, fireworks = [], animationId;
 
 function initFireworks() {
     canvas = document.getElementById('fireworksCanvas');
+    if (!canvas) return;
     ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
 
-function createFirework(x, y) {
-    const colors = ['#ff00ff', '#00ffff', '#ffff00', '#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24'];
+function fireworksAtCard(card) {
+    const rect = card.getBoundingClientRect();
+    const x = rect.left + rect.width / 2 + window.scrollX;
+    const y = rect.top + rect.height / 2 + window.scrollY;
     
-    // Main explosion - 25 particles
-    for(let i = 0; i < 25; i++) {
-        fireworks.push({
-            x: x,
-            y: y,
-            vx: (Math.random() - 0.5) * 12,
-            vy: (Math.random() - 0.5) * 12,
-            color: colors[Math.floor(Math.random() * colors.length)],
-            life: 100,
-            decay: Math.random() * 2 + 1,
-            size: Math.random() * 4 + 2,
-            gravity: 0.02
-        });
+    // 3 Explosions at card center
+    for(let burst = 0; burst < 3; burst++) {
+        setTimeout(() => createFirework(x, y), burst * 100);
     }
-    
-    // Secondary sparks - 15 smaller ones
-    for(let i = 0; i < 15; i++) {
+}
+
+function createFirework(x, y) {
+    const colors = ['#00d4ff', '#00eaff', '#2563eb', '#ff00ff', '#ffff00'];
+    for(let i = 0; i < 30; i++) {
         fireworks.push({
-            x: x,
-            y: y,
-            vx: (Math.random() - 0.5) * 8,
-            vy: (Math.random() - 0.5) * 8,
+            x, y,
+            vx: (Math.random() - 0.5) * 15,
+            vy: (Math.random() - 0.5) * 15,
             color: colors[Math.floor(Math.random() * colors.length)],
-            life: 80,
-            decay: Math.random() * 3 + 1.5,
-            size: Math.random() * 2 + 1,
-            gravity: 0.03
+            life: 120,
+            decay: 1.5,
+            size: Math.random() * 5 + 2,
+            gravity: 0.015
         });
     }
 }
 
 function animateFireworks() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+    ctx.fillStyle = 'rgba(0,0,0,0.15)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
     for(let i = fireworks.length - 1; i >= 0; i--) {
-        const fw = fireworks[i];
+        const f = fireworks[i];
+        f.x += f.vx;
+        f.y += f.vy;
+        f.vy += f.gravity;
+        f.life -= f.decay;
+        f.size *= 0.97;
         
-        fw.x += fw.vx;
-        fw.y += fw.vy;
-        fw.vy += fw.gravity;
-        fw.life -= fw.decay;
-        fw.size *= 0.98;
-        
-        if(fw.life <= 0 || fw.size < 0.5) {
+        if(f.life <= 0) {
             fireworks.splice(i, 1);
             continue;
         }
         
         ctx.save();
-        ctx.globalAlpha = fw.life / 100;
-        ctx.fillStyle = fw.color;
-        ctx.shadowColor = fw.color;
-        ctx.shadowBlur = 15;
+        ctx.globalAlpha = f.life / 120;
+        ctx.fillStyle = f.color;
+        ctx.shadowColor = f.color;
+        ctx.shadowBlur = 20;
         ctx.beginPath();
-        ctx.arc(fw.x, fw.y, fw.size, 0, Math.PI * 2);
+        ctx.arc(f.x, f.y, f.size, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
     }
     
     if(fireworks.length > 0) {
         animationId = requestAnimationFrame(animateFireworks);
-    } else {
-        canvas.classList.remove('active');
     }
 }
 
-function launchFireworks(x, y) {
+function launchFireworks(card) {
     canvas.classList.add('active');
-    createFirework(x, y);
-    
+    fireworksAtCard(card);
     if(animationId) cancelAnimationFrame(animationId);
     animateFireworks();
 }
 
-// Team Toggle + Fireworks
+// MAIN TOGGLE FUNCTION
 function showTeamMembers(teamId) {
     const teamMembers = document.getElementById(teamId);
     const button = document.querySelector(`[data-team="${teamId}"]`);
+    const card = teamMembers.closest('.winner-card');
     
-    const rect = teamMembers.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
+    const isShowing = !teamMembers.classList.contains('active');
     
-    teamMembers.classList.toggle('active');
-    const isShowing = teamMembers.classList.contains('active');
-    
-    button.classList.toggle('active', isShowing);
-    button.textContent = isShowing ? 'Hide Team Members' : 'View Team Members';
-    
-    // 🎆 FIREWORKS ONLY WHEN REVEALING TEAM
+    // POP EFFECT + FIREWORKS (ONLY when showing)
     if(isShowing) {
-        launchFireworks(x + window.scrollX, y + window.scrollY);
+        teamMembers.classList.add('active');
+        button.classList.add('active');
+        button.textContent = 'Hide Team Members';
+        launchFireworks(card); // 🎆 FIREWORKS AT CARD
+    } else {
+        teamMembers.classList.remove('active');
+        button.classList.remove('active');
+        button.textContent = 'View Team Members';
     }
 }
 
-// Initialize everything
+// INIT
 document.addEventListener('DOMContentLoaded', function() {
     initFireworks();
     
-    // Button event listeners
-    document.querySelectorAll('.toggle-members-btn').forEach(button => {
-        button.addEventListener('click', function(e) {
+    document.querySelectorAll('.toggle-members-btn').forEach(btn => {
+        btn.onclick = (e) => {
             e.stopPropagation();
-            const teamId = this.getAttribute('data-team');
-            showTeamMembers(teamId);
-        });
+            showTeamMembers(btn.getAttribute('data-team'));
+        };
     });
     
-    // Resize canvas
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    });
-    
-    // Close on outside click
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.winner-card')) {
-            document.querySelectorAll('.team-members.active').forEach(el => {
-                el.classList.remove('active');
-                const button = document.querySelector(`[data-team="${el.id}"]`);
-                if (button) {
-                    button.classList.remove('active');
-                    button.textContent = 'View Team Members';
-                }
-            });
-            fireworks = []; // Clear fireworks
-            if(animationId) cancelAnimationFrame(animationId);
-            canvas.classList.remove('active');
+    window.onresize = () => {
+        if(canvas) {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
-    });
+    };
 });
 </script>
 
