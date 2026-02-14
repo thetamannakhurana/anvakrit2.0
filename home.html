@@ -3620,15 +3620,6 @@ input.warning {
 </section>
 <!-- ==================== END WINNERS SECTION ==================== -->
 
-<!-- 4. Round 1 Results -->
-<a href="results.html" class="btn-primary btn-secondary btn-full-width">
-    📈 Round 1 Results - Top 39 Teams
-</a>
-
-<!-- 5. Round 2 Results -->
-<a href="results-round2.html" class="btn-primary btn-secondary btn-full-width">
-    🏆 Round 2 Results - Top 21 Finalists
-</a>
 <section class="categories" id="categories">
   <div class="container">
      <div class="registration-badge">
@@ -5675,10 +5666,10 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('📡 Connected to:', GOOGLE_SCRIPT_URL);
 });
 
-// Toggle Team Members Function
-function toggleTeamMembers(teamId) {
+// Toggle Team Members Function - CORRECTED
+function toggleTeamMembers(teamId, buttonElement) {
   const teamMembers = document.getElementById(teamId);
-  const button = event.currentTarget;
+  const button = buttonElement;
   
   // Toggle active class
   teamMembers.classList.toggle('active');
@@ -5691,7 +5682,6 @@ function toggleTeamMembers(teamId) {
     button.innerHTML = 'View Team Members <span class="arrow">▼</span>';
   }
 }
-
     </script>
 </body>
 </html>
