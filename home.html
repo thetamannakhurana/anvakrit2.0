@@ -3045,21 +3045,37 @@ input.warning {
 }
 
 
-/* Team Members - Hidden by Default */
+/* Fireworks Canvas */
+#fireworksCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+}
+
+#fireworksCanvas.active {
+    opacity: 1;
+}
+
+/* Team Members POP Animation */
 .team-members {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease, padding 0.5s ease;
-  margin-top: 0;
-  padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .team-members.active {
-  max-height: 600px;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(0, 212, 255, 0.2);
-  margin-top: 1.5rem;
+    max-height: 600px;
+    opacity: 1;
+    transform: scale(1) translateY(0);
 }
+
 
 .member {
   padding: 0.8rem 1rem;
@@ -5668,7 +5684,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('📡 Connected to:', GOOGLE_SCRIPT_URL);
 });
 
-// 🔥 FIREWORKS + POP EFFECT
+// 🔥 COMPLETE WINNER TOGGLE + FIREWORKS SYSTEM
 let canvas, ctx, fireworks = [], animationId;
 
 function initFireworks() {
@@ -5677,17 +5693,6 @@ function initFireworks() {
     ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-}
-
-function fireworksAtCard(card) {
-    const rect = card.getBoundingClientRect();
-    const x = rect.left + rect.width / 2 + window.scrollX;
-    const y = rect.top + rect.height / 2 + window.scrollY;
-    
-    // 3 Explosions at card center
-    for(let burst = 0; burst < 3; burst++) {
-        setTimeout(() => createFirework(x, y), burst * 100);
-    }
 }
 
 function createFirework(x, y) {
@@ -5707,6 +5712,7 @@ function createFirework(x, y) {
 }
 
 function animateFireworks() {
+    if (!canvas || !ctx) return;
     ctx.fillStyle = 'rgba(0,0,0,0.15)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
@@ -5740,13 +5746,17 @@ function animateFireworks() {
 }
 
 function launchFireworks(card) {
+    const rect = card.getBoundingClientRect();
+    const x = rect.left + rect.width / 2 + window.scrollX;
+    const y = rect.top + rect.height / 2 + window.scrollY;
+    
     canvas.classList.add('active');
-    fireworksAtCard(card);
+    createFirework(x, y);
     if(animationId) cancelAnimationFrame(animationId);
     animateFireworks();
 }
 
-// MAIN TOGGLE FUNCTION
+// 🔥 MAIN TOGGLE FUNCTION
 function showTeamMembers(teamId) {
     const teamMembers = document.getElementById(teamId);
     const button = document.querySelector(`[data-team="${teamId}"]`);
@@ -5754,38 +5764,60 @@ function showTeamMembers(teamId) {
     
     const isShowing = !teamMembers.classList.contains('active');
     
-    // POP EFFECT + FIREWORKS (ONLY when showing)
     if(isShowing) {
+        // 🎆 SHOW TEAM + FIREWORKS
         teamMembers.classList.add('active');
         button.classList.add('active');
         button.textContent = 'Hide Team Members';
-        launchFireworks(card); // 🎆 FIREWORKS AT CARD
+        launchFireworks(card);
     } else {
+        // Hide team
         teamMembers.classList.remove('active');
         button.classList.remove('active');
         button.textContent = 'View Team Members';
     }
 }
 
-// INIT
+// 🛠️ INITIALIZE EVERYTHING
 document.addEventListener('DOMContentLoaded', function() {
     initFireworks();
     
-    document.querySelectorAll('.toggle-members-btn').forEach(btn => {
-        btn.onclick = (e) => {
+    // Add click listeners to ALL buttons
+    document.querySelectorAll('.toggle-members-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
             e.stopPropagation();
-            showTeamMembers(btn.getAttribute('data-team'));
-        };
+            const teamId = this.getAttribute('data-team');
+            showTeamMembers(teamId);
+        });
     });
     
-    window.onresize = () => {
+    // Resize fireworks canvas
+    window.addEventListener('resize', () => {
         if(canvas) {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
-    };
+    });
+    
+    // Close all when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.winner-card')) {
+            document.querySelectorAll('.team-members.active').forEach(el => {
+                el.classList.remove('active');
+                const button = document.querySelector(`[data-team="${el.id}"]`);
+                if(button) {
+                    button.classList.remove('active');
+                    button.textContent = 'View Team Members';
+                }
+            });
+            fireworks = [];
+            canvas.classList.remove('active');
+        }
+    });
 });
 </script>
+
 
 </body>
 </html>
