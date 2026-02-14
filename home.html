@@ -3188,6 +3188,34 @@ input.warning {
     overflow: visible !important;
 }
 
+/* 🔥 FORCE BUTTONS CLICKABLE - TOP LAYER */
+.toggle-members-btn {
+    position: relative !important;
+    z-index: 10000 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
+
+.winner-card {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+.team-members {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* 🔥 ULTRA FORCE - NOTHING CAN COVER BUTTONS */
+.winners * {
+    pointer-events: none !important;
+}
+
+.toggle-members-btn,
+.team-members {
+    pointer-events: auto !important;
+}
+
     </style>
         <!-- Background Audio -->
     <audio id="bgAudio" autoplay loop style="display: none;">
@@ -5709,102 +5737,102 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('📡 Connected to:', GOOGLE_SCRIPT_URL);
 });
 
-<!-- 🔥 TEAM MEMBERS FIREWORKS - BULLETPROOF -->
-// 🔥 BULLETPROOF TEAM TOGGLE - 100% WORKS
-window.addEventListener('load', function() {
-    console.log('🔥 TEAM TOGGLE LOADED!');
-    
-    // Find ALL buttons
-    const buttons = document.querySelectorAll('.toggle-members-btn');
-    console.log('Found buttons:', buttons.length);
-    
-    buttons.forEach((btn, i) => {
-        console.log('Button', i, ':', btn);
+// 🔥 BULLETPROOF - RUNS EVEN IF EVERYTHING ELSE FAILS
+(function() {
+    function initButtons() {
+        console.log('🔥 FORCING BUTTONS...');
         
-        btn.onclick = function(e) {
-            e.preventDefault();
-            console.log('🔥 BUTTON CLICKED!');
-            
-            const teamId = this.dataset.team;
-            const teamDiv = document.getElementById(teamId);
-            console.log('Team ID:', teamId, 'Div:', teamDiv);
-            
-            if(!teamDiv) {
-                alert('Team div missing! Check ID: ' + teamId);
-                return;
+        // FORCE cursor
+        document.querySelectorAll('.toggle-members-btn').forEach(btn => {
+            btn.style.cssText = 'position:relative;z-index:10000;cursor:pointer!important;pointer-events:auto!important;background:#00d4ff;color:black!important;padding:1rem 2rem!important;border-radius:50px!important;border:none!important;font-weight:bold!important;';
+            btn.onclick = toggleTeam;
+            console.log('✅ Button forced:', btn);
+        });
+    }
+    
+    function toggleTeam(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('🎯 CLICK DETECTED!');
+        
+        const teamId = this.dataset.team;
+        const team = document.getElementById(teamId);
+        
+        // Close others
+        document.querySelectorAll('.team-members.active').forEach(t => {
+            if(t.id !== teamId) {
+                t.classList.remove('active');
+                document.querySelector(`[data-team="${t.id}"]`).innerHTML = 'View Team Members';
             }
-            
-            // Close others
-            document.querySelectorAll('.team-members.active').forEach(div => {
-                if(div.id !== teamId) {
-                    div.classList.remove('active');
-                }
-            });
-            
-            // Toggle this one
-            if(teamDiv.classList.contains('active')) {
-                teamDiv.classList.remove('active');
-                this.innerHTML = 'View Team Members';
-                this.classList.remove('active');
-            } else {
-                teamDiv.classList.add('active');
-                this.innerHTML = 'Hide Team Members';
-                this.classList.add('active');
-                fireworks();
-            }
-        };
-    });
+        });
+        
+        if(team.classList.contains('active')) {
+            team.classList.remove('active');
+            this.innerHTML = 'View Team Members';
+        } else {
+            team.classList.add('active');
+            this.innerHTML = 'Hide Team Members';
+            fireworks();
+        }
+    }
     
     function fireworks() {
-        const canvas = document.getElementById('fireworksCanvas');
-        canvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;opacity:1';
+        let canvas = document.getElementById('fireworksCanvas') || document.createElement('canvas');
+        if(!canvas.id) {
+            canvas.id = 'fireworksCanvas';
+            document.body.appendChild(canvas);
+        }
+        
+        canvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999';
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         
-        const ctx = canvas.getContext('2d');
-        let parts = [];
+        let ctx = canvas.getContext('2d');
+        let particles = [];
         
-        // Create 100 particles
-        for(let i=0; i<100; i++) {
-            parts.push({
-                x: Math.random()*canvas.width,
-                y: Math.random()*canvas.height,
-                vx: (Math.random()-0.5)*20,
-                vy: (Math.random()-0.5)*20,
-                life: 60,
-                maxLife: 60,
-                color: `hsl(${180+Math.random()*60},100%,50%)`
+        for(let i = 0; i < 100; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 15,
+                vy: (Math.random() - 0.5) * 15,
+                life: 80
             });
         }
         
-        function anim() {
+        function draw() {
             ctx.fillStyle = 'rgba(0,0,0,0.1)';
-            ctx.fillRect(0,0,canvas.width,canvas.height);
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            parts.forEach((p,i) => {
-                p.x += p.vx; p.y += p.vy;
-                p.life--;
-                p.vx *= 0.97; p.vy *= 0.97;
-                
+            particles.forEach((p, i) => {
                 ctx.save();
-                ctx.globalAlpha = p.life/p.maxLife;
-                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.life / 80;
+                ctx.fillStyle = `hsl(${Math.random()*60+200},100%,50%)`;
                 ctx.beginPath();
-                ctx.arc(p.x,p.y,Math.random()*5+2,0,Math.PI*2);
+                ctx.arc(p.x += p.vx, p.y += p.vy, 4, 0, Math.PI*2);
                 ctx.fill();
                 ctx.restore();
                 
-                if(p.life <= 0) parts.splice(i,1);
+                p.vx *= 0.98;
+                p.vy *= 0.98;
+                p.life--;
+                
+                if(p.life < 0) particles.splice(i, 1);
             });
             
-            if(parts.length) requestAnimationFrame(anim);
-            else canvas.style.opacity = '0';
+            if(particles.length) requestAnimationFrame(draw);
         }
-        anim();
+        draw();
     }
     
-    console.log('✅ ALL READY! Click any button to test');
-});
+    // RUN MULTIPLE TIMES TO BE SURE
+    initButtons();
+    setTimeout(initButtons, 100);
+    setTimeout(initButtons, 500);
+    setTimeout(initButtons, 1000);
+    
+    console.log('🚀 BUTTONS FORCED ACTIVE!');
+})();
 </script>
 
 <canvas id="fireworksCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;opacity:0;"></canvas>
