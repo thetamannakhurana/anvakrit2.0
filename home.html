@@ -3127,6 +3127,21 @@ input.warning {
     gap: 1rem !important;
   }
 }
+/* Ensure smooth toggle animation */
+.team-members {
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                padding 0.5s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.team-members.active {
+    opacity: 1;
+}
+
+/* Smooth team name animation */
+.team-name {
+    transition: transform 0.3s ease;
+}
 
     </style>
         <!-- Background Audio -->
@@ -3373,7 +3388,6 @@ input.warning {
 <!-- ==================== WINNERS SECTION ==================== -->
 <section class="winners" id="winners">
   <div class="container">
-    
     <!-- Section Header -->
     <div class="section-header">
       <span class="section-label">Champions</span>
@@ -3384,80 +3398,81 @@ input.warning {
     <!-- CATEGORY I WINNERS -->
     <div class="category-winners">
       <h3 class="winner-category-title">Category I - Undergraduate Students</h3>
-      
       <div class="winners-grid">
         
         <!-- 1ST PLACE - CIPHER SIRENS -->
-        <div class="winner-card gold">
+        <div class="winner-card gold" onclick="showTeamMembers('team1')">
           <div class="winner-rank">
             <span class="trophy-icon">🥇</span>
             <h4>1st Place</h4>
             <p class="prize-amount">₹50,000</p>
           </div>
-          
           <div class="winner-info">
             <h3 class="team-name">CIPHER SIRENS</h3>
+            <span class="click-hint">👆 Click to reveal team</span>
           </div>
-          
-          <!-- Team Members - Hidden by Default -->
           <div class="team-members" id="team1">
             <div class="member">
+              <span class="member-role">Team Leader</span>
               <span class="member-name">AFRAJABEEN RON</span>
             </div>
             <div class="member">
+              <span class="member-role">Team Member</span>
               <span class="member-name">Rishasi Das</span>
             </div>
             <div class="member">
+              <span class="member-role">Team Member</span>
               <span class="member-name">Mirunalini D E</span>
             </div>
             <div class="member">
+              <span class="member-role">Team Member</span>
               <span class="member-name">Rehwa N</span>
             </div>
           </div>
         </div>
 
         <!-- 2ND PLACE - LUX VERITAS -->
-        <div class="winner-card silver">
+        <div class="winner-card silver" onclick="showTeamMembers('team2')">
           <div class="winner-rank">
             <span class="trophy-icon">🥈</span>
             <h4>2nd Place</h4>
             <p class="prize-amount">₹30,000</p>
           </div>
-          
           <div class="winner-info">
             <h3 class="team-name">LUX VERITAS</h3>
+            <span class="click-hint">👆 Click to reveal team</span>
           </div>
-          
-          <!-- Team Members -->
           <div class="team-members" id="team2">
             <div class="member">
+              <span class="member-role">Team Leader</span>
               <span class="member-name">ALSHA P A</span>
             </div>
             <div class="member">
+              <span class="member-role">Team Member</span>
               <span class="member-name">Riddhima Sharma</span>
             </div>
             <div class="member">
+              <span class="member-role">Team Member</span>
               <span class="member-name">AMRITHA BAIJU</span>
             </div>
             <div class="member">
+              <span class="member-role">Team Member</span>
               <span class="member-name">ARSHA SATHYAN</span>
             </div>
           </div>
         </div>
 
         <!-- 3RD PLACE - THE SCENE DECODERS -->
-        <div class="winner-card bronze">
+        <div class="winner-card bronze" onclick="showTeamMembers('team3')">
           <div class="winner-rank">
             <span class="trophy-icon">🥉</span>
             <h4>3rd Place</h4>
             <p class="prize-amount">₹20,000</p>
           </div>
-          
           <div class="winner-info">
             <h3 class="team-name">THE SCENE DECODERS</h3>
+            <span class="click-hint">👆 Click to reveal team</span>
           </div>
-          
-          <!-- Team Members -->
           <div class="team-members" id="team3">
             <div class="member">
               <span class="member-name">Tisha Girkar</span>
@@ -3473,29 +3488,24 @@ input.warning {
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
     <!-- CATEGORY II WINNERS -->
     <div class="category-winners" style="margin-top: 4rem;">
       <h3 class="winner-category-title">Category II - Postgraduate & Ph.D. Students</h3>
-      
       <div class="winners-grid">
-        
         <!-- 1ST PLACE - GROUP 7 -->
-        <div class="winner-card gold">
+        <div class="winner-card gold" onclick="showTeamMembers('team4')">
           <div class="winner-rank">
             <span class="trophy-icon">🥇</span>
             <h4>1st Place</h4>
             <p class="prize-amount">₹50,000</p>
           </div>
-          
           <div class="winner-info">
             <h3 class="team-name">GROUP 7</h3>
+            <span class="click-hint">👆 Click to reveal team</span>
           </div>
-          
-          <!-- Team Members -->
           <div class="team-members" id="team4">
             <div class="member">
               <span class="member-name">Rishabh Kumar</span>
@@ -3516,18 +3526,16 @@ input.warning {
         </div>
 
         <!-- 2ND PLACE - GROUP 6 -->
-        <div class="winner-card silver">
+        <div class="winner-card silver" onclick="showTeamMembers('team5')">
           <div class="winner-rank">
             <span class="trophy-icon">🥈</span>
             <h4>2nd Place</h4>
             <p class="prize-amount">₹30,000</p>
           </div>
-          
           <div class="winner-info">
             <h3 class="team-name">GROUP 6</h3>
+            <span class="click-hint">👆 Click to reveal team</span>
           </div>
-          
-          <!-- Team Members -->
           <div class="team-members" id="team5">
             <div class="member">
               <span class="member-name">T. Amulya</span>
@@ -3548,18 +3556,16 @@ input.warning {
         </div>
 
         <!-- 3RD PLACE - GROUP 9 -->
-        <div class="winner-card bronze">
+        <div class="winner-card bronze" onclick="showTeamMembers('team6')">
           <div class="winner-rank">
             <span class="trophy-icon">🥉</span>
             <h4>3rd Place</h4>
             <p class="prize-amount">₹20,000</p>
           </div>
-          
           <div class="winner-info">
             <h3 class="team-name">GROUP 9</h3>
+            <span class="click-hint">👆 Click to reveal team</span>
           </div>
-          
-          <!-- Team Members -->
           <div class="team-members" id="team6">
             <div class="member">
               <span class="member-name">Dheeraj Kumar</span>
@@ -3578,7 +3584,6 @@ input.warning {
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
@@ -3594,10 +3599,9 @@ input.warning {
         </a>
       </div>
     </div>
-
   </div>
 </section>
-<!-- ==================== END WINNERS SECTION ==================== -->
+
 
 <section class="categories" id="categories">
   <div class="container">
@@ -5661,5 +5665,50 @@ function showTeamMembers(id) {
 }
 
     </script>
+    <script>
+// Winner Card Toggle Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all winner cards
+    const winnerCards = document.querySelectorAll('.winner-card');
+    
+    winnerCards.forEach((card, index) => {
+        const teamMembers = card.querySelector('.team-members');
+        const teamName = card.querySelector('.team-name');
+        
+        // Make entire card clickable
+        card.style.cursor = 'pointer';
+        
+        card.addEventListener('click', function(e) {
+            // Prevent clicks on links/buttons inside card
+            if (e.target.closest('a, button')) return;
+            
+            // Toggle active class
+            teamMembers.classList.toggle('active');
+            
+            // Optional: Rotate team name on toggle
+            teamName.style.transform = teamMembers.classList.contains('active') 
+                ? 'scale(1.05)' : 'scale(1)';
+        });
+        
+        // Close when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!card.contains(e.target)) {
+                teamMembers.classList.remove('active');
+                teamName.style.transform = 'scale(1)';
+            }
+        });
+    });
+    
+    // Optional: Add keyboard accessibility
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.team-members.active').forEach(el => {
+                el.classList.remove('active');
+            });
+        }
+    });
+});
+</script>
+
 </body>
 </html>
