@@ -5817,7 +5817,92 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Toggle function
+    document.querySelectorAll('.toggle-members-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const teamId = this.getAttribute('data-team');
+            const teamDiv = document.getElementById(teamId);
+            const isActive = teamDiv.classList.contains('active');
+            
+            if(isActive) {
+                teamDiv.classList.remove('active');
+                this.textContent = 'View Team Members';
+                this.classList.remove('active');
+            } else {
+                // Close all others first
+                document.querySelectorAll('.team-members.active').forEach(div => {
+                    div.classList.remove('active');
+                    const otherBtn = document.querySelector(`[data-team="${div.id}"]`);
+                    if(otherBtn) {
+                        otherBtn.textContent = 'View Team Members';
+                        otherBtn.classList.remove('active');
+                    }
+                });
+                
+                // Open this one + fireworks
+                teamDiv.classList.add('active');
+                this.textContent = 'Hide Team Members';
+                this.classList.add('active');
+                
+                // Simple fireworks
+                fireworksEffect();
+            }
+        });
+    });
+    
+    function fireworksEffect() {
+        const canvas = document.getElementById('fireworksCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        canvas.style.opacity = '1';
+        
+        let particles = [];
+        for(let i = 0; i < 50; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 10,
+                vy: (Math.random() - 0.5) * 10,
+                life: 100,
+                color: `hsl(${Math.random()*60 + 180}, 100%, 50%)`
+            });
+        }
+        
+        function animate() {
+            ctx.fillStyle = 'rgba(0,0,0,0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach((p, i) => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.life--;
+                p.vx *= 0.98;
+                p.vy *= 0.98;
+                
+                ctx.save();
+                ctx.globalAlpha = p.life / 100;
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+                
+                if(p.life < 0) particles.splice(i, 1);
+            });
+            
+            if(particles.length > 0) requestAnimationFrame(animate);
+            else canvas.style.opacity = '0';
+        }
+        animate();
+    }
+});
+</script>
 
+<canvas id="fireworksCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;opacity:0;"></canvas>
 
 </body>
 </html>
