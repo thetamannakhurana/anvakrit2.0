@@ -2883,6 +2883,241 @@ input.valid {
 input.warning {
     border-color: #ffa500 !important;
 }
+/* ==================== WINNERS SECTION ==================== */
+.winners {
+  padding: 6rem 0;
+  background: transparent;
+}
+
+.category-winners {
+  margin-bottom: 3rem;
+}
+
+.winner-category-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  color: var(--neon-cyan);
+  text-align: center;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.winners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Winner Cards */
+.winner-card {
+  background: rgba(13, 27, 42, 0.6);
+  border: 3px solid;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.winner-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.winner-card:hover::before {
+  opacity: 1;
+}
+
+.winner-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 60px rgba(0, 212, 255, 0.4);
+}
+
+/* Gold, Silver, Bronze Styling */
+.winner-card.gold {
+  border-color: #FFD700;
+}
+
+.winner-card.gold:hover {
+  box-shadow: 0 20px 60px rgba(255, 215, 0, 0.5);
+}
+
+.winner-card.silver {
+  border-color: #C0C0C0;
+}
+
+.winner-card.silver:hover {
+  box-shadow: 0 20px 60px rgba(192, 192, 192, 0.5);
+}
+
+.winner-card.bronze {
+  border-color: #CD7F32;
+}
+
+.winner-card.bronze:hover {
+  box-shadow: 0 20px 60px rgba(205, 127, 50, 0.5);
+}
+
+/* Winner Rank */
+.winner-rank {
+  margin-bottom: 1.5rem;
+}
+
+.trophy-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+  animation: float-trophy 3s ease-in-out infinite;
+}
+
+@keyframes float-trophy {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.winner-rank h4 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.prize-amount {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--neon-cyan);
+  font-family: 'Rajdhani', sans-serif;
+}
+
+/* Team Name */
+.team-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Toggle Members Button */
+.toggle-members-btn {
+  background: transparent;
+  border: 2px solid var(--neon-blue);
+  color: var(--neon-blue);
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0 auto;
+}
+
+.toggle-members-btn:hover {
+  background: var(--neon-blue);
+  color: var(--bg-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+}
+
+.toggle-members-btn .arrow {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.toggle-members-btn.active .arrow {
+  transform: rotate(180deg);
+}
+
+/* Team Members - Hidden by Default */
+.team-members {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.5s ease;
+  margin-top: 0;
+  padding: 0;
+}
+
+.team-members.active {
+  max-height: 600px;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 212, 255, 0.2);
+  margin-top: 1.5rem;
+}
+
+.member {
+  padding: 0.8rem 1rem;
+  background: rgba(0, 212, 255, 0.05);
+  border-radius: 10px;
+  margin-bottom: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  border-left: 3px solid var(--neon-blue);
+}
+
+.member:last-child {
+  margin-bottom: 0;
+}
+
+.member-role {
+  font-size: 0.85rem;
+  color: var(--neon-cyan);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.member-name {
+  font-size: 1.1rem;
+  color: var(--white);
+  font-weight: 600;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .winners-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .winner-category-title {
+    font-size: 1.4rem;
+  }
+  
+  .trophy-icon {
+    font-size: 3rem;
+  }
+  
+  .team-name {
+    font-size: 1.2rem;
+  }
+  
+  .results-links-section > div {
+    flex-direction: column;
+    gap: 1rem !important;
+  }
+}
 
     </style>
         <!-- Background Audio -->
@@ -2998,21 +3233,6 @@ input.warning {
     <a href="documents/Anvakrit-2.0-brochure.pdf" download class="btn-primary btn-secondary btn-full-width">
         📄 Download Detailed Brochure
     </a>
-
-    <!-- 4. Round 1 Results -->
-<a href="results.html" class="btn-primary btn-secondary btn-full-width">
-    📈 Round 1 Results - Top 39 Teams
-</a>
-
-<!-- 5. Round 2 Results -->
-<a href="results-round2.html" class="btn-primary btn-secondary btn-full-width">
-    🏆 Round 2 Results - Top 21 Finalists
-</a>
-
-
-
-
-
     </section>
 
     <section class="about" id="about">
@@ -3135,117 +3355,275 @@ input.warning {
             </div>
         </div>
     </section>
-<!-- 
-==================== ATTENDEE REGISTRATION FORM - HIDDEN ====================
-<section class="contact" id="attendee-registration">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-label">Join Us</span>
-            <h2 class="section-title">Register as Attendee</h2>
-            <p class="section-subtitle">Fill the form below to register for Anvakrit 2.0. Limited seats available!</p>
-        </div>
 
-        <div class="contact-form-wrapper">
-            <form class="contact-form" id="attendeeForm" onsubmit="submitAttendeeForm(event)">
-                
-                
-                <div class="form-group">
-                    <label for="name">👤 Full Name *</label>
-                    <input 
-                        type="text" 
-                        id="name" 
-                        name="name" 
-                        required 
-                        minlength="3"
-                        placeholder="Enter your full name"
-                        autocomplete="name"
-                    >
-                </div>
-
-                
-                <div class="form-group">
-                    <label for="email">📧 Email Address *</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        required 
-                        placeholder="your.email@example.com"
-                        onblur="validateEmailField()"
-                        autocomplete="email"
-                    >
-                    <small style="color: var(--gray-light); margin-top: 0.5rem; display: block;">
-                        Use your institutional/personal email
-                    </small>
-                </div>
-
-                
-<div class="form-group">
-    <label for="phone">📱 Phone Number *</label>
-    <input 
-        type="tel" 
-        id="phone" 
-        name="phone" 
-        required 
-        pattern="[0-9]{10}" 
-        placeholder="Enter 10-digit phone number"
-        maxlength="10"
-        onblur="validatePhoneField()"
-        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-        autocomplete="tel"
-    >
-    <small style="color: var(--gray-light); margin-top: 0.5rem; display: block;">
-        Must be exactly 10 digits
-    </small>
-</div>
-
-
-                
-                <div class="form-group">
-                    <label for="affiliation">🏫 Affiliation/Institution *</label>
-                    <input 
-                        type="text" 
-                        id="affiliation" 
-                        name="affiliation" 
-                        required 
-                        minlength="3"
-                        placeholder="Your college/university/organization"
-                        autocomplete="organization"
-                    >
-                </div>
-
-                
-                <div class="form-group">
-                    <label for="idCard">📄 Upload ID Card (PDF/JPG/PNG, Max 5MB) *</label>
-                    <input 
-                        type="file" 
-                        id="idCard" 
-                        name="idCard" 
-                        required 
-                        accept=".pdf,.jpg,.jpeg,.png" 
-                        onchange="validateFile(this)"
-                    >
-                    <small style="color: var(--gray-light); margin-top: 0.5rem; display: block;">
-                        Upload your valid institutional/student ID card
-                    </small>
-                </div>
-
-                
-                <button type="submit" class="contact-submit-btn" id="submitBtn">
-                    <span id="btnText">🚀 Register Now</span>
-                    <span id="btnLoader" style="display: none;">⏳ Uploading...</span>
-                </button>
-
-                
-                <div id="formMessage" style="margin-top: 1.5rem; text-align: center; font-size: 1.1rem; min-height: 30px;"></div>
-
-            </form>
-        </div>
-
+<!-- ==================== WINNERS SECTION ==================== -->
+<section class="winners" id="winners">
+  <div class="container">
+    
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-label">Champions</span>
+      <h2 class="section-title">🏆 Anvakrit 2.0 Winners</h2>
+      <p class="section-subtitle">Celebrating the brilliant minds who cracked the case</p>
     </div>
+
+    <!-- CATEGORY I WINNERS -->
+    <div class="category-winners">
+      <h3 class="winner-category-title">Category I - Undergraduate Students</h3>
+      
+      <div class="winners-grid">
+        
+        <!-- 1ST PLACE - CIPHER SIRENS -->
+        <div class="winner-card gold">
+          <div class="winner-rank">
+            <span class="trophy-icon">🥇</span>
+            <h4>1st Place</h4>
+            <p class="prize-amount">₹50,000</p>
+          </div>
+          
+          <div class="winner-info">
+            <h3 class="team-name">CIPHER SIRENS</h3>
+            <button class="toggle-members-btn" onclick="toggleTeamMembers('team1')">
+              View Team Members <span class="arrow">▼</span>
+            </button>
+          </div>
+          
+          <!-- Team Members - Hidden by Default -->
+          <div class="team-members" id="team1">
+            <div class="member">
+              <span class="member-role">Team Leader</span>
+              <span class="member-name">AFRAJABEEN RON</span>
+            </div>
+            <div class="member">
+              <span class="member-role">Team Member</span>
+              <span class="member-name">Rishasi Das</span>
+            </div>
+            <div class="member">
+              <span class="member-role">Team Member</span>
+              <span class="member-name">Mirunalini D E</span>
+            </div>
+            <div class="member">
+              <span class="member-role">Team Member</span>
+              <span class="member-name">Rehwa N</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2ND PLACE - LUX VERITAS -->
+        <div class="winner-card silver">
+          <div class="winner-rank">
+            <span class="trophy-icon">🥈</span>
+            <h4>2nd Place</h4>
+            <p class="prize-amount">₹30,000</p>
+          </div>
+          
+          <div class="winner-info">
+            <h3 class="team-name">LUX VERITAS</h3>
+            <button class="toggle-members-btn" onclick="toggleTeamMembers('team2')">
+              View Team Members <span class="arrow">▼</span>
+            </button>
+          </div>
+          
+          <!-- Team Members -->
+          <div class="team-members" id="team2">
+            <div class="member">
+              <span class="member-role">Team Leader</span>
+              <span class="member-name">ALSHA P A</span>
+            </div>
+            <div class="member">
+              <span class="member-role">Team Member</span>
+              <span class="member-name">Riddhima Sharma</span>
+            </div>
+            <div class="member">
+              <span class="member-role">Team Member</span>
+              <span class="member-name">AMRITHA BAIJU</span>
+            </div>
+            <div class="member">
+              <span class="member-role">Team Member</span>
+              <span class="member-name">ARSHA SATHYAN</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3RD PLACE - THE SCENE DECODERS -->
+        <div class="winner-card bronze">
+          <div class="winner-rank">
+            <span class="trophy-icon">🥉</span>
+            <h4>3rd Place</h4>
+            <p class="prize-amount">₹20,000</p>
+          </div>
+          
+          <div class="winner-info">
+            <h3 class="team-name">THE SCENE DECODERS</h3>
+            <button class="toggle-members-btn" onclick="toggleTeamMembers('team3')">
+              View Team Members <span class="arrow">▼</span>
+            </button>
+          </div>
+          
+          <!-- Team Members -->
+          <div class="team-members" id="team3">
+            <div class="member">
+              <span class="member-role">Team Member</span>
+              <span class="member-name">Tisha Girkar</span>
+            </div>
+            <div class="member">
+              <span class="member-role">Team Member</span>
+              <span class="member-name">Anjaly Sreedharan</span>
+            </div>
+            <div class="member">
+              <span class="member-role">Team Member</span>
+              <span class="member-name">Catharin Raju</span>
+            </div>
+            <div class="member">
+              <span class="member-role">Team Member</span>
+              <span class="member-name">Lekshmi P.S</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CATEGORY II WINNERS -->
+    <div class="category-winners" style="margin-top: 4rem;">
+      <h3 class="winner-category-title">Category II - Postgraduate & Ph.D. Students</h3>
+      
+      <div class="winners-grid">
+        
+        <!-- 1ST PLACE - GROUP 7 -->
+        <div class="winner-card gold">
+          <div class="winner-rank">
+            <span class="trophy-icon">🥇</span>
+            <h4>1st Place</h4>
+            <p class="prize-amount">₹50,000</p>
+          </div>
+          
+          <div class="winner-info">
+            <h3 class="team-name">GROUP 7</h3>
+            <button class="toggle-members-btn" onclick="toggleTeamMembers('team4')">
+              View Team Members <span class="arrow">▼</span>
+            </button>
+          </div>
+          
+          <!-- Team Members -->
+          <div class="team-members" id="team4">
+            <div class="member">
+              <span class="member-name">Rishabh Kumar</span>
+            </div>
+            <div class="member">
+              <span class="member-name">Aditya Singh</span>
+            </div>
+            <div class="member">
+              <span class="member-name">Divyanshi Borana</span>
+            </div>
+            <div class="member">
+              <span class="member-name">Pareena Salman</span>
+            </div>
+            <div class="member">
+              <span class="member-name">Mehak Madan</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2ND PLACE - GROUP 6 -->
+        <div class="winner-card silver">
+          <div class="winner-rank">
+            <span class="trophy-icon">🥈</span>
+            <h4>2nd Place</h4>
+            <p class="prize-amount">₹30,000</p>
+          </div>
+          
+          <div class="winner-info">
+            <h3 class="team-name">GROUP 6</h3>
+            <button class="toggle-members-btn" onclick="toggleTeamMembers('team5')">
+              View Team Members <span class="arrow">▼</span>
+            </button>
+          </div>
+          
+          <!-- Team Members -->
+          <div class="team-members" id="team5">
+            <div class="member">
+              <span class="member-name">T. Amulya</span>
+            </div>
+            <div class="member">
+              <span class="member-name">Gayatri Nair</span>
+            </div>
+            <div class="member">
+              <span class="member-name">Vishnudas K</span>
+            </div>
+            <div class="member">
+              <span class="member-name">Anasooya Ajith</span>
+            </div>
+            <div class="member">
+              <span class="member-name">Adithiyan C.B</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3RD PLACE - GROUP 9 -->
+        <div class="winner-card bronze">
+          <div class="winner-rank">
+            <span class="trophy-icon">🥉</span>
+            <h4>3rd Place</h4>
+            <p class="prize-amount">₹20,000</p>
+          </div>
+          
+          <div class="winner-info">
+            <h3 class="team-name">GROUP 9</h3>
+            <button class="toggle-members-btn" onclick="toggleTeamMembers('team6')">
+              View Team Members <span class="arrow">▼</span>
+            </button>
+          </div>
+          
+          <!-- Team Members -->
+          <div class="team-members" id="team6">
+            <div class="member">
+              <span class="member-name">Dheeraj Kumar</span>
+            </div>
+            <div class="member">
+              <span class="member-name">Sajna PJ</span>
+            </div>
+            <div class="member">
+              <span class="member-name">Sanika Sarvesh Hegde</span>
+            </div>
+            <div class="member">
+              <span class="member-name">Shubhanki Agarwal</span>
+            </div>
+            <div class="member">
+              <span class="member-name">Soorya P</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Round Results Links -->
+    <div class="results-links-section" style="margin-top: 4rem; text-align: center;">
+      <h3 style="color: var(--neon-cyan); font-family: 'Orbitron', sans-serif; margin-bottom: 2rem;">View Detailed Results</h3>
+      <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+        <a href="results.html" class="btn-primary btn-secondary" style="min-width: 250px;">
+          📊 Round 1 Results - Top 39 Teams
+        </a>
+        <a href="results-round2.html" class="btn-primary btn-secondary" style="min-width: 250px;">
+          📊 Round 2 Results - Top 21 Finalists
+        </a>
+      </div>
+    </div>
+
+  </div>
 </section>
-==================== END ATTENDEE REGISTRATION FORM ====================
--->
+<!-- ==================== END WINNERS SECTION ==================== -->
+
+<!-- 4. Round 1 Results -->
+<a href="results.html" class="btn-primary btn-secondary btn-full-width">
+    📈 Round 1 Results - Top 39 Teams
+</a>
+
+<!-- 5. Round 2 Results -->
+<a href="results-round2.html" class="btn-primary btn-secondary btn-full-width">
+    🏆 Round 2 Results - Top 21 Finalists
+</a>
 <section class="categories" id="categories">
   <div class="container">
      <div class="registration-badge">
@@ -5292,6 +5670,22 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('📡 Connected to:', GOOGLE_SCRIPT_URL);
 });
 
+// Toggle Team Members Function
+function toggleTeamMembers(teamId) {
+  const teamMembers = document.getElementById(teamId);
+  const button = event.currentTarget;
+  
+  // Toggle active class
+  teamMembers.classList.toggle('active');
+  button.classList.toggle('active');
+  
+  // Update button text
+  if (teamMembers.classList.contains('active')) {
+    button.innerHTML = 'Hide Team Members <span class="arrow">▼</span>';
+  } else {
+    button.innerHTML = 'View Team Members <span class="arrow">▼</span>';
+  }
+}
 
     </script>
 </body>
